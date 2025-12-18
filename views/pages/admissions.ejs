@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admissions - Apply Now</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: #ffffff;
+        color: #1a1a1a;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+    }
+
+    /* Common Section Container */
+    .section-container {
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Hero Section - SWISS MINIMAL */
+    .placement-hero {
+        position: relative;
+        background: #f8f8f8;
+        padding: 140px 0 100px;
+        overflow: hidden;
+        border-bottom: 2px solid #e5e5e5;
+    }
+
+    .placement-hero-content {
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+    }
+
+    .placement-hero h1 {
+        font-size: 72px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 25px;
+        letter-spacing: -2px;
+        text-transform: uppercase;
+        line-height: 1.1;
+    }
+
+    .placement-hero h1 .highlight {
+        color: #DC2626;
+        position: relative;
+        display: inline-block;
+    }
+
+    .placement-hero h1 .highlight::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: #DC2626;
+    }
+
+    .placement-hero p {
+        font-size: 20px;
+        color: #666;
+        max-width: 700px;
+        line-height: 1.8;
+        font-weight: 300;
+        letter-spacing: 0.3px;
+    }
+
+    /* Stats Section - WHITE BACKGROUND */
+    .placement-stats {
+        background: #ffffff;
+        padding: 100px 0;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .section-title {
+        font-size: 42px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 60px;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+        text-align: left;
+        position: relative;
+        padding-bottom: 20px;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: #DC2626;
+    }
+
+    .section-title .highlight {
+        color: #DC2626;
+        font-weight: 800;
+    }
+
+    /* FIXED: Dark Box with Proper Partition Lines */
+    .stats-container-box {
+        border: 2px solid #1E3A8A;
+        background: #1E3A8A;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        position: relative;
+    }
+
+    /* First partition line at 25% */
+    .stats-grid::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 25%;
+        height: 100%;
+        width: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        z-index: 1;
+    }
+
+    /* Second partition line at 50% */
+    .stats-grid::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        height: 100%;
+        width: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        z-index: 1;
+    }
+
+    /* Third partition line at 75% using a wrapper approach */
+    .stats-grid {
+        background-image: linear-gradient(
+            to right,
+            transparent 0%,
+            transparent calc(75% - 0.5px),
+            rgba(255, 255, 255, 0.1) calc(75% - 0.5px),
+            rgba(255, 255, 255, 0.1) calc(75% + 0.5px),
+            transparent calc(75% + 0.5px),
+            transparent 100%
+        );
+    }
+
+    .stat-box {
+        padding: 60px 40px;
+        position: relative;
+        transition: all 0.3s ease;
+        text-align: center;
+        z-index: 2;
+    }
+
+    .stat-box:hover {
+        background: rgba(220, 38, 38, 0.15);
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(251, 191, 36, 0.2);
+        border: 2px solid #FBBF24;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        transition: all 0.3s ease;
+    }
+
+    .stat-box:hover .stat-icon {
+        border-color: #DC2626;
+        background: #DC2626;
+    }
+
+    .stat-icon i {
+        font-size: 28px;
+        color: #FBBF24;
+        transition: all 0.3s ease;
+    }
+
+    .stat-box:hover .stat-icon i {
+        color: white;
+    }
+
+    .stat-number {
+        font-size: 48px;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 8px;
+        line-height: 1;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .stat-label {
+        font-size: 13px;
+        color: #FBBF24;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 10px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .stat-subtitle {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 300;
+        line-height: 1.6;
+        letter-spacing: 0.3px;
+    }
+
+    /* Training Programs Section - APPLICATION PROCESS */
+    .training-section {
+        background: #ffffff;
+        padding: 100px 0;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .training-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border: 2px solid #e5e5e5;
+        position: relative;
+    }
+
+    .training-grid::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 33.333%;
+        width: 1px;
+        height: 100%;
+        background: #e5e5e5;
+        z-index: 1;
+    }
+
+    .training-grid::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 66.666%;
+        width: 1px;
+        height: 100%;
+        background: #e5e5e5;
+        z-index: 1;
+    }
+
+    .training-card {
+        background: #ffffff;
+        padding: 50px 35px 40px;
+        position: relative;
+        transition: all 0.3s ease;
+        overflow: visible;
+        border-right: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .training-card:nth-child(3n) {
+        border-right: none;
+    }
+
+    .training-card:nth-child(n+4) {
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .training-card:last-child {
+        border-bottom: none;
+    }
+
+    .training-card .card-number {
+        position: absolute;
+        top: -25px;
+        right: -25px;
+        width: 80px;
+        height: 80px;
+        background: #FBBF24;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+        font-weight: 900;
+        color: #1E3A8A;
+        z-index: 10;
+        font-family: 'Montserrat', sans-serif;
+        border: 4px solid white;
+        box-shadow: 0 0 0 2px #e5e5e5;
+        transition: all 0.3s ease;
+    }
+
+    .training-card:hover .card-number {
+        background: #DC2626;
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .training-icon {
+        width: 50px;
+        height: 50px;
+        background: white;
+        border: 2px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .training-card:hover .training-icon {
+        border-color: #DC2626;
+        background: #DC2626;
+    }
+
+    .training-icon i {
+        font-size: 24px;
+        color: #1a1a1a;
+        transition: all 0.3s ease;
+    }
+
+    .training-card:hover .training-icon i {
+        color: white;
+    }
+
+    .training-card h3 {
+        font-size: 16px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .training-card p {
+        font-size: 13px;
+        color: #666;
+        line-height: 1.8;
+        font-weight: 300;
+        letter-spacing: 0.2px;
+    }
+
+    .training-card:hover {
+        background: #f8f8f8;
+    }
+
+    /* Eligibility Section - Creative Accordion */
+    .internships-section {
+        background: #f8f8f8;
+        padding: 100px 0;
+        border-bottom: 2px solid #e5e5e5;
+    }
+
+    .eligibility-accordion {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .eligibility-item {
+        background: white;
+        border: 2px solid #e5e5e5;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+
+    .eligibility-item:hover {
+        border-color: #DC2626;
+        box-shadow: 0 10px 30px rgba(220, 38, 38, 0.1);
+    }
+
+    .eligibility-item.active {
+        border-color: #DC2626;
+    }
+
+    .eligibility-trigger {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 40px;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .eligibility-trigger:hover {
+        background: #f8f8f8;
+    }
+
+    .eligibility-item.active .eligibility-trigger {
+        background: #1E3A8A;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .eligibility-left {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .eligibility-number {
+        width: 60px;
+        height: 60px;
+        background: #FBBF24;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: 900;
+        color: #1E3A8A;
+        font-family: 'Montserrat', sans-serif;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+    }
+
+    .eligibility-item.active .eligibility-number {
+        background: #DC2626;
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .eligibility-info h3 {
+        font-size: 20px;
+        font-weight: 800;
+        color: #1a1a1a;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-family: 'Montserrat', sans-serif;
+        margin-bottom: 5px;
+        transition: color 0.3s ease;
+    }
+
+    .eligibility-item.active .eligibility-info h3 {
+        color: white;
+    }
+
+    .eligibility-info p {
+        font-size: 14px;
+        color: #666;
+        font-weight: 300;
+        transition: color 0.3s ease;
+    }
+
+    .eligibility-item.active .eligibility-info p {
+        color: #FBBF24;
+    }
+
+    .eligibility-toggle {
+        width: 40px;
+        height: 40px;
+        background: white;
+        border: 2px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+    }
+
+    .eligibility-item.active .eligibility-toggle {
+        background: #DC2626;
+        border-color: #DC2626;
+        transform: rotate(180deg);
+    }
+
+    .eligibility-toggle i {
+        font-size: 16px;
+        color: #1a1a1a;
+        transition: color 0.3s ease;
+    }
+
+    .eligibility-item.active .eligibility-toggle i {
+        color: white;
+    }
+
+    .eligibility-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .eligibility-item.active .eligibility-content {
+        max-height: 500px;
+    }
+
+    .criteria-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        padding: 40px;
+        background: white;
+    }
+
+    .criteria-item {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .criteria-icon {
+        width: 40px;
+        height: 40px;
+        background: white;
+        border: 2px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 5px;
+        transition: all 0.3s ease;
+    }
+
+    .eligibility-item.active .criteria-icon {
+        border-color: #FBBF24;
+        background: #FBBF24;
+    }
+
+    .criteria-icon i {
+        font-size: 18px;
+        color: #1a1a1a;
+        transition: color 0.3s ease;
+    }
+
+    .eligibility-item.active .criteria-icon i {
+        color: #1E3A8A;
+    }
+
+    .criteria-label {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #1a1a1a;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .criteria-value {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.7;
+        font-weight: 300;
+    }
+
+    /* CTA Section */
+    .placement-cta {
+        background: #1E3A8A;
+        padding: 100px 0;
+        text-align: center;
+    }
+
+    .cta-content h2 {
+        font-size: 42px;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        line-height: 1.2;
+    }
+
+    .cta-content h2 .highlight {
+        color: #FBBF24;
+        position: relative;
+        display: inline-block;
+    }
+
+    .cta-content h2 .highlight::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: #FBBF24;
+    }
+
+    .cta-content p {
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 40px;
+        line-height: 1.8;
+        font-weight: 300;
+        letter-spacing: 0.3px;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .cta-btn {
+        padding: 16px 40px;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        font-family: 'Montserrat', sans-serif;
+        border: none;
+    }
+
+    .cta-btn-primary {
+        background: #DC2626;
+        border: 2px solid #DC2626;
+        color: white;
+    }
+
+    .cta-btn-primary:hover {
+        background: transparent;
+        color: #DC2626;
+        border-color: #DC2626;
+    }
+
+    .cta-btn-secondary {
+        background: transparent;
+        border: 2px solid #FBBF24;
+        color: #FBBF24;
+    }
+
+    .cta-btn-secondary:hover {
+        background: #FBBF24;
+        color: #1E3A8A;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+        .stats-grid,
+        .training-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        /* Update partition lines for 2 columns */
+        .stats-grid::before {
+            left: 50%;
+        }
+
+        .stats-grid::after,
+        .stats-grid {
+            background-image: none;
+        }
+
+        .training-grid::before {
+            left: 50%;
+        }
+
+        .training-grid::after {
+            display: none;
+        }
+
+        .training-card:nth-child(2n) {
+            border-right: none;
+        }
+
+        .placement-hero h1 {
+            font-size: 56px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .placement-hero {
+            padding: 100px 0 60px;
+        }
+
+        .placement-hero h1 {
+            font-size: 36px;
+        }
+
+        .placement-hero p {
+            font-size: 16px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 40px;
+        }
+
+        .stats-grid,
+        .training-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .stats-grid::before,
+        .stats-grid::after,
+        .training-grid::before,
+        .training-grid::after {
+            display: none;
+        }
+
+        .stats-grid {
+            background-image: none;
+        }
+
+        .training-card {
+            border-right: none !important;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .training-card:last-child {
+            border-bottom: none;
+        }
+
+        .cta-content h2 {
+            font-size: 28px;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cta-btn {
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .eligibility-trigger {
+            padding: 20px 25px;
+        }
+
+        .eligibility-left {
+            gap: 20px;
+        }
+
+        .eligibility-number {
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+        }
+
+        .eligibility-info h3 {
+            font-size: 16px;
+        }
+
+        .eligibility-info p {
+            font-size: 12px;
+        }
+
+        .criteria-grid {
+            grid-template-columns: 1fr;
+            padding: 30px 25px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .section-container,
+        .placement-hero-content {
+            padding: 0 15px;
+        }
+
+        .placement-hero h1 {
+            font-size: 28px;
+        }
+
+        .stat-box,
+        .training-card {
+            padding: 30px 25px;
+        }
+
+        .section-title {
+            font-size: 24px;
+        }
+
+        .eligibility-trigger {
+            padding: 20px;
+        }
+
+        .eligibility-left {
+            gap: 15px;
+        }
+
+        .eligibility-number {
+            width: 45px;
+            height: 45px;
+            font-size: 18px;
+        }
+
+        .criteria-grid {
+            padding: 25px 20px;
+        }
+    }
+</style>
+</head>
+<body>
+    <%- include('../partials/header') %>
+  
+    <!-- Hero Section -->
+    <section class="placement-hero">
+        <div class="placement-hero-content">
+            <h1>Apply for <span class="highlight">Admission</span></h1>
+            <p>Begin your academic journey with a seamless admission process and explore diverse programs designed for future leaders.</p>
+        </div>
+    </section>
+
+    <!-- Application Stats Section -->
+    <section class="placement-stats">
+        <div class="section-container">
+            <h2 class="section-title">Admission <span class="highlight">Overview</span></h2>
+            
+            <div class="stats-container-box">
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="stat-number">₹500</div>
+                        <div class="stat-label">Application Fee</div>
+                        <div class="stat-subtitle">One-time non-refundable processing fee</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-number">7-10</div>
+                        <div class="stat-label">Working Days</div>
+                        <div class="stat-subtitle">Application processing and decision time</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Programs Offered</div>
+                        <div class="stat-subtitle">Diploma, UG, PG and Ph.D. courses</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Online Process</div>
+                        <div class="stat-subtitle">Complete your application from anywhere</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Process - Card Grid -->
+    <section class="training-section">
+        <div class="section-container">
+            <h2 class="section-title">Application <span class="highlight">Process</span></h2>
+            
+            <div class="training-grid">
+                <!-- Step 1 -->
+                <div class="training-card">
+                    <div class="card-number">1</div>
+                    <div class="training-icon">
+                        <i class="fas fa-mouse-pointer"></i>
+                    </div>
+                    <h3>Click Apply Online</h3>
+                    <p>Navigate to our admissions portal and click on the "Apply Online" button to begin your application journey with ease.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="training-card">
+                    <div class="card-number">2</div>
+                    <div class="training-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h3>Fill Application Form</h3>
+                    <p>Complete the online form with personal details, academic history, contact information, and program preferences accurately.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="training-card">
+                    <div class="card-number">3</div>
+                    <div class="training-icon">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <h3>Upload Documents</h3>
+                    <p>Upload required documents including photograph, ID proof, and academic certificates in PDF format (Max 2MB each).</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="training-card">
+                    <div class="card-number">4</div>
+                    <div class="training-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Pay Application Fee</h3>
+                    <p>Complete the payment of ₹500 application fee securely through Razorpay using credit/debit card or net banking.</p>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="training-card">
+                    <div class="card-number">5</div>
+                    <div class="training-icon">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                    <h3>Submit Application</h3>
+                    <p>Review all details carefully and submit your application. Note down the Application ID for future reference and tracking.</p>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="training-card">
+                    <div class="card-number">6</div>
+                    <div class="training-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Receive Decision</h3>
+                    <p>Track your application status online. Admission decision will be communicated via email within 7-10 working days.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eligibility Criteria - Creative Accordion Design -->
+    <section class="internships-section">
+        <div class="section-container">
+            <h2 class="section-title">Eligibility <span class="highlight">Criteria</span></h2>
+            
+            <div class="eligibility-accordion">
+                <!-- Diploma -->
+                <div class="eligibility-item">
+                    <div class="eligibility-trigger">
+                        <div class="eligibility-left">
+                            <div class="eligibility-number">01</div>
+                            <div class="eligibility-info">
+                                <h3>Diploma Programs</h3>
+                                <p>Entry level technical and vocational courses</p>
+                            </div>
+                        </div>
+                        <div class="eligibility-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="eligibility-content">
+                        <div class="criteria-grid">
+                            <div class="criteria-item">
+                                <div class="criteria-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="criteria-label">Qualification</div>
+                                <div class="criteria-value">10th pass from recognized board</div>
+                            </div>
+                            <div class="criteria-item">
+                                <div class="criteria-icon">
+                                    <i class="fas fa-percent"></i>
+                                </div>
+                                <div class="criteria-label">Minimum Marks</div>
+                                <div class="criteria-value">45% aggregate in 10th standard</div>
+                            </div>
+                            <div class="criteria-item">
+                                <div class="criteria-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="criteria-label">Age Limit</div>
+                                <div class="criteria-value">15 to 25 years as on date of admission</div>
+                            </div>
+                            <div class="criteria-item">
+                                <div class="criteria-icon">
+                                    <i class="fas fa-plus-circle"></i>
+                                </div>
+                                <div class="criteria-label">Additional</div>
+                                <div class="criteria-value">Relevant stream subjects preferred</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Undergraduate -->
+                <div class="eligibility-item">
+                    <div class="eligibility-trigger">
+                        <div class="eligibility-left">
+                            <div class="eligibility-number">02</div>
+                            <div class="eligibility-info">
+                                <h3>Undergraduate Programs</h3>
+                                <p>Bachelor's degree in various disciplines</p>
+                            </div>
+                        </div>
+                        <div class="eligibility-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="eligibility-content">
+                        <div class="criteria-grid">
+                            <div class="criteria-item">
+                                <div class="criteria-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="criteria-label">Qualification</div>
+                                <div class="criteria-value">12th pass with required stream</div>
+                            </div>
+                            <div class="criteria-item">
+                                <div class="criteria-icon">
+                                    <i class="fas fa-percent"></i>
+                                </div>
+                                <div class="criteria-label">Minimum Marks</div>
+                                <div class="criteria-value">50% in 12th (45% for reserved category)</div>
+                            </div>
+                            <div class="criteria-item">
+                                <div class="criteria-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="criteria-label">Entrance Exam</div>
+                                <div class="criteria-value">Valid score where applicable (JEE/NEET/State)</div>
+                            </div>
+                            <div class="criteria-item">
+                                <div class="criteria-icon">
+                                    <i class="fas fa-plus-circle"></i>
+                                </div>
+                                <div class="criteria-label">Additional</div>
+                                <div class="criteria-value">Program-specific subject requirements</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Postgraduate -->
+                <div class="eligibility-item">
+                    <div class="eligibility-trigger">
+                        <div class="eligibility-left">
+                            <div class="eligibility-number">03</div>
+                            <div class="eligibility-info">
+                                <h3>Postgraduate Programs</h3>
+                                <p>Master's degree programs across fields</p>
+                            </div>
+                        </div>
+                        <div class="eligibility-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="eligibility-content">
+                        <div class="criteria-grid">
+                            <div class="criteria-item">
+                                <div class="criteria-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="criteria-label">Qualification</div>
+                                <div class="criteria-value">Bachelor's degree in relevant field</div>
+                            </div>
+                            <div class="criteria-item">
+                                <div class="criteria-icon">
+                                    <i class="fas fa-percent"></i>
+                                </div>
+                                <div class="criteria-label">Minimum Marks</div>
+                                <div class="criteria-value">55% in graduation (50% for reserved)</div>
+                            </div>
+                            <div class="criteria-item">
+                                <div class="criteria-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="criteria-label">Entrance Exam</div>
+                                <div class="criteria-value">GATE/CAT/MAT/CMAT score if required</div>
+                            </div>
+                            <div class="criteria-item">
+                                <div class="criteria-icon">
+                                    <i class="fas fa-plus-circle"></i>
+                                </div>
+                                <div class="criteria-label">Additional</div>
+                                <div class="criteria-value">Relevant background and work experience</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ph.D. -->
+                <div class="eligibility-item">
+                    <div class="eligibility-trigger">
+                        <div class="eligibility-left">
+                            <div class="eligibility-number">04</div>
+                            <div class="eligibility-info">
+                                <h3>Ph.D. Programs</h3>
+                                <p>Doctoral research programs</p>
+                            </div>
+                        </div>
+                        <div class="eligibility-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="eligibility-content">
+                        <div class="criteria-grid">
+                            <div class="criteria-item">
+                                <div class="criteria-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="criteria-label">Qualification</div>
+                                <div class="criteria-value">Master's degree with 60% marks minimum</div>
+                            </div>
+                            <div class="criteria-item">
+                                <div class="criteria-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="criteria-label">Entrance Exam</div>
+                                <div class="criteria-value">NET/GATE/SET qualified (exemption for M.Phil)</div>
+                            </div>
+                            <div class="criteria-item">
+                                <div class="criteria-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="criteria-label">Research Proposal</div>
+                                <div class="criteria-value">Detailed proposal in chosen area required</div>
+                            </div>
+                            <div class="criteria-item">
+                                <div class="criteria-icon">
+                                    <i class="fas fa-plus-circle"></i>
+                                </div>
+                                <div class="criteria-label">Additional</div>
+                                <div class="criteria-value">Interview and supervisor availability check</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="placement-cta">
+        <div class="section-container">
+            <div class="cta-content">
+                <h2>Ready to <span class="highlight">Apply?</span></h2>
+                <p>Take the first step towards your academic future. Complete your application online today and join thousands of successful students.</p>
+                <div class="cta-buttons">
+                    <a href="/apply" class="cta-btn cta-btn-primary">Apply Online Now</a>
+                    <a href="/contact" class="cta-btn cta-btn-secondary">Contact Admissions</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include('../partials/footer') %>
+
+    <script>
+        // Eligibility Accordion JavaScript
+        document.querySelectorAll('.eligibility-trigger').forEach(trigger => {
+            trigger.addEventListener('click', function() {
+                const item = this.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.eligibility-item').forEach(el => {
+                    el.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

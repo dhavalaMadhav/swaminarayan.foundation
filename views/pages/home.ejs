@@ -1,0 +1,2241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swaminarayan University - The Reservoir of All Knowledge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+        /* Hero Carousel - SWISS MINIMAL */
+        .hero-carousel-section {
+            position: relative;
+            background: #fafafa;
+            height: 650px;
+            margin-bottom: 180px;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(30, 58, 138, 0.6);
+            z-index: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-prev,
+        .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            color: #1a1a1a;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 12px 16px;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-prev:hover,
+        .carousel-next:hover {
+            background: #DC2626;
+            color: white;
+            border-color: #DC2626;
+        }
+
+        .carousel-prev {
+            left: 30px;
+        }
+
+        .carousel-next {
+            right: 30px;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #FBBF24;
+            width: 30px;
+        }
+
+        /* Features Cards - SWISS DESIGN */
+        .features-overlay {
+            position: absolute;
+            bottom: -150px;
+            right: 50px;
+            width: auto;
+            max-width: 1100px;
+            display: flex;
+            gap: 15px;
+            z-index: 20;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 35px 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            width: 260px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.15);
+        }
+
+        .feature-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover .feature-icon {
+            background: #DC2626;
+            border-color: #DC2626;
+            transform: rotateY(360deg);
+        }
+
+        .feature-icon i {
+            font-size: 26px;
+            color: #1a1a1a;
+            transition: all 0.5s ease;
+        }
+
+        .feature-card:hover .feature-icon i {
+            color: white;
+        }
+
+        .feature-number {
+            font-size: 56px;
+            font-weight: 900;
+            color: #FBBF24;
+            line-height: 1;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .feature-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            line-height: 1.3;
+            letter-spacing: -0.3px;
+            text-transform: uppercase;
+        }
+
+        .feature-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* Collaborations Section */
+        .collaborations-section {
+            background: #fafafa;
+            padding: 150px 0 50px;
+            position: relative;
+            overflow: hidden;
+            min-height: 900px;
+        }
+
+        .collaborations-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50vw;
+            height: 95%;
+            background: #1E3A8A;
+            clip-path: polygon(100% 0, 100% 100%, 0 100%);
+            z-index: 1;
+            opacity: 1;
+        }
+
+        .collaborations-section::after {
+            content: '';
+            position: absolute;
+            bottom: calc(5%);
+            right: calc(50vw - 100px);
+            width: 220px;
+            height: 220px;
+            background: #FBBF24;
+            clip-path: polygon(100% 0, 100% 100%, 0 100%);
+            z-index: 0;
+            box-shadow: 0 4px 20px rgba(251, 191, 36, 0.5);
+            opacity: 1;
+        }
+
+        .collaborations-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 52px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .section-header h2 .highlight {
+            color: #DC2626;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            font-size: 15px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .collab-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .collab-card {
+            position: relative;
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            transition: all 0.4s ease;
+        }
+
+        .collab-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .collab-logo {
+            width: 100px;
+            height: 100px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            padding: 20px;
+        }
+
+        .collab-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .collab-content h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+            text-transform: uppercase;
+        }
+
+        .collab-content p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* Statistics Section */
+        .stats-section {
+            position: relative;
+            padding: 80px 0;
+            background: #1E3A8A;
+        }
+
+        .stats-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            gap: 15px;
+            border-left: 3px solid #FBBF24;
+            padding-left: 25px;
+        }
+
+        .stat-icon-wrapper {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+
+        .stat-icon-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: 2px solid #FBBF24;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-icon-wrapper:hover .stat-icon-bg {
+            background: #FBBF24;
+        }
+
+        .stat-icon-bg i {
+            font-size: 24px;
+            color: #FBBF24;
+            transition: all 0.3s ease;
+        }
+
+        .stat-icon-wrapper:hover .stat-icon-bg i {
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 60px;
+            font-weight: 300;
+            color: white;
+            line-height: 1;
+            margin: 0;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Placement Section - UPDATED */
+        .placement-section {
+            background: #f5f5f5;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .placement-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .placement-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .placement-header h2 {
+            font-size: 52px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .placement-header h2 .highlight {
+            color: #DC2626;
+            font-weight: 700;
+        }
+
+        .placement-stats-wrapper {
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            overflow: visible;
+            transition: all 0.4s ease;
+        }
+
+        .placement-stats-wrapper:hover {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .placement-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .placement-stat-card {
+            background: transparent;
+            border: none;
+            border-right: 2px solid rgba(220, 38, 38, 0.3);
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .placement-stat-card:last-child {
+            border-right: none;
+        }
+
+        .placement-stat-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -1px;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 0;
+            background: linear-gradient(to bottom, transparent, #DC2626, transparent);
+            transition: all 0.5s ease;
+        }
+
+        .placement-stat-card:hover::before {
+            height: 80%;
+        }
+
+        .placement-stat-card:last-child::before {
+            display: none;
+        }
+
+        .placement-stat-card:hover {
+            background: rgba(220, 38, 38, 0.05);
+        }
+
+        .placement-stat-number {
+            font-size: 76px;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .placement-stat-card:hover .placement-stat-number {
+            color: #DC2626;
+        }
+
+        .placement-stat-number .highlight {
+            color: #DC2626;
+        }
+
+        .placement-stat-label {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .placement-stat-card:hover .placement-stat-label {
+            color: #DC2626;
+        }
+
+        .placement-stat-sublabel {
+            font-size: 13px;
+            color: #666;
+            margin-top: 5px;
+            font-weight: 300;
+        }
+
+/* Video Tour Section - WHITE BACKGROUND */
+.video-tour-section {
+    background: white;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-tour-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.video-tour-content h2 {
+    font-size: 52px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 25px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.video-tour-content h2 .highlight {
+    color: #DC2626;
+    font-weight: 700;
+}
+
+.video-tour-description {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+
+.video-tour-features {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.tour-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tour-feature i {
+    color: #FBBF24;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.tour-feature span {
+    font-size: 15px;
+    color: #1a1a1a;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.explore-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #DC2626;
+    color: white;
+    padding: 16px 35px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    border: 2px solid #DC2626;
+    transition: all 0.3s ease;
+}
+
+.explore-more-btn:hover {
+    background: transparent;
+    color: #DC2626;
+    transform: translateX(5px);
+}
+
+.explore-more-btn i {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.explore-more-btn:hover i {
+    transform: translateX(5px);
+}
+
+.video-tour-player {
+    position: relative;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    background: #f5f5f5;
+    border: 3px solid #e0e0e0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.video-wrapper:hover {
+    border-color: #DC2626;
+    box-shadow: 0 10px 40px rgba(220, 38, 38, 0.15);
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Responsive Design for Video Tour */
+@media (max-width: 1024px) {
+    .video-tour-container {
+        gap: 50px;
+    }
+
+    .video-tour-content h2 {
+        font-size: 42px;
+    }
+}
+
+@media (max-width: 768px) {
+    .video-tour-section {
+        padding: 80px 0;
+    }
+
+    .video-tour-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0 20px;
+    }
+
+    .video-tour-content h2 {
+        font-size: 32px;
+    }
+
+    .video-tour-description {
+        font-size: 15px;
+    }
+
+    .tour-feature span {
+        font-size: 14px;
+    }
+
+    .explore-more-btn {
+        padding: 14px 30px;
+        font-size: 13px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .video-wrapper {
+        border-width: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-tour-section {
+        padding: 60px 0;
+    }
+
+    .video-tour-content h2 {
+        font-size: 28px;
+    }
+
+    .video-tour-description {
+        font-size: 14px;
+    }
+
+    .video-tour-features {
+        gap: 12px;
+    }
+
+    .tour-feature i {
+        font-size: 16px;
+    }
+
+    .tour-feature span {
+        font-size: 13px;
+    }
+
+    .explore-more-btn {
+        padding: 12px 25px;
+    }
+}
+
+        /* Amenities Section - UPDATED WITH DYNAMIC BACKGROUND */
+        .amenities-section {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Dynamic Background Image */
+        .amenities-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .amenities-bg.active {
+            opacity: 1;
+        }
+
+        /* Black Overlay */
+        .amenities-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 1;
+        }
+
+        .amenities-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .amenities-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .amenities-header h2 {
+            font-size: 52px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .amenities-header h2 .highlight {
+            color: #DC2626;
+            font-weight: 700;
+        }
+
+        .amenities-header p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .amenities-content {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .amenities-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .amenity-item {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-left: 3px solid transparent;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .amenity-item:hover,
+        .amenity-item.active {
+            border-left-color: #DC2626;
+            background: white;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.1);
+            transform: translateX(5px);
+        }
+
+        .amenity-item-icon {
+            width: 38px;
+            height: 38px;
+            background: #f5f5f5;
+            border: 2px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .amenity-item:hover .amenity-item-icon,
+        .amenity-item.active .amenity-item-icon {
+            background: #DC2626;
+            border-color: #DC2626;
+        }
+
+        .amenity-item-icon i {
+            font-size: 18px;
+            color: #1a1a1a;
+            transition: all 0.3s ease;
+        }
+
+        .amenity-item:hover .amenity-item-icon i,
+        .amenity-item.active .amenity-item-icon i {
+            color: white;
+        }
+
+        .amenity-item h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin: 0;
+            flex: 1;
+            transition: all 0.3s ease;
+        }
+
+        .amenity-item:hover h3,
+        .amenity-item.active h3 {
+            color: #DC2626;
+        }
+
+        .amenity-arrow {
+            position: absolute;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35px;
+            height: 35px;
+            background: #DC2626;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
+        }
+
+        .amenity-arrow i {
+            font-size: 16px;
+            color: white;
+            animation: arrowPulse 1.5s ease-in-out infinite;
+        }
+
+        .amenity-item:hover .amenity-arrow,
+        .amenity-item.active .amenity-arrow {
+            opacity: 1;
+            visibility: visible;
+            right: -55px;
+        }
+
+        @keyframes arrowPulse {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+        }
+
+        .amenity-arrow::before {
+            content: '';
+            position: absolute;
+            right: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 2px;
+            background: #DC2626;
+            transition: all 0.3s ease;
+        }
+
+        .amenity-display {
+            position: sticky;
+            top: 100px;
+            background: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            min-height: 600px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .amenity-display-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .amenity-display-content.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .amenity-image {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .amenity-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .amenity-display-content.active .amenity-image img {
+            transform: scale(1.05);
+        }
+
+        .amenity-description {
+            padding: 40px;
+            background: white;
+            flex: 1;
+        }
+
+        .amenity-description h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .amenity-description p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Accreditation Section - UPDATED WITH UNIVERSITY IMAGE BACKGROUND */
+        .accreditation-section {
+            position: relative;
+            padding: 100px 0;
+            overflow: hidden;
+        }
+
+        /* University Background Image */
+        .accreditation-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        /* Black Overlay */
+        .accreditation-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1;
+        }
+
+        .accreditation-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 50px;
+        }
+
+        .accreditation-title {
+            font-size: 52px;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            letter-spacing: -1px;
+            margin-bottom: 70px;
+            text-transform: uppercase;
+        }
+
+        .accreditation-title .highlight {
+            color: #FBBF24;
+            font-weight: 700;
+        }
+
+        .accreditation-scroll-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .accreditation-track {
+            display: flex;
+            gap: 40px;
+            animation: scroll-rtl 40s linear infinite;
+            width: fit-content;
+        }
+
+        .accreditation-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-rtl {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .accreditation-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            flex-shrink: 0;
+            width: 160px;
+            position: relative;
+        }
+
+        .accreditation-logo-circle {
+            width: 140px;
+            height: 140px;
+            background: white;
+            border: 3px solid #FBBF24;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            transition: all 0.4s ease;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .accreditation-item:hover .accreditation-logo-circle {
+            transform: translateY(-6px);
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        .accreditation-logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .accreditation-name {
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            line-height: 1.5;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .collab-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .placement-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .features-overlay {
+                flex-wrap: wrap;
+                max-width: 100%;
+                right: 20px;
+            }
+
+            .feature-card {
+                flex: 1 1 calc(50% - 10px);
+                min-width: 250px;
+            }
+
+            .amenities-content {
+                grid-template-columns: 280px 1fr;
+                gap: 40px;
+            }
+
+            .amenities-header h2 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-carousel-section {
+                height: 500px;
+                margin-bottom: 120px;
+            }
+
+            .collaborations-section::before {
+                width: 60vw;
+            }
+
+            .section-header h2,
+            .placement-header h2,
+            .accreditation-title {
+                font-size: 42px;
+            }
+
+            .features-overlay {
+                bottom: -100px;
+            }
+
+            .feature-card {
+                flex: 1 1 100%;
+            }
+
+            .amenities-content {
+                grid-template-columns: 260px 1fr;
+                gap: 30px;
+            }
+
+            .amenity-item {
+                padding: 10px 16px;
+            }
+
+            .amenity-item-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .amenity-item-icon i {
+                font-size: 16px;
+            }
+
+            .amenity-item h3 {
+                font-size: 13px;
+            }
+
+            .amenity-arrow {
+                width: 32px;
+                height: 32px;
+            }
+
+            .amenity-arrow i {
+                font-size: 14px;
+            }
+
+            .amenity-description h3 {
+                font-size: 24px;
+            }
+
+            .amenity-description p {
+                font-size: 14px;
+            }
+
+            .video-tour-container {
+                gap: 50px;
+            }
+
+            .video-tour-content h2 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-carousel-section {
+                height: 450px;
+                margin-bottom: 100px;
+            }
+
+            .features-overlay {
+                position: static;
+                flex-direction: column;
+                margin: 30px 20px;
+            }
+
+            .feature-card {
+                width: 100%;
+            }
+
+            .section-header h2,
+            .placement-header h2,
+            .accreditation-title {
+                font-size: 32px;
+            }
+
+            .stats-container,
+            .placement-stats {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .placement-stat-card {
+                border-right: none;
+                border-bottom: 2px solid rgba(220, 38, 38, 0.3);
+                padding: 30px 20px;
+            }
+
+            .placement-stat-card:last-child {
+                border-bottom: none;
+            }
+
+            .collaborations-section {
+                min-height: auto;
+                padding: 80px 0 50px;
+            }
+
+            .collaborations-section::before {
+                width: 100%;
+                height: 50%;
+                clip-path: none;
+            }
+
+            .collaborations-section::after {
+                right: 20px;
+                bottom: 20px;
+                width: 150px;
+                height: 150px;
+            }
+
+            .collaborations-container,
+            .placement-container,
+            .accreditation-content {
+                padding: 0 20px;
+            }
+
+            .collab-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .video-tour-section {
+                padding: 80px 0;
+            }
+
+            .video-tour-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 0 20px;
+            }
+
+            .video-tour-content h2 {
+                font-size: 32px;
+            }
+
+            .video-tour-description {
+                font-size: 15px;
+            }
+
+            .tour-feature span {
+                font-size: 14px;
+            }
+
+            .explore-more-btn {
+                padding: 14px 30px;
+                font-size: 13px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .video-wrapper {
+                border-width: 2px;
+            }
+
+            .amenities-section {
+                padding: 80px 0;
+            }
+
+            .amenities-container {
+                padding: 0 20px;
+            }
+
+            .amenities-header {
+                margin-bottom: 50px;
+            }
+
+            .amenities-header h2 {
+                font-size: 32px;
+            }
+
+            .amenities-header p {
+                font-size: 15px;
+            }
+
+            .amenities-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .amenities-list {
+                order: 2;
+                gap: 8px;
+            }
+
+            .amenity-display {
+                order: 1;
+                position: relative;
+                top: 0;
+                min-height: 500px;
+            }
+
+            .amenity-item {
+                padding: 12px 16px;
+            }
+
+            .amenity-item-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .amenity-item-icon i {
+                font-size: 16px;
+            }
+
+            .amenity-item h3 {
+                font-size: 13px;
+            }
+
+            .amenity-arrow {
+                display: none;
+            }
+
+            .amenity-image {
+                height: 300px;
+            }
+
+            .amenity-description {
+                padding: 30px 25px;
+            }
+
+            .amenity-description h3 {
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+
+            .amenity-description p {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-prev,
+            .carousel-next {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            .carousel-prev {
+                left: 10px;
+            }
+
+            .carousel-next {
+                right: 10px;
+            }
+
+            .feature-number {
+                font-size: 42px;
+            }
+
+            .feature-title {
+                font-size: 16px;
+            }
+
+            .section-header h2,
+            .placement-header h2,
+            .accreditation-title {
+                font-size: 28px;
+            }
+
+            .stat-number {
+                font-size: 48px;
+            }
+
+            .placement-stat-number {
+                font-size: 56px;
+            }
+
+            .accreditation-logo-circle {
+                width: 120px;
+                height: 120px;
+            }
+
+            .accreditation-item {
+                width: 140px;
+            }
+
+            .placement-stats-wrapper {
+                padding: 30px 20px;
+            }
+
+            .hero-carousel-section {
+                height: 400px;
+                margin-bottom: 80px;
+            }
+
+            .carousel-dots {
+                bottom: 150px;
+            }
+
+            .video-tour-section {
+                padding: 60px 0;
+            }
+
+            .video-tour-content h2 {
+                font-size: 28px;
+            }
+
+            .video-tour-description {
+                font-size: 14px;
+            }
+
+            .video-tour-features {
+                gap: 12px;
+            }
+
+            .tour-feature i {
+                font-size: 16px;
+            }
+
+            .tour-feature span {
+                font-size: 13px;
+            }
+
+            .explore-more-btn {
+                padding: 12px 25px;
+            }
+
+            .amenities-section {
+                padding: 60px 0;
+            }
+
+            .amenities-header h2 {
+                font-size: 28px;
+                line-height: 1.3;
+            }
+
+            .amenities-header p {
+                font-size: 14px;
+            }
+
+            .amenity-display {
+                min-height: 450px;
+            }
+
+            .amenity-item {
+                padding: 10px 14px;
+                gap: 12px;
+            }
+
+            .amenity-item-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .amenity-item-icon i {
+                font-size: 14px;
+            }
+
+            .amenity-item h3 {
+                font-size: 12px;
+            }
+
+            .amenity-image {
+                height: 250px;
+            }
+
+            .amenity-description {
+                padding: 25px 20px;
+            }
+
+            .amenity-description h3 {
+                font-size: 20px;
+            }
+
+            .amenity-description p {
+                font-size: 13px;
+            }
+        }
+</style>
+
+</head>
+<body>
+  <%- include('../partials/header') %>
+
+    <!-- Hero Carousel -->
+    <section class="hero-carousel-section">
+        <div class="carousel-container">
+            <div class="carousel-slide active">
+                <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=1600&h=900&fit=crop" alt="Campus View">
+            </div>
+            <div class="carousel-slide">
+                <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=1600&h=900&fit=crop" alt="University Building">
+            </div>
+            <div class="carousel-slide">
+                <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1600&h=900&fit=crop" alt="Students Learning">
+            </div>
+            <button class="carousel-prev" onclick="changeSlide(-1)">❮</button>
+            <button class="carousel-next" onclick="changeSlide(1)">❯</button>
+        </div>
+        <div class="carousel-dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+        </div>
+
+        <!-- Features Cards -->
+        <div class="features-overlay">
+            <div class="feature-card">
+                <div class="feature-card-header">
+                    <div class="feature-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="feature-number">01</div>
+                </div>
+                <h3 class="feature-title">100+ Acre Campus</h3>
+                <p class="feature-description">Sprawling campus with modern infrastructure and green spaces.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-header">
+                    <div class="feature-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="feature-number">02</div>
+                </div>
+                <h3 class="feature-title">950+ Faculty</h3>
+                <p class="feature-description">Experienced educators shaping knowledge and inspiring leaders.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-header">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="feature-number">03</div>
+                </div>
+                <h3 class="feature-title">17K+ Students</h3>
+                <p class="feature-description">Vibrant community of learners from diverse backgrounds.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-header">
+                    <div class="feature-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <div class="feature-number">04</div>
+                </div>
+                <h3 class="feature-title">622 Bedded Hospital</h3>
+                <p class="feature-description">Super specialty hospital with 24/7 medical care facilities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collaborations Section -->
+    <section class="collaborations-section">
+        <div class="collaborations-container">
+            <div class="section-header">
+                <h2>Our <span class="highlight">Collaborations</span></h2>
+                <p>Partnering with leading organizations to provide cutting-edge education and industry exposure</p>
+            </div>
+            <div class="collab-grid">
+                <div class="collab-card">
+                    <div class="collab-logo">
+                        <i class="fab fa-python" style="font-size: 60px; color: #4A3A8F;"></i>
+                    </div>
+                    <div class="collab-content">
+                        <h3>IN COLLABORATION WITH IBM</h3>
+                        <p>B.Tech in Artificial Intelligence and Data Science - Industry-aligned curriculum designed with IBM's expertise in cutting-edge technology.</p>
+                    </div>
+                </div>
+                <div class="collab-card">
+                    <div class="collab-logo">
+                        <i class="fas fa-code" style="font-size: 60px; color: #4A3A8F;"></i>
+                    </div>
+                    <div class="collab-content">
+                        <h3>CODINGGITA PARTNERSHIP</h3>
+                        <p>Pioneering Full Stack Education for Future Creators - Transforming Aspirations into Expertise at CodingGita.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-icon-wrapper">
+                    <div class="stat-icon-bg">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                </div>
+                <h3 class="stat-number">35+</h3>
+                <p class="stat-label">Years of Experience</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon-wrapper">
+                    <div class="stat-icon-bg">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                </div>
+                <h3 class="stat-number">50+</h3>
+                <p class="stat-label">Research Grants</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon-wrapper">
+                    <div class="stat-icon-bg">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                </div>
+                <h3 class="stat-number">24/7</h3>
+                <p class="stat-label">Medical Care</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon-wrapper">
+                    <div class="stat-icon-bg">
+                        <i class="fas fa-award"></i>
+                    </div>
+                </div>
+                <h3 class="stat-number">750+</h3>
+                <p class="stat-label">Companies Associated</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Placement Section -->
+    <section class="placement-section">
+        <div class="placement-container">
+            <div class="placement-header">
+                <h2>OUR PLACEMENT <span class="highlight">SUCCESS</span></h2>
+            </div>
+
+            <div class="placement-stats-wrapper">
+                <div class="placement-stats">
+                    <div class="placement-stat-card">
+                        <div class="placement-stat-number">95<span class="highlight">%</span></div>
+                        <div class="placement-stat-label">Placement Rate</div>
+                        <div class="placement-stat-sublabel">Class of 2024</div>
+                    </div>
+
+                    <div class="placement-stat-card">
+                        <div class="placement-stat-number"><span class="highlight">₹</span>18 LPA</div>
+                        <div class="placement-stat-label">Average Package</div>
+                        <div class="placement-stat-sublabel">Top Recruiters</div>
+                    </div>
+
+                    <div class="placement-stat-card">
+                        <div class="placement-stat-number">250<span class="highlight">+</span></div>
+                        <div class="placement-stat-label">Companies</div>
+                        <div class="placement-stat-sublabel">Recruiting Partners</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Tour Section -->
+    <section class="video-tour-section">
+        <!-- Background Video -->
+        <video autoplay muted loop playsinline class="video-background">
+            <source src="/path/to/your/campus-video.mp4" type="video/mp4">
+        </video>
+
+        <div class="video-tour-container">
+            <div class="video-tour-content">
+                <h2>EXPLORE OUR <span class="highlight">CAMPUS</span></h2>
+                <p class="video-tour-description">
+                    Take a virtual tour of our state-of-the-art campus featuring modern classrooms, 
+                    advanced laboratories, expansive sports facilities, and vibrant student spaces. 
+                    Experience the perfect blend of academic excellence and holistic development 
+                    that makes Swaminarayan University a premier destination for higher education.
+                </p>
+                <div class="video-tour-features">
+                    <div class="tour-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>100+ Acre Green Campus</span>
+                    </div>
+                    <div class="tour-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Modern Infrastructure & Facilities</span>
+                    </div>
+                    <div class="tour-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>World-Class Learning Environment</span>
+                    </div>
+                    <div class="tour-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>24/7 Security & Medical Care</span>
+                    </div>
+                </div>
+                <a href="/about" class="explore-more-btn">
+                    EXPLORE MORE <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="video-tour-player">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        title="Swaminarayan University Campus Tour" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section class="amenities-section">
+        <!-- Dynamic Background Images -->
+        <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=1920&h=1080&fit=crop" alt="Background" class="amenities-bg active" id="bg-green-campus">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&h=1080&fit=crop" alt="Background" class="amenities-bg" id="bg-digital-classroom">
+        <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1920&h=1080&fit=crop" alt="Background" class="amenities-bg" id="bg-library">
+        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1920&h=1080&fit=crop" alt="Background" class="amenities-bg" id="bg-labs">
+        <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1920&h=1080&fit=crop" alt="Background" class="amenities-bg" id="bg-sports">
+        <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=1920&h=1080&fit=crop" alt="Background" class="amenities-bg" id="bg-hostel">
+        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1920&h=1080&fit=crop" alt="Background" class="amenities-bg" id="bg-transport">
+        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1920&h=1080&fit=crop" alt="Background" class="amenities-bg" id="bg-wifi">
+
+        <div class="amenities-container">
+            <div class="amenities-header">
+                <h2>WE ARE EXPERT & DO OUR BEST <span class="highlight">FOR YOUR GOAL</span></h2>
+                <p>Experience world-class facilities designed to nurture academic excellence and holistic development</p>
+            </div>
+
+            <div class="amenities-content">
+                <!-- LEFT SIDE - Amenities List -->
+                <div class="amenities-list">
+                    <div class="amenity-item active" data-amenity="green-campus">
+                        <div class="amenity-item-icon">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        <h3>Lush Green Campus</h3>
+                        <div class="amenity-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <div class="amenity-item" data-amenity="digital-classroom">
+                        <div class="amenity-item-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3>Digital Classroom</h3>
+                        <div class="amenity-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <div class="amenity-item" data-amenity="library">
+                        <div class="amenity-item-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3>Library</h3>
+                        <div class="amenity-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <div class="amenity-item" data-amenity="labs">
+                        <div class="amenity-item-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3>Labs</h3>
+                        <div class="amenity-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <div class="amenity-item" data-amenity="sports">
+                        <div class="amenity-item-icon">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <h3>Sports Ground</h3>
+                        <div class="amenity-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <div class="amenity-item" data-amenity="hostel">
+                        <div class="amenity-item-icon">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <h3>Hostel Facility</h3>
+                        <div class="amenity-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <div class="amenity-item" data-amenity="transport">
+                        <div class="amenity-item-icon">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <h3>Transport Facility</h3>
+                        <div class="amenity-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <div class="amenity-item" data-amenity="wifi">
+                        <div class="amenity-item-icon">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <h3>Wifi Campus</h3>
+                        <div class="amenity-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT SIDE - Image & Description Display -->
+                <div class="amenity-display">
+                    <div class="amenity-display-content active" id="green-campus">
+                        <div class="amenity-image">
+                            <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=600&fit=crop" alt="Lush Green Campus">
+                        </div>
+                        <div class="amenity-description">
+                            <h3>Lush Green Campus</h3>
+                            <p>Sprawling eco-friendly campus with abundant greenery and peaceful environment for learning. Our 100+ acre campus features landscaped gardens, tree-lined pathways, and serene study spaces that create the perfect atmosphere for academic excellence and personal growth.</p>
+                        </div>
+                    </div>
+
+                    <div class="amenity-display-content" id="digital-classroom">
+                        <div class="amenity-image">
+                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop" alt="Digital Classroom">
+                        </div>
+                        <div class="amenity-description">
+                            <h3>Digital Classroom</h3>
+                            <p>Smart classrooms equipped with modern technology for interactive and engaging learning experiences. Features include smart boards, projectors, audio-visual systems, and high-speed internet connectivity to facilitate dynamic teaching methods and collaborative learning.</p>
+                        </div>
+                    </div>
+
+                    <div class="amenity-display-content" id="library">
+                        <div class="amenity-image">
+                            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800&h=600&fit=crop" alt="Library">
+                        </div>
+                        <div class="amenity-description">
+                            <h3>Library</h3>
+                            <p>Extensive collection of books, journals, and digital resources to support academic research. Our state-of-the-art library houses over 100,000 volumes, subscribes to international journals, and provides access to leading e-learning platforms and digital databases.</p>
+                        </div>
+                    </div>
+
+                    <div class="amenity-display-content" id="labs">
+                        <div class="amenity-image">
+                            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&h=600&fit=crop" alt="Labs">
+                        </div>
+                        <div class="amenity-description">
+                            <h3>Labs</h3>
+                            <p>State-of-the-art laboratories with cutting-edge equipment for hands-on practical learning. Our specialized labs for engineering, science, and computer applications are equipped with the latest technology and instruments to ensure students gain real-world experience.</p>
+                        </div>
+                    </div>
+
+                    <div class="amenity-display-content" id="sports">
+                        <div class="amenity-image">
+                            <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&h=600&fit=crop" alt="Sports Ground">
+                        </div>
+                        <div class="amenity-description">
+                            <h3>Sports Ground</h3>
+                            <p>Professional sports facilities including cricket, football, basketball, and indoor games. Our campus features international-standard sports grounds, indoor sports complex, gymnasium, and facilities for various outdoor and indoor sports promoting physical fitness and team spirit.</p>
+                        </div>
+                    </div>
+
+                    <div class="amenity-display-content" id="hostel">
+                        <div class="amenity-image">
+                            <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&h=600&fit=crop" alt="Hostel Facility">
+                        </div>
+                        <div class="amenity-description">
+                            <h3>Hostel Facility</h3>
+                            <p>Comfortable and secure accommodation with modern amenities for a home-away-from-home experience. Separate hostels for boys and girls with 24/7 security, mess facilities, recreation rooms, and Wi-Fi connectivity ensure a safe and comfortable living environment.</p>
+                        </div>
+                    </div>
+
+                    <div class="amenity-display-content" id="transport">
+                        <div class="amenity-image">
+                            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&h=600&fit=crop" alt="Transport Facility">
+                        </div>
+                        <div class="amenity-description">
+                            <h3>Transport Facility</h3>
+                            <p>Convenient and safe transportation services connecting campus to major city locations. Our fleet of GPS-enabled buses covers extensive routes across the city, ensuring timely and safe commute for students and faculty with trained drivers and support staff.</p>
+                        </div>
+                    </div>
+
+                    <div class="amenity-display-content" id="wifi">
+                        <div class="amenity-image">
+                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&h=600&fit=crop" alt="Wifi Campus">
+                        </div>
+                        <div class="amenity-description">
+                            <h3>Wifi Campus</h3>
+                            <p>High-speed internet connectivity across the entire campus for seamless digital learning. Our campus-wide Wi-Fi network provides uninterrupted high-speed internet access in classrooms, libraries, hostels, and common areas, enabling students to stay connected and access online resources anytime.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accreditation Section -->
+    <section class="accreditation-section">
+        <!-- Background University Image -->
+        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1920&h=1080&fit=crop" alt="University Background" class="accreditation-bg">
+
+        <div class="accreditation-content">
+            <h2 class="accreditation-title">Accreditation And <span class="highlight">Recognition</span></h2>
+            <div class="accreditation-scroll-wrapper">
+                <div class="accreditation-track">
+                    <!-- First Set -->
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=UGC" alt="University Grants Commission">
+                        </div>
+                        <p class="accreditation-name">University Grants Commission</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=AICTE" alt="AICTE">
+                        </div>
+                        <p class="accreditation-name">All India Council for Technical Education</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=MOE" alt="Ministry of Education">
+                        </div>
+                        <p class="accreditation-name">Ministry of Education</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=EDUGJ" alt="Education Department Gujarat">
+                        </div>
+                        <p class="accreditation-name">Education Department Govt. of Gujarat</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=BCI" alt="Bar Council of India">
+                        </div>
+                        <p class="accreditation-name">Bar Council of India</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=PCI" alt="Pharmacy Council">
+                        </div>
+                        <p class="accreditation-name">Pharmacy Council of India</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=GNC" alt="Gujarat Nursing Council">
+                        </div>
+                        <p class="accreditation-name">Gujarat Nursing Council</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=INC" alt="Indian Nursing Council">
+                        </div>
+                        <p class="accreditation-name">Indian Nursing Council</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=NCISM" alt="NCISM">
+                        </div>
+                        <p class="accreditation-name">National Commission for Indian System of Medicine</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=NCH" alt="NCH">
+                        </div>
+                        <p class="accreditation-name">National Commission for Homeopathy</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=NCTE" alt="NCTE">
+                        </div>
+                        <p class="accreditation-name">National Council for Teacher Education</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=NMC" alt="NMC India">
+                        </div>
+                        <p class="accreditation-name">National Medical Commission India</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=GSCP" alt="Gujarat Physiotherapy">
+                        </div>
+                        <p class="accreditation-name">Gujarat State Council for Physiotherapy</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=AIU" alt="AIU">
+                        </div>
+                        <p class="accreditation-name">Association of Indian Universities</p>
+                    </div>
+
+                    <!-- Duplicate Set for Seamless Loop -->
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=UGC" alt="University Grants Commission">
+                        </div>
+                        <p class="accreditation-name">University Grants Commission</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=AICTE" alt="AICTE">
+                        </div>
+                        <p class="accreditation-name">All India Council for Technical Education</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=MOE" alt="Ministry of Education">
+                        </div>
+                        <p class="accreditation-name">Ministry of Education</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=EDUGJ" alt="Education Department Gujarat">
+                        </div>
+                        <p class="accreditation-name">Education Department Govt. of Gujarat</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=BCI" alt="Bar Council of India">
+                        </div>
+                        <p class="accreditation-name">Bar Council of India</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=PCI" alt="Pharmacy Council">
+                        </div>
+                        <p class="accreditation-name">Pharmacy Council of India</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=GNC" alt="Gujarat Nursing Council">
+                        </div>
+                        <p class="accreditation-name">Gujarat Nursing Council</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=INC" alt="Indian Nursing Council">
+                        </div>
+                        <p class="accreditation-name">Indian Nursing Council</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=NCISM" alt="NCISM">
+                        </div>
+                        <p class="accreditation-name">National Commission for Indian System of Medicine</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=NCH" alt="NCH">
+                        </div>
+                        <p class="accreditation-name">National Commission for Homeopathy</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=NCTE" alt="NCTE">
+                        </div>
+                        <p class="accreditation-name">National Council for Teacher Education</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=NMC" alt="NMC India">
+                        </div>
+                        <p class="accreditation-name">National Medical Commission India</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=GSCP" alt="Gujarat Physiotherapy">
+                        </div>
+                        <p class="accreditation-name">Gujarat State Council for Physiotherapy</p>
+                    </div>
+                    <div class="accreditation-item">
+                        <div class="accreditation-logo-circle">
+                            <img src="https://via.placeholder.com/120/FFB300/1a1a1a?text=AIU" alt="AIU">
+                        </div>
+                        <p class="accreditation-name">Association of Indian Universities</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+  <%- include('../partials/footer') %>
+
+    <script>
+        // Carousel functionality
+        let currentSlideIndex = 0;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.dot');
+            
+            if (n >= slides.length) {
+                currentSlideIndex = 0;
+            }
+            if (n < 0) {
+                currentSlideIndex = slides.length - 1;
+            }
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[currentSlideIndex].classList.add('active');
+            dots[currentSlideIndex].classList.add('active');
+        }
+
+        function changeSlide(n) {
+            currentSlideIndex += n;
+            showSlide(currentSlideIndex);
+        }
+
+        function currentSlide(n) {
+            currentSlideIndex = n;
+            showSlide(currentSlideIndex);
+        }
+
+        // Auto advance carousel
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        // Amenities Interactive Hover with Background Change
+        document.addEventListener('DOMContentLoaded', function() {
+            const amenityItems = document.querySelectorAll('.amenity-item');
+            const displayContents = document.querySelectorAll('.amenity-display-content');
+            const bgImages = document.querySelectorAll('.amenities-bg');
+
+            amenityItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    // Remove active class from all items
+                    amenityItems.forEach(i => i.classList.remove('active'));
+                    displayContents.forEach(d => d.classList.remove('active'));
+                    bgImages.forEach(bg => bg.classList.remove('active'));
+
+                    // Add active class to hovered item
+                    this.classList.add('active');
+
+                    // Show corresponding display content
+                    const amenityId = this.getAttribute('data-amenity');
+                    const targetDisplay = document.getElementById(amenityId);
+                    const targetBg = document.getElementById('bg-' + amenityId);
+                    
+                    if (targetDisplay) {
+                        targetDisplay.classList.add('active');
+                    }
+                    
+                    if (targetBg) {
+                        targetBg.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<footer class="footer-section">
+    <div class="footer-content">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <!-- ✅ REPLACED WITH SINGLE PNG -->
+                <div class="footer-logo-section">
+                    <img src="/logo.png" alt="Swaminarayan University" class="footer-logo-full">
+                </div>
+                <p class="footer-description">
+                    Swaminarayan University is dedicated to providing world-class education with a focus on innovation, research, and holistic development of students.
+                </p>
+                <div class="footer-contact-info">
+                    <div class="footer-contact-item">
+                        <div class="footer-icon-circle">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <a href="tel:+916357675561">+91-63576 75561</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-icon-circle">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <a href="mailto:info@swaminarayanuniversity.ac.in">info@swaminarayanuniversity.ac.in</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-icon-circle">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <p>Kalol, Gandhinagar, Gujarat, India</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="footer-column-title">Quick Links</h4>
+                <div class="footer-title-underline"></div>
+                <ul class="footer-links">
+                    <li><a href="/about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="/programs"><i class="fas fa-chevron-right"></i> Programs</a></li>
+                    <li><a href="/admissions"><i class="fas fa-chevron-right"></i> Admissions</a></li>
+                    <li><a href="/placement"><i class="fas fa-chevron-right"></i> Placement</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Research</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Campus Life</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-column-title">Important Links</h4>
+                <div class="footer-title-underline"></div>
+                <ul class="footer-links">
+                    <li><a href="/apply"><i class="fas fa-chevron-right"></i> Online Application</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Fee Payment</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Student Portal</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Examination</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Results</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Downloads</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-column-title">Programs</h4>
+                <div class="footer-title-underline"></div>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Engineering</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Medical</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Pharmacy</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Nursing</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Management</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> View All</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <p class="footer-copyright">
+                © 2024 <a href="/" class="copyright-link">Swaminarayan Foundation</a>. All Rights Reserved.
+            </p>
+            <div class="footer-social-icons">
+                <a href="https://facebook.com" target="_blank" class="footer-social-icon">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="footer-social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://youtube.com" target="_blank" class="footer-social-icon">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="footer-social-icon">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="/js/main.js"></script>
+
+<style>
+    /* Footer - NAVY BLUE BACKGROUND WITH SWAMINARAYAN COLORS */
+    .footer-section {
+        background: #1E3A8A;  /* ✅ Navy Blue background */
+        color: white;
+        padding: 100px 0 0;
+        border-top: 3px solid #FBBF24;  /* ✅ Golden yellow top border */
+    }
+
+    .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 50px 60px;
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        gap: 60px;
+    }
+
+    .footer-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .footer-logo-section {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    /* ✅ FOOTER LOGO - SINGLE PNG, LARGER SIZE, NO HOVER */
+    .footer-logo-full {
+        height: 65px;  /* Larger footer logo */
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+        filter: brightness(0) invert(1);  /* ✅ Makes logo white on dark background */
+    }
+
+    /* Remove old footer logo elements */
+    .footer-logo,
+    .footer-brand-text {
+        display: none;
+    }
+
+    .footer-description {
+        font-size: 14px;
+        color: rgba(255,255,255,0.8);
+        line-height: 1.8;
+        font-weight: 300;
+    }
+
+    .footer-contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .footer-contact-item {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .footer-icon-circle {
+        width: 32px;
+        height: 32px;
+        background: transparent;
+        border: 1px solid rgba(251, 191, 36, 0.3);  /* ✅ Golden yellow border */
+        border-radius: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.3s ease;
+    }
+
+    .footer-contact-item:hover .footer-icon-circle {
+        background: #DC2626;  /* ✅ Red on hover */
+        border-color: #DC2626;
+    }
+
+    .footer-icon-circle i {
+        font-size: 14px;
+        color: #FBBF24;  /* ✅ Golden yellow icons */
+        transition: all 0.3s ease;
+    }
+
+    .footer-contact-item:hover .footer-icon-circle i {
+        color: white;
+    }
+
+    .footer-contact-item a,
+    .footer-contact-item p {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-size: 14px;
+        line-height: 1.7;
+        margin: 0;
+        transition: color 0.3s ease;
+        font-weight: 300;
+    }
+
+    .footer-contact-item a:hover {
+        color: #FBBF24;  /* ✅ Golden yellow on hover */
+    }
+
+    .footer-column-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: white;
+        margin: 0 0 10px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .footer-title-underline {
+        width: 30px;
+        height: 2px;
+        background: #DC2626;  /* ✅ Red underline */
+        margin-bottom: 25px;
+    }
+
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .footer-links li a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        font-weight: 300;
+    }
+
+    .footer-links li a i {
+        font-size: 8px;
+        color: #FBBF24;  /* ✅ Golden yellow chevrons */
+    }
+
+    .footer-links li a:hover {
+        color: #FBBF24;  /* ✅ Golden yellow text on hover */
+        padding-left: 5px;
+    }
+
+    .footer-links li a:hover i {
+        color: #DC2626;  /* ✅ Red chevron on hover */
+    }
+
+    .footer-bottom {
+        background: rgba(0, 0, 0, 0.3);  /* ✅ Darker overlay */
+        padding: 25px 0;
+        border-top: 1px solid rgba(251, 191, 36, 0.2);  /* ✅ Golden yellow border */
+    }
+
+    .footer-bottom-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .footer-copyright {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.7);
+        margin: 0;
+        font-weight: 300;
+    }
+
+    .copyright-link {
+        color: #FBBF24;  /* ✅ Golden yellow link */
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .copyright-link:hover {
+        color: #DC2626;  /* ✅ Red on hover */
+    }
+
+    .footer-social-icons {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .footer-social-icon {
+        width: 36px;
+        height: 36px;
+        background: transparent;
+        border: 1px solid rgba(251, 191, 36, 0.3);  /* ✅ Golden yellow border */
+        border-radius: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .footer-social-icon i {
+        font-size: 14px;
+        color: #FBBF24;  /* ✅ Golden yellow icons */
+        transition: all 0.3s ease;
+    }
+
+    .footer-social-icon:hover {
+        background: #DC2626;  /* ✅ Red background on hover */
+        border-color: #DC2626;
+    }
+
+    .footer-social-icon:hover i {
+        color: white;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+        .footer-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-logo-full {
+            height: 55px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .footer-section {
+            padding: 60px 0 0;
+        }
+
+        .footer-content {
+            padding: 0 30px 40px;
+        }
+
+        .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .footer-logo-full {
+            height: 50px;
+        }
+
+        .footer-bottom-content {
+            flex-direction: column;
+            gap: 20px;
+            padding: 0 30px;
+        }
+
+        .footer-copyright {
+            text-align: center;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .footer-logo-full {
+            height: 45px;
+        }
+
+        .footer-contact-info {
+            gap: 15px;
+        }
+
+        .footer-contact-item {
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-social-icons {
+            gap: 8px;
+        }
+
+        .footer-social-icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .footer-social-icon i {
+            font-size: 12px;
+        }
+    }
+</style>

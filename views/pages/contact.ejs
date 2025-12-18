@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Admissions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: #ffffff;
+        color: #1a1a1a;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+    }
+
+    .section-container {
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Hero Section */
+    .contact-hero {
+        position: relative;
+        background: #f8f8f8;
+        padding: 140px 0 100px;
+        border-bottom: 2px solid #e5e5e5;
+    }
+
+    .contact-hero h1 {
+        font-size: 72px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 25px;
+        letter-spacing: -2px;
+        text-transform: uppercase;
+        line-height: 1.1;
+    }
+
+    .contact-hero h1 .highlight {
+        color: #DC2626;
+        position: relative;
+        display: inline-block;
+    }
+
+    .contact-hero h1 .highlight::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: #DC2626;
+    }
+
+    .contact-hero p {
+        font-size: 20px;
+        color: #666;
+        max-width: 700px;
+        line-height: 1.8;
+        font-weight: 300;
+        letter-spacing: 0.3px;
+    }
+
+    /* Section Title */
+    .section-title {
+        font-size: 42px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 60px;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+        text-align: left;
+        position: relative;
+        padding-bottom: 20px;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: #DC2626;
+    }
+
+    .section-title .highlight {
+        color: #DC2626;
+    }
+
+    /* Contact Info Section */
+    .contact-info-section {
+        background: #ffffff;
+        padding: 100px 0;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .contact-info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .contact-info-card {
+        background: white;
+        border: 2px solid #e5e5e5;
+        padding: 35px 30px;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .contact-info-card:hover {
+        border-color: #DC2626;
+        box-shadow: 0 15px 40px rgba(220, 38, 38, 0.15);
+        transform: translateY(-5px);
+    }
+
+    .contact-info-icon {
+        width: 45px;
+        height: 45px;
+        background: white;
+        border: 2px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 18px;
+        transition: all 0.3s ease;
+    }
+
+    .contact-info-card:hover .contact-info-icon {
+        border-color: #DC2626;
+        background: #DC2626;
+    }
+
+    .contact-info-icon i {
+        font-size: 20px;
+        color: #1a1a1a;
+        transition: all 0.3s ease;
+    }
+
+    .contact-info-card:hover .contact-info-icon i {
+        color: white;
+    }
+
+    .contact-info-card h3 {
+        font-size: 14px;
+        font-weight: 700;
+        color: #1a1a1a;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .contact-info-card p {
+        font-size: 13px;
+        color: #666;
+        line-height: 1.7;
+        margin-bottom: 6px;
+    }
+
+    .contact-info-card a {
+        color: #1E3A8A;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .contact-info-card a:hover {
+        color: #DC2626;
+    }
+
+    /* Contact Form Section */
+    .contact-form-section {
+        background: #f8f8f8;
+        padding: 100px 0;
+        border-bottom: 2px solid #e5e5e5;
+    }
+
+    .contact-form-container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: white;
+        border: 2px solid #e5e5e5;
+        padding: 60px 50px;
+        transition: all 0.3s ease;
+    }
+
+    .contact-form-container:hover {
+        border-color: #DC2626;
+        box-shadow: 0 15px 40px rgba(220, 38, 38, 0.15);
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .form-group label {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #1a1a1a;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        border: 2px solid #e5e5e5;
+        padding: 14px 16px;
+        font-size: 14px;
+        outline: none;
+        transition: all 0.3s ease;
+        font-family: 'Roboto', sans-serif;
+        background: white;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        border-color: #1E3A8A;
+        box-shadow: 0 0 0 1px rgba(30, 58, 138, 0.12);
+    }
+
+    .form-group textarea {
+        resize: vertical;
+        min-height: 140px;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+    }
+
+    .form-note {
+        font-size: 11px;
+        color: #888;
+        margin-top: 20px;
+        line-height: 1.7;
+        letter-spacing: 0.2px;
+    }
+
+    /* CTA Section */
+    .cta-section {
+        background: #1E3A8A;
+        padding: 100px 0;
+        text-align: center;
+    }
+
+    .cta-section h2 {
+        font-size: 42px;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        line-height: 1.2;
+    }
+
+    .cta-section h2 .highlight {
+        color: #FBBF24;
+        position: relative;
+        display: inline-block;
+    }
+
+    .cta-section h2 .highlight::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: #FBBF24;
+    }
+
+    .cta-section p {
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 40px;
+        line-height: 1.8;
+        font-weight: 300;
+        letter-spacing: 0.3px;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .cta-btn {
+        padding: 16px 40px;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        font-family: 'Montserrat', sans-serif;
+        border: none;
+    }
+
+    .cta-btn-primary {
+        background: #DC2626;
+        border: 2px solid #DC2626;
+        color: white;
+    }
+
+    .cta-btn-primary:hover {
+        background: transparent;
+        color: #DC2626;
+        border-color: #DC2626;
+    }
+
+    .cta-btn-secondary {
+        background: transparent;
+        border: 2px solid #FBBF24;
+        color: #FBBF24;
+    }
+
+    .cta-btn-secondary:hover {
+        background: #FBBF24;
+        color: #1E3A8A;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .contact-hero {
+            padding: 100px 0 60px;
+        }
+
+        .contact-hero h1 {
+            font-size: 36px;
+        }
+
+        .contact-hero p {
+            font-size: 16px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 40px;
+        }
+
+        .contact-info-grid,
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+
+        .contact-form-container {
+            padding: 40px 30px;
+        }
+
+        /* Form Actions - Stack on Mobile */
+        .form-actions {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .form-actions .cta-btn {
+            width: 100%;
+            text-align: center;
+            padding: 14px 20px;
+        }
+
+        .cta-section h2 {
+            font-size: 28px;
+        }
+
+        /* CTA Buttons - Stack on Mobile */
+        .cta-buttons {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+            max-width: 100%;
+            padding: 0 20px;
+        }
+
+        .cta-btn {
+            width: 100%;
+            text-align: center;
+            padding: 14px 20px;
+        }
+
+        /* Smaller contact cards on mobile */
+        .contact-info-card {
+            padding: 25px 20px;
+        }
+
+        .contact-info-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 15px;
+        }
+
+        .contact-info-icon i {
+            font-size: 18px;
+        }
+
+        .contact-info-card h3 {
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .contact-info-card p {
+            font-size: 12px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .section-container {
+            padding: 0 15px;
+        }
+
+        .contact-hero h1 {
+            font-size: 28px;
+        }
+
+        .section-title {
+            font-size: 24px;
+        }
+
+        .contact-form-container {
+            padding: 30px 20px;
+        }
+
+        .contact-info-card {
+            padding: 20px 18px;
+        }
+
+        .contact-info-icon {
+            width: 38px;
+            height: 38px;
+            margin-bottom: 12px;
+        }
+
+        .contact-info-icon i {
+            font-size: 16px;
+        }
+
+        .contact-info-card h3 {
+            font-size: 12px;
+        }
+
+        .contact-info-card p {
+            font-size: 11px;
+        }
+
+        .cta-section p {
+            font-size: 15px;
+            padding: 0 10px;
+        }
+    }
+</style>
+</head>
+<body>
+    <%- include('../partials/header') %>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="section-container">
+            <h1>Contact <span class="highlight">Admissions</span></h1>
+            <p>Have questions about programs, eligibility, or application process? Reach out for personalized guidance at every step.</p>
+        </div>
+    </section>
+
+    <!-- Contact Info Section -->
+    <section class="contact-info-section">
+        <div class="section-container">
+            <h2 class="section-title">Get in <span class="highlight">Touch</span></h2>
+            
+            <div class="contact-info-grid">
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Phone Number</h3>
+                    <p><a href="tel:+919876543210">+91 98765 43210</a></p>
+                    <p style="font-size: 12px; color: #888;">Mon-Sat: 9:30 AM - 7:00 PM</p>
+                </div>
+
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Address</h3>
+                    <p><a href="mailto:guidance@admissiondesk.in">guidance@admissiondesk.in</a></p>
+                    <p style="font-size: 12px; color: #888;">Response within 24-48 hours</p>
+                </div>
+
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Campus Location</h3>
+                    <p>Near SG Highway</p>
+                    <p>Ahmedabad, Gujarat 380015</p>
+                </div>
+
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp Support</h3>
+                    <p><a href="https://wa.me/919876543210">+91 98765 43210</a></p>
+                    <p style="font-size: 12px; color: #888;">Quick queries & document sharing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+        <div class="section-container">
+            <h2 class="section-title">Send a <span class="highlight">Message</span></h2>
+            
+            <div class="contact-form-container">
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactEmail">Email Address *</label>
+                            <input type="email" id="contactEmail" name="email" required placeholder="you@example.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contactPhone">Mobile Number *</label>
+                            <input type="tel" id="contactPhone" name="phone" required placeholder="+91 XXXXX XXXXX">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city">City / State</label>
+                            <input type="text" id="city" name="city" placeholder="e.g., Ahmedabad, Gujarat">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interest">Interested Program *</label>
+                        <select id="interest" name="interest" required>
+                            <option value="">Select a program</option>
+                            <option value="ug">Undergraduate Programs</option>
+                            <option value="pg">Postgraduate Programs</option>
+                            <option value="diploma">Diploma / Certification</option>
+                            <option value="medical">Medical / Paramedical</option>
+                            <option value="engineering">Engineering & Technology</option>
+                            <option value="management">Management & Commerce</option>
+                            <option value="other">Other / Not Sure</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 25px;">
+                        <label for="message">Your Query *</label>
+                        <textarea id="message" name="message" required placeholder="Briefly describe your query – course, intake year, and any specific questions."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="cta-btn cta-btn-primary">Submit Enquiry</button>
+                        <button type="reset" class="cta-btn cta-btn-secondary">Clear Form</button>
+                    </div>
+
+                    <p class="form-note">
+                        By submitting this form, you agree to be contacted by the admissions support team through phone, WhatsApp, or email regarding courses and application guidance.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="section-container">
+            <h2>Need <span class="highlight">Immediate</span> Assistance?</h2>
+            <p>For time-sensitive queries like approaching deadlines or document issues, call during working hours for priority support.</p>
+            <div class="cta-buttons">
+                <a href="tel:+919876543210" class="cta-btn cta-btn-primary">Call Now</a>
+                <a href="https://wa.me/919876543210" class="cta-btn cta-btn-secondary">WhatsApp Us</a>
+            </div>
+        </div>
+    </section>
+
+    <%- include('../partials/footer') %>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for reaching out. Our admissions support team will contact you shortly.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+    <%- include('../partials/head') %>
+
+<body class="admin-body">
+  <div class="admin-container">
+    <aside class="admin-sidebar">
+      <div class="admin-logo">
+        <h2>SU Admin</h2>
+      </div>
+      
+      <nav class="admin-nav">
+        <a href="/admin/dashboard" class="active">Dashboard</a>
+        <a href="/admin/applications">Applications</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </nav>
+    </aside>
+    
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1>Dashboard</h1>
+        <div class="admin-user">
+          Welcome, <%= admin.name || 'Administrator' %>
+        </div>
+      </header>
+      
+      <div class="admin-content">
+        <div class="stats-grid" id="statsGrid">
+          <div class="stat-card">
+            <h3>Total Applications</h3>
+            <p class="stat-number" id="totalApplications">-</p>
+          </div>
+          
+          <div class="stat-card">
+            <h3>Paid Applications</h3>
+            <p class="stat-number" id="paidApplications">-</p>
+          </div>
+          
+          <div class="stat-card">
+            <h3>Pending Payment</h3>
+            <p class="stat-number" id="pendingApplications">-</p>
+          </div>
+          
+          <div class="stat-card">
+            <h3>Total Revenue</h3>
+            <p class="stat-number" id="totalRevenue">-</p>
+          </div>
+        </div>
+        
+        <div class="quick-links">
+          <h2>Quick Actions</h2>
+          <a href="/admin/applications" class="btn btn-primary">View All Applications</a>
+          <a href="/admin/applications?filter=pending" class="btn btn-secondary">Pending Payments</a>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <script>
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+      window.location.href = '/admin/login';
+    }
+    
+    // Fetch dashboard stats
+    fetch('/admin/api/stats', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        document.getElementById('totalApplications').textContent = data.stats.totalApplications;
+        document.getElementById('paidApplications').textContent = data.stats.paidApplications;
+        document.getElementById('pendingApplications').textContent = data.stats.pendingApplications;
+        document.getElementById('totalRevenue').textContent = '₹' + data.stats.totalRevenue.toFixed(2);
+      }
+    })
+    .catch(err => {
+      console.error('Error fetching stats:', err);
+    });
+    
+    function logout() {
+      localStorage.removeItem('token');
+      window.location.href = '/admin/login';
+    }
+  </script>
+</body>
+</html>

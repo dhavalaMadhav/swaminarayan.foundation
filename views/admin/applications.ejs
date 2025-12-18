@@ -1,0 +1,128 @@
+<%- include('../partials/head') %>
+
+<body class="admin-body">
+  <div class="admin-container">
+    <aside class="admin-sidebar">
+      <div class="admin-logo">
+        <h2>SU Admin</h2>
+      </div>
+      
+      <nav class="admin-nav">
+        <a href="/admin/dashboard">Dashboard</a>
+        <a href="/admin/applications" class="active">Applications</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </nav>
+    </aside>
+    
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1>Applications</h1>
+        <div class="admin-user">
+          <%= admin.name || 'Administrator' %>
+        </div>
+      </header>
+      
+      <div class="admin-content">
+        <div class="filters">
+          <select id="paymentFilter" onchange="filterApplications()">
+            <option value="">All Payment Status</option>
+            <option value="completed">Paid</option>
+            <option value="pending">Pending</option>
+          </select>
+          
+          <select id="programFilter" onchange="filterApplications()">
+            <option value="">All Programs</option>
+            <option value="Diploma">Diploma</option>
+            <option value="Undergraduate">Undergraduate</option>
+            <option value="Postgraduate">Postgraduate</option>
+            <option value="PhD">PhD</option>
+          </select>
+        </div>
+        
+        <div class="table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Application ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Program</th>
+                <th>Payment Status</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="applicationsTable">
+              <tr>
+                <td colspan="7" style="text-align: center;">Loading...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <script>
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+      window.location.href = '/admin/login';
+    }
+    
+    function loadApplications(paymentStatus = '', programType = '') {
+      let url = '/admin/api/applications?';
+      if (paymentStatus) url += `paymentStatus=${paymentStatus}&`;
+      if (programType) url += `programType=${programType}`;
+      
+      fetch(url, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          const tbody = document.getElementById('applicationsTable');
+          
+          if (data.applications.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align: center;">No applications found</td></tr>';
+            return;
+          }
+          
+          tbody.innerHTML = data.applications.map(app => `
+            <tr>
+              <td>${app.applicationId}</td>
+              <td>${app.fullName}</td>
+              <td>${app.email}</td>
+              <td>${app.courseName}</td>
+              <td><span class="badge badge-${app.paymentStatus}">${app.paymentStatus}</span></td>
+              <td>${new Date(app.createdAt).toLocaleDateString()}</td>
+              <td>
+                <a href="/admin/applications/${app._id}" class="btn-link">View</a>
+              </td>
+            </tr>
+          `).join('');
+        }
+      })
+      .catch(err => {
+        console.error('Error loading applications:', err);
+      });
+    }
+    
+    function filterApplications() {
+      const paymentStatus = document.getElementById('paymentFilter').value;
+      const programType = document.getElementById('programFilter').value;
+      loadApplications(paymentStatus, programType);
+    }
+    
+    function logout() {
+      localStorage.removeItem('token');
+      window.location.href = '/admin/login';
+    }
+    
+    // Load applications on page load
+    loadApplications();
+  </script>
+</body>
+</html>

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: #ffffff;
+        color: #1a1a1a;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+    }
+
+    /* Section Container */
+    .section-container {
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Hero Section */
+    .placement-hero {
+        position: relative;
+        background: #f8f8f8;
+        padding: 140px 0 100px;
+        overflow: hidden;
+        border-bottom: 2px solid #e5e5e5;
+    }
+
+    .placement-hero-content {
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+    }
+
+    .placement-hero h1 {
+        font-size: 72px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 25px;
+        letter-spacing: -2px;
+        text-transform: uppercase;
+        line-height: 1.1;
+    }
+
+    .placement-hero h1 .highlight {
+        color: #DC2626;
+        position: relative;
+        display: inline-block;
+    }
+
+    .placement-hero h1 .highlight::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: #DC2626;
+    }
+
+    .placement-hero p {
+        font-size: 20px;
+        color: #666;
+        max-width: 800px;
+        line-height: 1.8;
+        font-weight: 300;
+        letter-spacing: 0.3px;
+    }
+
+    /* Stats Section */
+    .placement-stats {
+        background: #ffffff;
+        padding: 100px 0;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .section-title {
+        font-size: 42px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 60px;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+        text-align: left;
+        position: relative;
+        padding-bottom: 20px;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: #DC2626;
+    }
+
+    .section-title .highlight {
+        color: #DC2626;
+        font-weight: 800;
+    }
+
+    .stats-container-box {
+        border: 2px solid #1E3A8A;
+        background: #1E3A8A;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        position: relative;
+    }
+
+    .stats-grid::before,
+    .stats-grid::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        width: 1px;
+    }
+
+    .stats-grid::before {
+        left: 33.333%;
+    }
+
+    .stats-grid::after {
+        left: 66.666%;
+    }
+
+    .stat-box {
+        padding: 60px 40px;
+        position: relative;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    .stat-box:hover {
+        background: rgba(220, 38, 38, 0.15);
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(251, 191, 36, 0.2);
+        border: 2px solid #FBBF24;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        transition: all 0.3s ease;
+    }
+
+    .stat-box:hover .stat-icon {
+        border-color: #DC2626;
+        background: #DC2626;
+    }
+
+    .stat-icon i {
+        font-size: 28px;
+        color: #FBBF24;
+        transition: all 0.3s ease;
+    }
+
+    .stat-box:hover .stat-icon i {
+        color: white;
+    }
+
+    .stat-number {
+        font-size: 48px;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 8px;
+        line-height: 1;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .stat-label {
+        font-size: 13px;
+        color: #FBBF24;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 10px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .stat-subtitle {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 300;
+        line-height: 1.6;
+        letter-spacing: 0.3px;
+    }
+
+    /* President Section */
+    .president-section {
+        background: #f8f8f8;
+        padding: 100px 0;
+        border-bottom: 2px solid #e5e5e5;
+    }
+
+    .president-container {
+        display: grid;
+        grid-template-columns: 400px 1fr;
+        gap: 80px;
+        align-items: start;
+    }
+
+    .president-image-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: #FBBF24;
+    }
+
+    .president-image {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: 3px solid white;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .president-content h2 {
+        font-size: 32px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: -0.5px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .president-content h3 {
+        font-size: 14px;
+        color: #DC2626;
+        margin-bottom: 30px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .president-content p {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.9;
+        margin-bottom: 20px;
+        font-weight: 300;
+    }
+
+    .president-quote {
+        background: white;
+        border-left: 4px solid #FBBF24;
+        padding: 25px 30px;
+        margin: 30px 0;
+        font-style: italic;
+        color: #1a1a1a;
+        font-size: 15px;
+        line-height: 1.8;
+        border: 2px solid #e5e5e5;
+        border-left: 4px solid #FBBF24;
+    }
+
+    /* About University Section */
+    .about-section {
+        background: #ffffff;
+        padding: 100px 0;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .about-content {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .about-content p {
+        font-size: 15px;
+        color: #666;
+        line-height: 1.9;
+        margin-bottom: 20px;
+        font-weight: 300;
+        text-align: left;
+    }
+
+    /* Video Section */
+    .video-section {
+        background: #f8f8f8;
+        padding: 100px 0;
+        border-bottom: 2px solid #e5e5e5;
+    }
+
+    .section-title.center {
+        text-align: center;
+    }
+
+    .section-title.center::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .video-container {
+        max-width: 900px;
+        margin: 0 auto;
+        position: relative;
+        padding: 20px;
+        background: #FBBF24;
+    }
+
+    .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        height: 0;
+        overflow: hidden;
+        background: #000;
+        border: 3px solid white;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    /* Mission Vision Section */
+    .mission-vision-section {
+        background: #ffffff;
+        padding: 100px 0;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .mv-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        margin-top: 60px;
+    }
+
+    .mv-card {
+        background: white;
+        border: 2px solid #e5e5e5;
+        padding: 50px 40px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: visible;
+    }
+
+    .mv-card::before {
+        content: '';
+        position: absolute;
+        top: -15px;
+        left: 30px;
+        width: 60px;
+        height: 60px;
+        background: #FBBF24;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Icon inside yellow box */
+    .mv-icon {
+        position: absolute;
+        top: -15px;
+        left: 30px;
+        width: 60px;
+        height: 60px;
+        background: #FBBF24;
+        z-index: 11;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .mv-icon i {
+        font-size: 28px;
+        color: #1E3A8A;
+        transition: all 0.3s ease;
+    }
+
+    .mv-card:hover .mv-icon {
+        background: #DC2626;
+    }
+
+    .mv-card:hover .mv-icon i {
+        color: white;
+    }
+
+    .mv-card:hover {
+        border-color: #DC2626;
+        box-shadow: 0 15px 40px rgba(220, 38, 38, 0.15);
+        transform: translateY(-5px);
+    }
+
+    .mv-card h3 {
+        font-size: 28px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: -0.5px;
+        position: relative;
+        z-index: 11;
+    }
+
+    .mv-card h3 .highlight {
+        color: #DC2626;
+    }
+
+    .mv-card ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .mv-card ul li {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.8;
+        margin-bottom: 15px;
+        padding-left: 25px;
+        position: relative;
+        font-weight: 300;
+    }
+
+    .mv-card ul li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 9px;
+        width: 8px;
+        height: 8px;
+        background: #DC2626;
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .president-container {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .mv-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .placement-hero {
+            padding: 100px 0 60px;
+        }
+
+        .placement-hero h1 {
+            font-size: 36px;
+        }
+
+        .placement-hero p {
+            font-size: 16px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 40px;
+        }
+
+        .stats-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .stats-grid::before,
+        .stats-grid::after {
+            display: none;
+        }
+
+        .president-content h2 {
+            font-size: 24px;
+        }
+
+        .mv-card h3 {
+            font-size: 22px;
+        }
+
+        .video-container {
+            padding: 15px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .section-container,
+        .placement-hero-content {
+            padding: 0 15px;
+        }
+
+        .placement-hero h1 {
+            font-size: 28px;
+        }
+
+        .stat-box {
+            padding: 30px 25px;
+        }
+
+        .section-title {
+            font-size: 24px;
+        }
+
+        .video-container {
+            padding: 10px;
+        }
+    }
+</style>
+</head>
+<body>
+    <%- include('../partials/header') %>
+
+    <!-- Hero Section -->
+    <section class="placement-hero">
+        <div class="placement-hero-content">
+            <h1>About <span class="highlight">Swaminarayan University</span></h1>
+            <p>The Reservoir of All Knowledge • Journey Towards Excellence</p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="placement-stats">
+        <div class="section-container">
+            <h2 class="section-title">University <span class="highlight">Statistics</span></h2>
+            
+            <div class="stats-container-box">
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label">Years of Experience</div>
+                        <div class="stat-subtitle">Established legacy since 1993</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div class="stat-number">950+</div>
+                        <div class="stat-label">Faculty Members</div>
+                        <div class="stat-subtitle">Experienced and dedicated educators</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="stat-number">12,000+</div>
+                        <div class="stat-label">Students</div>
+                        <div class="stat-subtitle">Diverse student community</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- President Section -->
+    <section class="president-section">
+        <div class="section-container">
+            <div class="president-container">
+                <div class="president-image-wrapper">
+                    <img src="/images/president.png" alt="Shastri Swami Premswarupdasji" class="president-image" onerror="this.src='https://via.placeholder.com/400x500/1E3A8A/FBBF24?text=Shastri+Swami+Premswarupdasji'">
+                </div>
+                <div class="president-content">
+                    <h2>Shastri Swami Premswarupdasji</h2>
+                    <h3>President, Swaminarayan University • Managing Trustee</h3>
+                    
+                    <div class="president-quote">
+                        "Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn't really do it, they just saw something. It seemed obvious to them after a while. That's because they were able to connect experiences they've had and synthesize new things."
+                    </div>
+
+                    <p>Shastri Swami Premswaroopdasji, a follower of Bhakti and Seva, is the prime founder of Shree Swaminarayan Vishvamangal Gurukul in Kalol. Swamiji began his seva as a saint at the Swaminarayan Mandir located in Bhuj, where he spent 20 years engaged in Satsang.</p>
+
+                    <p>One Gujarati proverb says, "Sadhu to Chalta Bhala." Swamiji left the Swaminarayan Mandir in Bhuj and arrived at the Swaminarayan Mandir in Kalupur in 1985, where he arranged Satsang Kathas in the surrounding towns and villages. By the humble order of Acharya Maharajshri, Swamiji accepted the role of Mahant (Head) of the Swaminarayan Mandir situated in Siddhpur.</p>
+
+                    <p>He stayed there to acquire a piece of barren land in Kalol, which serves as an entrance to the North Gujarat region, and dreamed of establishing a Gurukul to provide education and shelter to the helpless, as well as a Goshala.</p>
+
+                    <p>The first foundation stone was laid by Param Pujya Dharm Dhurandhar 1008 Acharyashri Tejendraprasadji in 1993. Afterward, Swamiji continued Satsang, Kathas, and religious meetings in the nearby towns and villages. A school was started in 1995, initially offering primary education, followed by secondary and higher secondary levels, including general and science stream, and the school flourished.</p>
+
+                    <p>Swamiji then initiated B.Ed, PTC, Degree programs, Pharmacy, Diploma Engineering, and Degree Engineering courses at the Kalol Gurukul campus. In 2012, a completely modernized Shree Swaminarayan International School was established, creating a new world of educational temples envisioned by this visionary and missionary Sadhu. These temples transcend boundaries of religion and caste, where only Goddess Maa Saraswati is worshiped.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About University Section -->
+    <section class="about-section">
+        <div class="section-container">
+            <h2 class="section-title">About <span class="highlight">Swaminarayan University</span></h2>
+            <div class="about-content">
+                <p>Swaminarayan University is located at Kalol in the vicinity of Gandhinagar and Ahmedabad, spread over 100+ acres of lush green campus. The University was established under the Gujarat Private Universities Act 2009. The University is well connected to all parts of the country by rail, road and airways.</p>
+
+                <p>The University emphasizes holistic development, combining academic excellence with moral and ethical values. The university is known for its state-of-the-art infrastructure, modern facilities, and experienced faculty members who strive to provide quality education. It fosters research, innovation, and entrepreneurial spirit among students, preparing them for successful careers.</p>
+
+                <p>The University also emphasizes cultural and social activities, promoting a well-rounded experience for its students. We offer Diploma Programs, Under Graduate Programs, Post Graduate Programs, and Doctorate Degree Programs across various disciplines including Engineering, Commerce & Management, Science, Physiotherapy, Law, IT & Computer Science, Pharmacy, and Medicine.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Mission & Vision Section -->
+    <section class="mission-vision-section">
+        <div class="section-container">
+            <h2 class="section-title">Mission & <span class="highlight">Vision</span></h2>
+            
+            <div class="mv-grid">
+                <div class="mv-card">
+                    <div class="mv-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our <span class="highlight">Mission</span></h3>
+                    <ul>
+                        <li>Our mission is to promote participation in higher education and to assess our progress through Strategic Plan with farsighted fortune</li>
+                        <li>We will create a conducive environment for students to excel in innovative ideas and startups</li>
+                        <li>On-campus Multispeciality Hospitals 24x7</li>
+                        <li>Training & Placement Cell</li>
+                        <li>International Relations Cell</li>
+                        <li>Sports & Cultural Exposure</li>
+                        <li>Research and Development cell</li>
+                    </ul>
+                </div>
+
+                <div class="mv-card">
+                    <div class="mv-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our <span class="highlight">Vision</span></h3>
+                    <ul>
+                        <li>To emerge as a "Centre for excellence" offering Education and Research</li>
+                        <li>To provide opportunities to students to appear as groomed individuals, and instil high levels of discipline and strive to set global standards</li>
+                        <li>Creating future leaders with strong ethical foundations</li>
+                        <li>Fostering innovation and entrepreneurship among students</li>
+                        <li>Building partnerships with industry and international institutions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="section-container">
+            <h2 class="section-title center">Campus <span class="highlight">Tour</span></h2>
+            
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        title="Swaminarayan University Campus Tour" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,2550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: #ffffff;
+        color: #1a1a1a;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+    }
+
+    /* Common Section Container */
+    .section-container {
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Hero Section - SWISS MINIMAL */
+    .placement-hero {
+        position: relative;
+        background: #f8f8f8;
+        padding: 140px 0 100px;
+        overflow: hidden;
+        border-bottom: 2px solid #e5e5e5;
+    }
+
+    .placement-hero-content {
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+    }
+
+    .placement-hero h1 {
+        font-size: 72px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 25px;
+        letter-spacing: -2px;
+        text-transform: uppercase;
+        line-height: 1.1;
+    }
+
+    .placement-hero h1 .highlight {
+        color: #DC2626;
+        position: relative;
+        display: inline-block;
+    }
+
+    .placement-hero h1 .highlight::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: #DC2626;
+    }
+
+    .placement-hero p {
+        font-size: 20px;
+        color: #666;
+        max-width: 700px;
+        line-height: 1.8;
+        font-weight: 300;
+        letter-spacing: 0.3px;
+    }
+
+    /* Stats Section - WHITE BACKGROUND */
+    .placement-stats {
+        background: #ffffff;
+        padding: 100px 0;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .section-title {
+        font-size: 42px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 60px;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+        text-align: left;
+        position: relative;
+        padding-bottom: 20px;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: #DC2626;
+    }
+
+    .section-title .highlight {
+        color: #DC2626;
+        font-weight: 800;
+    }
+
+    /* DARK BOX WITH WHITE TEXT */
+    .stats-container-box {
+        border: 2px solid #1E3A8A;
+        background: #1E3A8A;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        position: relative;
+    }
+
+    /* Vertical partition lines */
+    .stats-grid::before,
+    .stats-grid::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        width: 1px;
+    }
+
+    .stats-grid::before {
+        left: 25%;
+    }
+
+    .stats-grid::after {
+        left: 50%;
+    }
+
+    /* Third partition line */
+    .stats-container-box::before {
+        content: '';
+        position: absolute;
+        left: 75%;
+        top: 0;
+        height: 100%;
+        width: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        z-index: 1;
+    }
+
+    .stat-box {
+        padding: 60px 40px;
+        position: relative;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    .stat-box:hover {
+        background: rgba(220, 38, 38, 0.15);
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(251, 191, 36, 0.2);
+        border: 2px solid #FBBF24;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        transition: all 0.3s ease;
+    }
+
+    .stat-box:hover .stat-icon {
+        border-color: #DC2626;
+        background: #DC2626;
+    }
+
+    .stat-icon i {
+        font-size: 28px;
+        color: #FBBF24;
+        transition: all 0.3s ease;
+    }
+
+    .stat-box:hover .stat-icon i {
+        color: white;
+    }
+
+    .stat-number {
+        font-size: 48px;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 8px;
+        line-height: 1;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .stat-label {
+        font-size: 13px;
+        color: #FBBF24;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 10px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .stat-subtitle {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 300;
+        line-height: 1.6;
+        letter-spacing: 0.3px;
+    }
+
+    /* Recruiters Section */
+    .recruiters-section {
+        background: #ffffff;
+        padding: 100px 0;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .recruiters-wrapper {
+        margin-top: 60px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .recruiters-row {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .recruiters-track {
+        display: flex;
+        gap: 40px;
+        animation: scrollLeft 30s linear infinite;
+        width: fit-content;
+    }
+
+    .recruiters-row:nth-child(2) .recruiters-track {
+        animation: scrollRight 35s linear infinite;
+    }
+
+    .recruiters-row:nth-child(3) .recruiters-track {
+        animation: scrollLeft 40s linear infinite;
+    }
+
+    .recruiters-track:hover {
+        animation-play-state: paused;
+    }
+
+    @keyframes scrollLeft {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    @keyframes scrollRight {
+        0% {
+            transform: translateX(-50%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    .recruiter-logo {
+        flex: 0 0 200px;
+        height: 80px;
+        border: 2px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .recruiter-logo::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        right: -2px;
+        width: 20px;
+        height: 20px;
+        background: #DC2626;
+        clip-path: polygon(100% 0, 100% 100%, 0 0);
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .recruiter-logo:hover {
+        border-color: #DC2626;
+        background: white;
+        transform: translateY(-5px);
+    }
+
+    .recruiter-logo:hover::before {
+        opacity: 1;
+    }
+
+    .recruiter-logo img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        opacity: 0.8;
+        transition: all 0.3s ease;
+    }
+
+    .recruiter-logo:hover img {
+        filter: grayscale(0%);
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    .recruiter-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: #1a1a1a;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .recruiter-logo:hover .recruiter-name {
+        color: #DC2626;
+    }
+
+    /* Internships Section */
+    .internships-section {
+        background: #f8f8f8;
+        padding: 100px 0;
+        border-bottom: 2px solid #e5e5e5;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .internships-container {
+        position: relative;
+        overflow: hidden;
+        margin-top: 60px;
+        padding: 40px 0;
+    }
+
+    .internships-carousel {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .internships-track {
+        display: flex;
+        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        gap: 30px;
+        padding: 20px 0;
+    }
+
+    .internship-card {
+        flex: 0 0 calc(33.333% - 20px);
+        background: white;
+        padding: 50px 35px 40px;
+        border: 2px solid #e5e5e5;
+        position: relative;
+        transition: all 0.3s ease;
+        opacity: 0.5;
+        transform: scale(0.9);
+    }
+
+    .internship-card.active {
+        opacity: 1;
+        transform: scale(1);
+        border-color: #DC2626;
+        box-shadow: 0 15px 40px rgba(220, 38, 38, 0.15);
+    }
+
+    .internship-card.center {
+        opacity: 1;
+        transform: scale(1);
+        border-color: #DC2626;
+        box-shadow: 0 15px 40px rgba(220, 38, 38, 0.15);
+    }
+
+    /* ✅ UPDATED: Internship number - white background with black text */
+    .internship-card .internship-number {
+        position: absolute;
+        top: -25px;
+        right: -25px;
+        width: 60px;
+        height: 60px;
+        background: white;
+        border: 2px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        font-weight: 900;
+        color: #1a1a1a;
+        z-index: 10;
+        font-family: 'Montserrat', sans-serif;
+        box-shadow: 0 0 0 2px #e5e5e5;
+        transition: all 0.3s ease;
+    }
+
+    .internship-card.active .internship-number {
+        background: #DC2626;
+        border-color: #DC2626;
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .internship-icon {
+        width: 50px;
+        height: 50px;
+        background: white;
+        border: 2px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+        transition: all 0.3s ease;
+    }
+
+    .internship-card.active .internship-icon {
+        border-color: #DC2626;
+        background: #DC2626;
+    }
+
+    .internship-icon i {
+        font-size: 24px;
+        color: #1a1a1a;
+        transition: all 0.3s ease;
+    }
+
+    .internship-card.active .internship-icon i {
+        color: white;
+    }
+
+    .internship-card h3 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .internship-card p {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.8;
+        font-weight: 300;
+        margin-bottom: 20px;
+        letter-spacing: 0.2px;
+    }
+
+    .internship-stats {
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .internship-stat {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .internship-stat-number {
+        font-size: 24px;
+        font-weight: 700;
+        color: #DC2626;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .internship-stat-label {
+        font-size: 12px;
+        color: #888;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .internship-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 60px;
+        height: 60px;
+        background: white;
+        border: 2px solid #e5e5e5;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: #1a1a1a;
+        transition: all 0.3s ease;
+    }
+
+    .internship-btn:hover {
+        border-color: #DC2626;
+        background: #DC2626;
+        color: white;
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .internship-btn.prev {
+        left: -80px;
+    }
+
+    .internship-btn.next {
+        right: -80px;
+    }
+
+    /* ✅ UPDATED: Placement Process Section - Simplified colors */
+    .placement-process {
+        background: #ffffff;
+        padding: 100px 0;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .process-timeline {
+        position: relative;
+        padding: 40px 0;
+    }
+
+    .process-timeline::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #e5e5e5;
+        transform: translateX(-50%);
+    }
+
+    .process-step {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 80px;
+        position: relative;
+    }
+
+    .process-step:last-child {
+        margin-bottom: 0;
+    }
+
+    .step-content {
+        flex: 0 0 45%;
+        background: white;
+        padding: 35px 40px;
+        border: 2px solid #e5e5e5;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .process-step:nth-child(odd) .step-content {
+        margin-right: auto;
+    }
+
+    .process-step:nth-child(even) .step-content {
+        margin-left: auto;
+    }
+
+    .step-content:hover {
+        border-color: #DC2626;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(220, 38, 38, 0.25);
+        background: #f8f8f8;
+    }
+
+    .step-content:hover ~ .step-number,
+    .step-number:hover {
+        background: #1a1a1a;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .step-content h3 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-family: 'Montserrat', sans-serif;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .step-content h3::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 12px;
+        height: 12px;
+        background: #DC2626;
+    }
+
+    .step-content p {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.8;
+        font-weight: 300;
+        letter-spacing: 0.2px;
+    }
+
+    .step-number {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        background: #DC2626;
+        border: 4px solid white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: 700;
+        color: white;
+        z-index: 2;
+        font-family: 'Montserrat', sans-serif;
+        box-shadow: 0 0 0 2px #e5e5e5;
+        transition: all 0.3s ease;
+    }
+
+    .step-number::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 80px;
+        height: 2px;
+        background: #e5e5e5;
+        z-index: 1;
+    }
+
+    .process-step:nth-child(odd) .step-number::after {
+        right: 100%;
+        transform: translateY(-50%);
+    }
+
+    .process-step:nth-child(even) .step-number::after {
+        left: 100%;
+        transform: translateY(-50%);
+    }
+
+    /* Training Programs Section */
+    .training-section {
+        background: #ffffff;
+        padding: 100px 0;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .training-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border: 2px solid #e5e5e5;
+        position: relative;
+    }
+
+    .training-grid::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 33.333%;
+        width: 1px;
+        height: 100%;
+        background: #e5e5e5;
+    }
+
+    .training-grid::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 66.666%;
+        width: 1px;
+        height: 100%;
+        background: #e5e5e5;
+    }
+
+    .training-card {
+        background: #ffffff;
+        padding: 50px 35px 40px;
+        position: relative;
+        transition: all 0.3s ease;
+        overflow: visible;
+        border-right: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .training-card:nth-child(3n) {
+        border-right: none;
+    }
+
+    .training-card:nth-child(n+4) {
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .training-card:nth-child(n+4):last-child,
+    .training-card:nth-child(n+5):last-child,
+    .training-card:nth-child(n+6):last-child {
+        border-bottom: none;
+    }
+
+    .training-card .card-number {
+        position: absolute;
+        top: -25px;
+        right: -25px;
+        width: 80px;
+        height: 80px;
+        background: #FBBF24;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+        font-weight: 900;
+        color: #1E3A8A;
+        z-index: 10;
+        font-family: 'Montserrat', sans-serif;
+        border: 4px solid white;
+        box-shadow: 0 0 0 2px #e5e5e5;
+        transition: all 0.3s ease;
+    }
+
+    .training-card:hover .card-number {
+        background: #DC2626;
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .training-icon {
+        width: 50px;
+        height: 50px;
+        background: white;
+        border: 2px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .training-card:hover .training-icon {
+        border-color: #DC2626;
+        background: #DC2626;
+    }
+
+    .training-icon i {
+        font-size: 24px;
+        color: #1a1a1a;
+        transition: all 0.3s ease;
+    }
+
+    .training-card:hover .training-icon i {
+        color: white;
+    }
+
+    .training-card h3 {
+        font-size: 16px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .training-card ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .training-card ul li {
+        font-size: 13px;
+        color: #666;
+        padding: 6px 0;
+        padding-left: 20px;
+        position: relative;
+        font-weight: 300;
+        letter-spacing: 0.2px;
+    }
+
+    .training-card ul li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 12px;
+        width: 8px;
+        height: 2px;
+        background: #DC2626;
+    }
+
+    .training-card:hover {
+        background: #f8f8f8;
+    }
+
+/* Testimonials Section - Matching Programs Page Style */
+.testimonials-section {
+    background: #f8f8f8;
+    padding: 100px 0;
+    border-bottom: 2px solid #e5e5e5;
+    position: relative;
+}
+
+.section-subtitle {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: -40px 0 60px 0;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+}
+
+.testimonials-container {
+    position: relative;
+    width: 100%;
+    overflow: visible;
+    margin-top: 60px;
+    padding: 40px 0;
+}
+
+.testimonials-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.testimonials-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 40px;
+    padding: 20px 0;
+}
+
+.testimonial-card {
+    flex: 0 0 420px;
+    background: white;
+    border: 2px solid #e5e5e5;
+    position: relative;
+    overflow: hidden;
+    opacity: 0.6;
+    transform: scale(0.92);
+    transition: all 0.6s ease;
+}
+
+.testimonial-card.active {
+    opacity: 1;
+    transform: scale(1);
+    border-color: #DC2626;
+    box-shadow: 0 15px 40px rgba(220, 38, 38, 0.15);
+}
+
+.testimonial-card:hover {
+    opacity: 1;
+    transform: scale(1.02);
+    border-color: #DC2626;
+    box-shadow: 0 20px 50px rgba(220, 38, 38, 0.2);
+}
+
+/* Star Badge - Matching Programs Page */
+.testimonial-badge-icon {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 50px;
+    height: 50px;
+    background: #FBBF24;
+    border: 5px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 6px 25px rgba(251, 191, 36, 0.35);
+    transition: all 0.4s ease;
+}
+
+.testimonial-card.active .testimonial-badge-icon {
+    background: #DC2626;
+    transform: scale(1.12);
+    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.4);
+}
+
+.testimonial-card:hover .testimonial-badge-icon {
+    transform: scale(1.15);
+    box-shadow: 0 10px 35px rgba(220, 38, 38, 0.45);
+}
+
+.testimonial-badge-icon i {
+    font-size: 20px;
+    color: white;
+}
+
+/* Image Container */
+.testimonial-image-wrapper {
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    background: #f0f0f0;
+    position: relative;
+}
+
+.testimonial-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s ease;
+    filter: grayscale(20%);
+}
+
+.testimonial-card.active .testimonial-photo {
+    transform: scale(1.08);
+    filter: grayscale(0%);
+}
+
+.testimonial-card:hover .testimonial-photo {
+    transform: scale(1.1);
+    filter: grayscale(0%);
+}
+
+/* Info Section */
+.testimonial-info {
+    padding: 30px 25px;
+    background: white;
+    text-align: center;
+    border-top: 3px solid #f0f0f0;
+}
+
+.testimonial-info h4 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.testimonial-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #999;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.testimonial-course {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.testimonial-company {
+    font-size: 22px;
+    font-weight: 700;
+    color: #DC2626;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.testimonial-company i {
+    display: none;
+}
+
+/* Navigation Buttons */
+.testimonials-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 70px;
+    height: 70px;
+    background: white;
+    border: 2px solid #e5e5e5;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: #1a1a1a;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.testimonials-btn:hover {
+    border-color: #DC2626;
+    background: #DC2626;
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.25);
+}
+
+.testimonials-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.testimonials-btn.prev {
+    left: -85px;
+}
+
+.testimonials-btn.next {
+    right: -85px;
+}
+
+.testimonials-btn.prev:hover i {
+    animation: slideLeft 0.6s ease-in-out infinite;
+}
+
+.testimonials-btn.next:hover i {
+    animation: slideRight 0.6s ease-in-out infinite;
+}
+
+@keyframes slideLeft {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-4px);
+    }
+}
+
+@keyframes slideRight {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(4px);
+    }
+}
+
+.testimonials-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    background: #f8f8f8;
+    border-color: #e5e5e5;
+}
+
+.testimonials-btn:disabled:hover {
+    background: #f8f8f8;
+    color: #1a1a1a;
+    border-color: #e5e5e5;
+    transform: translateY(-50%) scale(1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .testimonial-card {
+        flex: 0 0 calc(50% - 20px);
+    }
+
+    .testimonials-btn.prev {
+        left: -60px;
+    }
+
+    .testimonials-btn.next {
+        right: -60px;
+    }
+}
+
+@media (max-width: 992px) {
+    .testimonial-card {
+        flex: 0 0 calc(50% - 20px);
+    }
+
+    .testimonials-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .testimonial-card {
+        flex: 0 0 100%;
+    }
+
+    .testimonials-btn {
+        display: none;
+    }
+
+    .testimonial-image-wrapper {
+        height: 280px;
+    }
+
+    .testimonial-info {
+        padding: 25px 20px;
+    }
+
+    .testimonial-info h4 {
+        font-size: 18px;
+    }
+
+    .testimonial-company {
+        font-size: 20px;
+    }
+}
+
+
+    /* CTA Section */
+    .placement-cta {
+        background: #1E3A8A;
+        padding: 100px 0;
+        text-align: center;
+    }
+
+    .cta-content h2 {
+        font-size: 42px;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        line-height: 1.2;
+    }
+
+    .cta-content h2 .highlight {
+        color: #FBBF24;
+        position: relative;
+        display: inline-block;
+    }
+
+    .cta-content h2 .highlight::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: #FBBF24;
+    }
+
+    .cta-content p {
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 40px;
+        line-height: 1.8;
+        font-weight: 300;
+        letter-spacing: 0.3px;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .cta-btn {
+        padding: 16px 40px;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .cta-btn-primary {
+        background: #DC2626;
+        border: 2px solid #DC2626;
+        color: white;
+    }
+
+    .cta-btn-primary:hover {
+        background: transparent;
+        color: #DC2626;
+        border-color: #DC2626;
+    }
+
+    .cta-btn-secondary {
+        background: transparent;
+        border: 2px solid #FBBF24;
+        color: #FBBF24;
+    }
+
+    .cta-btn-secondary:hover {
+        background: #FBBF24;
+        color: #1E3A8A;
+    }
+
+
+    /* Guarantee Badge */
+.guarantee-banner {
+    background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);
+    padding: 40px;
+    text-align: center;
+    border-radius: 0;
+    margin: 60px auto 0;
+    max-width: 900px;
+    border: 3px solid #FBBF24;
+    position: relative;
+    overflow: hidden;
+}
+
+.guarantee-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    to {
+        left: 100%;
+    }
+}
+
+.guarantee-banner h3 {
+    font-size: 32px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.guarantee-banner p {
+    font-size: 16px;
+    color: #FBBF24;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+
+@media (max-width: 768px) {
+    .guarantee-banner {
+        padding: 30px 20px;
+        margin: 40px auto 0;
+    }
+
+    .guarantee-banner h3 {
+        font-size: 20px;
+    }
+
+    .guarantee-banner p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .guarantee-banner h3 {
+        font-size: 18px;
+    }
+
+    .guarantee-banner p {
+        font-size: 12px;
+    }
+}
+
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+        .stats-grid,
+        .training-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .training-grid::before {
+            left: 50%;
+        }
+
+        .training-grid::after {
+            display: none;
+        }
+
+        .training-card:nth-child(2n) {
+            border-right: none;
+        }
+
+        .placement-hero h1 {
+            font-size: 56px;
+        }
+
+        .testimonial-card,
+        .internship-card {
+            flex: 0 0 calc(50% - 15px);
+        }
+
+        .testimonials-btn.prev,
+        .internship-btn.prev {
+            left: -60px;
+        }
+
+        .testimonials-btn.next,
+        .internship-btn.next {
+            right: -60px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .testimonial-card,
+        .internship-card {
+            flex: 0 0 calc(50% - 15px);
+        }
+
+        .testimonials-btn,
+        .internship-btn {
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .placement-hero {
+            padding: 100px 0 60px;
+        }
+
+        .placement-hero h1 {
+            font-size: 36px;
+        }
+
+        .placement-hero p {
+            font-size: 16px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 40px;
+        }
+
+        .stats-grid,
+        .training-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .stats-grid::before,
+        .stats-grid::after,
+        .training-grid::before,
+        .training-grid::after {
+            display: none;
+        }
+
+        .training-card {
+            border-right: none !important;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .training-card:last-child {
+            border-bottom: none;
+        }
+
+        .process-timeline::before {
+            left: 40px;
+        }
+
+        .process-step {
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 60px;
+        }
+
+        .step-content {
+            flex: 0 0 100%;
+            margin: 0 0 20px 0 !important;
+            order: 2;
+            margin-left: 80px !important;
+            width: calc(100% - 80px);
+        }
+
+        .step-number {
+            left: 40px;
+            top: 0;
+            transform: translate(0, 0);
+        }
+
+        .step-number::after {
+            display: none;
+        }
+
+        .process-step:nth-child(odd) .step-content,
+        .process-step:nth-child(even) .step-content {
+            margin-left: 80px !important;
+        }
+
+        .recruiters-row {
+            height: 100px;
+        }
+
+        .recruiter-logo {
+            flex: 0 0 160px;
+            height: 70px;
+            padding: 10px;
+        }
+
+        .recruiter-name {
+            font-size: 12px;
+        }
+
+        .cta-content h2 {
+            font-size: 28px;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cta-btn {
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .training-card .card-number,
+        .internship-card .internship-number {
+            width: 60px;
+            height: 60px;
+            font-size: 28px;
+            top: -20px;
+            right: -20px;
+        }
+
+        .testimonial-card,
+        .internship-card {
+            flex: 0 0 100%;
+        }
+
+        .testimonials-btn,
+        .internship-btn {
+            display: none;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .section-container,
+        .placement-hero-content {
+            padding: 0 15px;
+        }
+
+        .placement-hero h1 {
+            font-size: 28px;
+        }
+
+        .stat-box,
+        .internship-card,
+        .step-content,
+        .training-card {
+            padding: 30px 25px;
+        }
+
+        .section-title {
+            font-size: 24px;
+        }
+
+        .testimonial-info h4 {
+            font-size: 18px;
+        }
+
+        .recruiter-logo {
+            flex: 0 0 140px;
+            height: 60px;
+            padding: 8px;
+        }
+    }
+</style>
+
+</head>
+<body>
+    <%- include('../partials/header') %>
+
+    <!-- Hero Section -->
+    <section class="placement-hero">
+        <div class="placement-hero-content">
+            <h1>Training & <span class="highlight">Placements</span></h1>
+            <p>Building careers, shaping futures - Connect with leading companies and unlock your potential.</p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+<!-- Stats Section -->
+<section class="placement-stats">
+    <div class="section-container">
+        <h2 class="section-title">Placement <span class="highlight">Highlights</span></h2>
+        
+        <div class="stats-container-box">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Companies Visit</div>
+                    <div class="stat-subtitle">Leading MNCs and Fortune 500 companies</div>
+                </div>
+
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">Placement Rate</div>
+                    <div class="stat-subtitle">Students placed in top companies annually</div>
+                </div>
+
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <div class="stat-number">12 LPA</div>
+                    <div class="stat-label">Highest Package</div>
+                    <div class="stat-subtitle">Outstanding offers from premium recruiters</div>
+                </div>
+
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-number">4.5 LPA</div>
+                    <div class="stat-label">Average Package</div>
+                    <div class="stat-subtitle">Consistent growth year over year</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 100% Money Back Guarantee Banner -->
+        <div class="guarantee-banner">
+            <h3><i class="fas fa-hand-holding-usd"></i> 100% Placement Guarantee!</h3>
+            <p>Industry-Ready Training • Career Support • Money-Back Assurance</p>
+        </div>
+    </div>
+</section>
+
+    <!-- Recruiters Section - THREE ROWS WITH COMPANY LOGOS -->
+    <section class="recruiters-section">
+        <div class="section-container">
+            <h2 class="section-title">Our <span class="highlight">Recruiters</span></h2>
+            
+            <div class="recruiters-wrapper">
+                <!-- Row 1 -->
+                <div class="recruiters-row">
+                    <div class="recruiters-track">
+                        <div class="recruiter-logo">
+                            <img src="https://cdn.dribbble.com/userupload/27139490/file/original-03b3a4d49e9cd54c0d4af100070e1c34.jpg" alt="HONDA">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://mms.businesswire.com/media/20220418005526/en/1424089/5/Intas_Logo.jpg?download=1" alt="INTAS">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMOlH896iuz7lq9yQRoXoTL30TdlkfamyyGA&s" alt="APOLLO">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://cdn.iconscout.com/icon/free/png-256/free-reliance-industries-ltd-logo-icon-svg-download-png-2875380.png" alt="RELIANCE">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://listcarbrands.com/wp-content/uploads/2017/10/2017-logo-Tata-Motors.jpg" alt="TATA MOTORS">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Wipro_Primary_Logo_Color_RGB.svg/2560px-Wipro_Primary_Logo_Color_RGB.svg.png" alt="WIPRO">
+                        </div>
+                        <!-- Duplicate for seamless scroll -->
+                        <div class="recruiter-logo">
+                            <img src="https://cdn.dribbble.com/userupload/27139490/file/original-03b3a4d49e9cd54c0d4af100070e1c34.jpg" alt="HONDA">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://mms.businesswire.com/media/20220418005526/en/1424089/5/Intas_Logo.jpg?download=1" alt="INTAS">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMOlH896iuz7lq9yQRoXoTL30TdlkfamyyGA&s" alt="APOLLO">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://cdn.iconscout.com/icon/free/png-256/free-reliance-industries-ltd-logo-icon-svg-download-png-2875380.png" alt="RELIANCE">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://listcarbrands.com/wp-content/uploads/2017/10/2017-logo-Tata-Motors.jpg" alt="TATA MOTORS">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Wipro_Primary_Logo_Color_RGB.svg/2560px-Wipro_Primary_Logo_Color_RGB.svg.png" alt="WIPRO">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="recruiters-row">
+                    <div class="recruiters-track">
+                        <div class="recruiter-logo">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN8-Xbe38_yia9W6sbjkYRigg96yh2rxoJ6A&s" alt="CADILA">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Force_Motors_Logo.svg/1200px-Force_Motors_Logo.svg.png" alt="FORCE MOTORS">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://cwmindia.com/wp-content/uploads/2021/11/securities.jpg" alt="ICICI SECURITIES">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Blue_Star_Infotech_logo.svg/2560px-Blue_Star_Infotech_logo.svg.png" alt="BLUE STAR">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Godrej_Logo.svg/2560px-Godrej_Logo.svg.png" alt="GODREJ">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://mmaglobal.com/files/styles/extra_large/public/logos/ceat-logo.png?itok=cqsMQsAV" alt="CEAT">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/39/Kotak_Mahindra_Group_logo.svg/2560px-Kotak_Mahindra_Group_logo.svg.png" alt="KOTAK MAHINDRA">
+                        </div>
+                        <!-- Duplicate for seamless scroll -->
+                        <div class="recruiter-logo">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN8-Xbe38_yia9W6sbjkYRigg96yh2rxoJ6A&s" alt="CADILA">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Force_Motors_Logo.svg/1200px-Force_Motors_Logo.svg.png" alt="FORCE MOTORS">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://cwmindia.com/wp-content/uploads/2021/11/securities.jpg" alt="ICICI SECURITIES">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Blue_Star_Infotech_logo.svg/2560px-Blue_Star_Infotech_logo.svg.png" alt="BLUE STAR">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Godrej_Logo.svg/2560px-Godrej_Logo.svg.png" alt="GODREJ">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://mmaglobal.com/files/styles/extra_large/public/logos/ceat-logo.png?itok=cqsMQsAV" alt="CEAT">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/39/Kotak_Mahindra_Group_logo.svg/2560px-Kotak_Mahindra_Group_logo.svg.png" alt="KOTAK MAHINDRA">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="recruiters-row">
+                    <div class="recruiters-track">
+                        <div class="recruiter-logo">
+                            <img src="https://www.pngfind.com/pngs/m/682-6829846_axis-bank-logo-vector-hd-png-download.png" alt="AXIS BANK">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7W-uu-WSFuul4HY2hajVWfk_6ptxKwarMew&s" alt="ASIAN PAINTS">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://i.pinimg.com/736x/17/38/ff/1738ff204f7eaaf912742070a0871f8e.jpg" alt="MAHINDRA">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://pbs.twimg.com/profile_images/1694272316631556096/KCymCALL_400x400.jpg" alt="GBRC">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGTb9EWZOT0gMB18ZmgZ5hk6mdCIt6xU33RQ&s" alt="GERMI">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/a/a1/Larsen%26Toubro_logo.svg" alt="L&T">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Infosys_logo.svg/1280px-Infosys_logo.svg.png" alt="INFOSYS">
+                        </div>
+                        <!-- Duplicate for seamless scroll -->
+                        <div class="recruiter-logo">
+                            <img src="https://www.pngfind.com/pngs/m/682-6829846_axis-bank-logo-vector-hd-png-download.png" alt="AXIS BANK">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7W-uu-WSFuul4HY2hajVWfk_6ptxKwarMew&s" alt="ASIAN PAINTS">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://i.pinimg.com/736x/17/38/ff/1738ff204f7eaaf912742070a0871f8e.jpg" alt="MAHINDRA">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://pbs.twimg.com/profile_images/1694272316631556096/KCymCALL_400x400.jpg" alt="GBRC">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGTb9EWZOT0gMB18ZmgZ5hk6mdCIt6xU33RQ&s" alt="GERMI">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/a/a1/Larsen%26Toubro_logo.svg" alt="L&T">
+                        </div>
+                        <div class="recruiter-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Infosys_logo.svg/1280px-Infosys_logo.svg.png" alt="INFOSYS">
+                        </div>                    \
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Internships Section - STEP-BY-STEP CAROUSEL -->
+    <section class="internships-section">
+        <div class="section-container">
+            <h2 class="section-title">Industry <span class="highlight">Internships</span></h2>
+            
+            <div class="internships-container">
+                <button class="internship-btn prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="internships-carousel">
+                    <div class="internships-track">
+                        <!-- Internship 1 -->
+                        <div class="internship-card active">
+                            <div class="internship-number">1</div>
+                            <div class="internship-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h3>Corporate Internships</h3>
+                            <p>Gain hands-on experience in top companies with structured internship programs that bridge classroom learning with real-world applications.</p>
+                            <div class="internship-stats">
+                                <div class="internship-stat">
+                                    <div class="internship-stat-number">100+</div>
+                                    <div class="internship-stat-label">Companies</div>
+                                </div>
+                                <div class="internship-stat">
+                                    <div class="internship-stat-number">6-8</div>
+                                    <div class="internship-stat-label">Weeks</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Internship 2 -->
+                        <div class="internship-card">
+                            <div class="internship-number">2</div>
+                            <div class="internship-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3>Research Internships</h3>
+                            <p>Work with faculty on cutting-edge research projects and contribute to innovations in technology, science, and business domains.</p>
+                            <div class="internship-stats">
+                                <div class="internship-stat">
+                                    <div class="internship-stat-number">50+</div>
+                                    <div class="internship-stat-label">Projects</div>
+                                </div>
+                                <div class="internship-stat">
+                                    <div class="internship-stat-number">80%</div>
+                                    <div class="internship-stat-label">Publications</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Internship 3 -->
+                        <div class="internship-card">
+                            <div class="internship-number">3</div>
+                            <div class="internship-icon">
+                                <i class="fas fa-globe-americas"></i>
+                            </div>
+                            <h3>International Internships</h3>
+                            <p>Opportunities for global exposure through international internships with partner universities and companies worldwide.</p>
+                            <div class="internship-stats">
+                                <div class="internship-stat">
+                                    <div class="internship-stat-number">15+</div>
+                                    <div class="internship-stat-label">Countries</div>
+                                </div>
+                                <div class="internship-stat">
+                                    <div class="internship-stat-number">3-6</div>
+                                    <div class="internship-stat-label">Months</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Internship 4 -->
+                        <div class="internship-card">
+                            <div class="internship-number">4</div>
+                            <div class="internship-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3>Tech Internships</h3>
+                            <p>Software development, AI/ML, data science, and cybersecurity internships with leading tech companies and startups.</p>
+                            <div class="internship-stats">
+                                <div class="internship-stat">
+                                    <div class="internship-stat-number">200+</div>
+                                    <div class="internship-stat-label">Tech Firms</div>
+                                </div>
+                                <div class="internship-stat">
+                                    <div class="internship-stat-number">₹40k+</div>
+                                    <div class="internship-stat-label">Stipend/Month</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Internship 5 -->
+                        <div class="internship-card">
+                            <div class="internship-number">5</div>
+                            <div class="internship-icon">
+                                <i class="fas fa-hospital"></i>
+                            </div>
+                            <h3>Healthcare Internships</h3>
+                            <p>Clinical rotations and hospital internships for medical, pharmacy, and nursing students with leading healthcare institutions.</p>
+                            <div class="internship-stats">
+                                <div class="internship-stat">
+                                    <div class="internship-stat-number">25+</div>
+                                    <div class="internship-stat-label">Hospitals</div>
+                                </div>
+                                <div class="internship-stat">
+                                    <div class="internship-stat-number">622</div>
+                                    <div class="internship-stat-label">Bedded Hospital</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Internship 6 -->
+                        <div class="internship-card">
+                            <div class="internship-number">6</div>
+                            <div class="internship-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Finance Internships</h3>
+                            <p>Banking, investment, accounting, and financial analysis internships with leading financial institutions and corporations.</p>
+                            <div class="internship-stats">
+                                <div class="internship-stat">
+                                    <div class="internship-stat-number">40+</div>
+                                    <div class="internship-stat-label">Banks & Firms</div>
+                                </div>
+                                <div class="internship-stat">
+                                    <div class="internship-stat-number">₹35k+</div>
+                                    <div class="internship-stat-label">Stipend/Month</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="internship-btn next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <div class="carousel-dots" id="internshipDots"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Placement Process Section -->
+<!-- Placement Process Section -->
+<section class="placement-process">
+    <div class="section-container">
+        <h2 class="section-title">Placement <span class="highlight">Process</span></h2>
+        
+        <div class="process-timeline">
+            <!-- Step 1 - LEFT side -->
+            <div class="process-step">
+                <div class="step-content">
+                    <h3>Pre-Placement Training</h3>
+                    <p>Comprehensive training programs covering aptitude, technical skills, soft skills, and interview preparation to make students industry-ready.</p>
+                </div>
+                <div class="step-number">1</div>
+            </div>
+
+            <!-- Step 2 - RIGHT side -->
+            <div class="process-step">
+                <div class="step-content">
+                    <h3>Company Registration</h3>
+                    <p>Leading companies register with our placement cell. We coordinate schedules, requirements, and job descriptions for campus drives.</p>
+                </div>
+                <div class="step-number">2</div>
+            </div>
+
+            <!-- Step 3 - LEFT side -->
+            <div class="process-step">
+                <div class="step-content">
+                    <h3>Student Registration</h3>
+                    <p>Eligible students register for placements by submitting resumes and academic records. Mock interviews and resume building sessions conducted.</p>
+                </div>
+                <div class="step-number">3</div>
+            </div>
+
+            <!-- Step 4 - RIGHT side -->
+            <div class="process-step">
+                <div class="step-content">
+                    <h3>Campus Drives</h3>
+                    <p>Companies conduct written tests, group discussions, technical rounds, and HR interviews on campus. Placement cell facilitates entire process.</p>
+                </div>
+                <div class="step-number">4</div>
+            </div>
+
+            <!-- Step 5 - LEFT side -->
+            <div class="process-step">
+                <div class="step-content">
+                    <h3>Final Selection</h3>
+                    <p>Students receive offer letters from companies. Placement cell assists with documentation, joining formalities, and post-placement support.</p>
+                </div>
+                <div class="step-number">5</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Training Programs Section -->
+    <section class="training-section">
+        <div class="section-container">
+            <h2 class="section-title">Training <span class="highlight">Programs</span></h2>
+            
+            <div class="training-grid">
+                <div class="training-card">
+                    <div class="card-number">1</div>
+                    <div class="training-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Aptitude Training</h3>
+                    <ul>
+                        <li>Quantitative Aptitude</li>
+                        <li>Logical Reasoning</li>
+                        <li>Verbal Ability</li>
+                        <li>Data Interpretation</li>
+                        <li>Problem Solving</li>
+                    </ul>
+                </div>
+
+                <div class="training-card">
+                    <div class="card-number">2</div>
+                    <div class="training-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Technical Training</h3>
+                    <ul>
+                        <li>Programming Languages</li>
+                        <li>Data Structures</li>
+                        <li>System Design</li>
+                        <li>Database Management</li>
+                    </ul>
+                </div>
+
+                <div class="training-card">
+                    <div class="card-number">3</div>
+                    <div class="training-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Soft Skills Training</h3>
+                    <ul>
+                        <li>Communication Skills</li>
+                        <li>Personality Development</li>
+                        <li>Leadership & Teamwork</li>
+                        <li>Time Management</li>
+                        <li>Professional Etiquette</li>
+                    </ul>
+                </div>
+
+                <div class="training-card">
+                    <div class="card-number">4</div>
+                    <div class="training-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Interview Preparation</h3>
+                    <ul>
+                        <li>Mock Interviews</li>
+                        <li>Group Discussions</li>
+                        <li>Resume Building</li>
+                        <li>HR Interview Techniques</li>
+                        <li>Presentation Skills</li>
+                    </ul>
+                </div>
+
+                <div class="training-card">
+                    <div class="card-number">5</div>
+                    <div class="training-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Project Training</h3>
+                    <ul>
+                        <li>Real-world Projects</li>
+                        <li>Industry Internships</li>
+                        <li>Live Project Work</li>
+                        <li>Research & Innovation</li>
+                    </ul>
+                </div>
+
+                <div class="training-card">
+                    <div class="card-number">6</div>
+                    <div class="training-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Certification Programs</h3>
+                    <ul>
+                        <li>Industry Certifications</li>
+                        <li>Online Course Partnerships</li>
+                        <li>Skill Development Workshops</li>
+                        <li>Professional Certifications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Testimonials Section - STUDENT SUCCESS STORIES -->
+<section class="testimonials-section">
+    <div class="section-container">
+        <h2 class="section-title">Student <span class="highlight">Success Stories</span></h2>
+        <p class="section-subtitle">
+            Meet our brilliant students from Swaminarayan University who have achieved remarkable placements in top companies with outstanding packages through dedication and excellence.
+        </p>
+
+        <div class="testimonials-container">
+            <!-- LEFT ARROW BUTTON -->
+            <button class="testimonials-btn prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <div class="testimonials-carousel">
+                <div class="testimonials-track">
+                    <!-- Testimonial Card 1 -->
+                    <div class="testimonial-card active">
+                        <div class="testimonial-badge-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-image-wrapper">
+                            <img src="/images/rahul-sharma.jpg" alt="Rahul Sharma" class="testimonial-photo" onerror="this.src='https://via.placeholder.com/420x320/1E3A8A/FBBF24?text=Rahul+Sharma'">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>RAHUL SHARMA</h4>
+                            <div class="testimonial-course">B.Tech Computer Science</div>
+                            <div class="testimonial-company">7.5 LPA</div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial Card 2 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-badge-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-image-wrapper">
+                            <img src="/images/priya-patel.jpg" alt="Priya Patel" class="testimonial-photo" onerror="this.src='https://via.placeholder.com/420x320/1E3A8A/FBBF24?text=Priya+Patel'">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>PRIYA PATEL</h4>
+                            <div class="testimonial-course">MBA - Marketing</div>
+                            <div class="testimonial-company">6.8 LPA</div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial Card 3 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-badge-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-image-wrapper">
+                            <img src="/images/amit-desai.jpg" alt="Amit Desai" class="testimonial-photo" onerror="this.src='https://via.placeholder.com/420x320/1E3A8A/FBBF24?text=Amit+Desai'">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>AMIT DESAI</h4>
+                            <div class="testimonial-course">B.Pharm</div>
+                            <div class="testimonial-company">5.5 LPA</div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial Card 4 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-badge-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-image-wrapper">
+                            <img src="/images/neha-singh.jpg" alt="Neha Singh" class="testimonial-photo" onerror="this.src='https://via.placeholder.com/420x320/1E3A8A/FBBF24?text=Neha+Singh'">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>NEHA SINGH</h4>
+                            <div class="testimonial-course">B.Tech Mechanical</div>
+                            <div class="testimonial-company">6.2 LPA</div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial Card 5 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-badge-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-image-wrapper">
+                            <img src="/images/karan-mehta.jpg" alt="Karan Mehta" class="testimonial-photo" onerror="this.src='https://via.placeholder.com/420x320/1E3A8A/FBBF24?text=Karan+Mehta'">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>KARAN MEHTA</h4>
+                            <div class="testimonial-course">BBA</div>
+                            <div class="testimonial-company">5.0 LPA</div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial Card 6 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-badge-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-image-wrapper">
+                            <img src="/images/sneha-gupta.jpg" alt="Sneha Gupta" class="testimonial-photo" onerror="this.src='https://via.placeholder.com/420x320/1E3A8A/FBBF24?text=Sneha+Gupta'">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>SNEHA GUPTA</h4>
+                            <div class="testimonial-course">B.Tech IT</div>
+                            <div class="testimonial-company">7.0 LPA</div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial Card 7 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-badge-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-image-wrapper">
+                            <img src="/images/rohan-agarwal.jpg" alt="Rohan Agarwal" class="testimonial-photo" onerror="this.src='https://via.placeholder.com/420x320/1E3A8A/FBBF24?text=Rohan+Agarwal'">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>ROHAN AGARWAL</h4>
+                            <div class="testimonial-course">B.Tech Civil</div>
+                            <div class="testimonial-company">6.5 LPA</div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial Card 8 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-badge-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-image-wrapper">
+                            <img src="/images/divya-shah.jpg" alt="Divya Shah" class="testimonial-photo" onerror="this.src='https://via.placeholder.com/420x320/1E3A8A/FBBF24?text=Divya+Shah'">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>DIVYA SHAH</h4>
+                            <div class="testimonial-course">MBA - Finance</div>
+                            <div class="testimonial-company">8.0 LPA</div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial Card 9 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-badge-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-image-wrapper">
+                            <img src="/images/arjun-kumar.jpg" alt="Arjun Kumar" class="testimonial-photo" onerror="this.src='https://via.placeholder.com/420x320/1E3A8A/FBBF24?text=Arjun+Kumar'">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>ARJUN KUMAR</h4>
+                            <div class="testimonial-course">B.Tech Electronics</div>
+                            <div class="testimonial-company">6.0 LPA</div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial Card 10 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-badge-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-image-wrapper">
+                            <img src="/images/ananya-chatterjee.jpg" alt="Ananya Chatterjee" class="testimonial-photo" onerror="this.src='https://via.placeholder.com/420x320/1E3A8A/FBBF24?text=Ananya+Chatterjee'">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>ANANYA CHATTERJEE</h4>
+                            <div class="testimonial-course">MBA - HR</div>
+                            <div class="testimonial-company">5.8 LPA</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT ARROW BUTTON -->
+            <button class="testimonials-btn next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</section>
+
+    <!-- CTA Section -->
+    <section class="placement-cta">
+        <div class="section-container">
+            <div class="cta-content">
+                <h2>Ready to Start Your <span class="highlight">Career Journey?</span></h2>
+                <p>Join Swaminarayan University and get access to top companies, comprehensive training, and exceptional placement opportunities.</p>
+                <div class="cta-buttons">
+                    <a href="/apply" class="cta-btn cta-btn-primary">Apply Now</a>
+                    <a href="/contact" class="cta-btn cta-btn-secondary">Contact Placement Cell</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include('../partials/footer') %>
+
+<script>
+    // Internships and Testimonials Carousel
+    document.addEventListener('DOMContentLoaded', function() {
+        // ============================================
+        // INTERNSHIPS CAROUSEL
+        // ============================================
+        const internshipTrack = document.querySelector('.internships-track');
+        const internshipCards = document.querySelectorAll('.internship-card');
+        const internshipPrevBtn = document.querySelector('.internship-btn.prev');
+        const internshipNextBtn = document.querySelector('.internship-btn.next');
+        const internshipDotsContainer = document.getElementById('internshipDots');
+        
+        let internshipIndex = 0;
+        const internshipTotal = internshipCards.length;
+        let internshipAutoSlide;
+        let isHoveringInternship = false;
+        
+        // Create dots for internships
+        if (internshipDotsContainer && internshipTotal > 0) {
+            for (let i = 0; i < internshipTotal; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'carousel-dot';
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToInternshipSlide(i));
+                internshipDotsContainer.appendChild(dot);
+            }
+        }
+        
+        const internshipDots = document.querySelectorAll('#internshipDots .carousel-dot');
+        
+        function updateInternshipCarousel() {
+            if (!internshipCards.length) return;
+            
+            // Calculate the width of a card plus gap
+            const cardWidth = internshipCards[0].offsetWidth + 30; // 30px gap
+            
+            // Move track to show current card at center
+            internshipTrack.style.transform = `translateX(calc(50% - ${(internshipIndex * cardWidth) + (cardWidth / 2)}px))`;
+            
+            // Update active classes
+            internshipCards.forEach((card, index) => {
+                card.classList.remove('active');
+                if (index === internshipIndex) {
+                    card.classList.add('active');
+                }
+            });
+            
+            // Update dots
+            if (internshipDots.length) {
+                internshipDots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === internshipIndex);
+                });
+            }
+        }
+        
+        function goToInternshipSlide(index) {
+            internshipIndex = index;
+            updateInternshipCarousel();
+            resetInternshipAutoSlide();
+        }
+        
+        function nextInternshipSlide() {
+            internshipIndex = (internshipIndex + 1) % internshipTotal;
+            updateInternshipCarousel();
+        }
+        
+        function prevInternshipSlide() {
+            internshipIndex = (internshipIndex - 1 + internshipTotal) % internshipTotal;
+            updateInternshipCarousel();
+        }
+        
+        function startInternshipAutoSlide() {
+            if (!isHoveringInternship) {
+                internshipAutoSlide = setInterval(nextInternshipSlide, 4000);
+            }
+        }
+        
+        function resetInternshipAutoSlide() {
+            clearInterval(internshipAutoSlide);
+            startInternshipAutoSlide();
+        }
+        
+        // Event listeners for internships
+        if (internshipPrevBtn) {
+            internshipPrevBtn.addEventListener('click', () => {
+                prevInternshipSlide();
+                resetInternshipAutoSlide();
+            });
+        }
+        
+        if (internshipNextBtn) {
+            internshipNextBtn.addEventListener('click', () => {
+                nextInternshipSlide();
+                resetInternshipAutoSlide();
+            });
+        }
+        
+        // Pause on internship card hover
+        internshipCards.forEach((card, index) => {
+            card.addEventListener('mouseenter', () => {
+                isHoveringInternship = true;
+                clearInterval(internshipAutoSlide);
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                isHoveringInternship = false;
+                setTimeout(() => {
+                    if (!isHoveringInternship) {
+                        startInternshipAutoSlide();
+                    }
+                }, 100);
+            });
+        });
+        
+        // Pause on carousel hover
+        const internshipCarousel = document.querySelector('.internships-carousel');
+        if (internshipCarousel) {
+            internshipCarousel.addEventListener('mouseenter', () => {
+                clearInterval(internshipAutoSlide);
+            });
+            
+            internshipCarousel.addEventListener('mouseleave', () => {
+                if (!isHoveringInternship) {
+                    startInternshipAutoSlide();
+                }
+            });
+        }
+        
+        // ============================================
+        // TESTIMONIALS CAROUSEL
+        // ============================================
+        const testimonialTrack = document.querySelector('.testimonials-track');
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        const testimonialPrevBtn = document.querySelector('.testimonials-btn.prev');
+        const testimonialNextBtn = document.querySelector('.testimonials-btn.next');
+        const testimonialCarousel = document.querySelector('.testimonials-carousel');
+        
+        let testimonialIndex = 0;
+        const testimonialTotal = testimonialCards.length;
+        let testimonialAutoSlide;
+        let isHoveringTestimonial = false;
+        
+        function updateTestimonialCarousel() {
+            if (!testimonialCards.length) return;
+            
+            // Calculate the width of a card plus gap
+            const cardWidth = testimonialCards[0].offsetWidth + 40; // 40px gap
+            
+            // Move track to show current card at center
+            testimonialTrack.style.transform = `translateX(calc(50% - ${(testimonialIndex * cardWidth) + (cardWidth / 2)}px))`;
+            
+            // Update active classes
+            testimonialCards.forEach((card, index) => {
+                card.classList.remove('active');
+                if (index === testimonialIndex) {
+                    card.classList.add('active');
+                }
+            });
+        }
+        
+        function goToTestimonialSlide(index) {
+            testimonialIndex = index;
+            updateTestimonialCarousel();
+            resetTestimonialAutoSlide();
+        }
+        
+        function nextTestimonialSlide() {
+            testimonialIndex = (testimonialIndex + 1) % testimonialTotal;
+            updateTestimonialCarousel();
+        }
+        
+        function prevTestimonialSlide() {
+            testimonialIndex = (testimonialIndex - 1 + testimonialTotal) % testimonialTotal;
+            updateTestimonialCarousel();
+        }
+        
+        function startTestimonialAutoSlide() {
+            if (!isHoveringTestimonial) {
+                testimonialAutoSlide = setInterval(nextTestimonialSlide, 3000); // 3 seconds
+            }
+        }
+        
+        function resetTestimonialAutoSlide() {
+            clearInterval(testimonialAutoSlide);
+            startTestimonialAutoSlide();
+        }
+        
+        // Event listeners for testimonials
+        if (testimonialPrevBtn) {
+            testimonialPrevBtn.addEventListener('click', () => {
+                prevTestimonialSlide();
+                resetTestimonialAutoSlide();
+            });
+        }
+        
+        if (testimonialNextBtn) {
+            testimonialNextBtn.addEventListener('click', () => {
+                nextTestimonialSlide();
+                resetTestimonialAutoSlide();
+            });
+        }
+        
+        // ============================================
+        // PAUSE ON HOVER - TESTIMONIAL CARDS
+        // ============================================
+        testimonialCards.forEach((card, index) => {
+            card.addEventListener('mouseenter', function() {
+                isHoveringTestimonial = true;
+                clearInterval(testimonialAutoSlide);
+                // Optional: Add visual feedback
+                this.style.cursor = 'pointer';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                isHoveringTestimonial = false;
+                // Add small delay before resuming
+                setTimeout(() => {
+                    if (!isHoveringTestimonial) {
+                        startTestimonialAutoSlide();
+                    }
+                }, 100);
+            });
+        });
+        
+        // Pause on carousel container hover
+        if (testimonialCarousel) {
+            testimonialCarousel.addEventListener('mouseenter', () => {
+                clearInterval(testimonialAutoSlide);
+            });
+            
+            testimonialCarousel.addEventListener('mouseleave', () => {
+                if (!isHoveringTestimonial) {
+                    setTimeout(() => {
+                        if (!isHoveringTestimonial) {
+                            startTestimonialAutoSlide();
+                        }
+                    }, 100);
+                }
+            });
+        }
+        
+        // ============================================
+        // KEYBOARD NAVIGATION
+        // ============================================
+        document.addEventListener('keydown', (e) => {
+            // Skip if user is typing in input or textarea
+            if (document.activeElement.tagName === 'INPUT' || 
+                document.activeElement.tagName === 'TEXTAREA') return;
+            
+            // Arrow keys for testimonials
+            if (e.key === 'ArrowLeft') {
+                prevTestimonialSlide();
+                resetTestimonialAutoSlide();
+            }
+            if (e.key === 'ArrowRight') {
+                nextTestimonialSlide();
+                resetTestimonialAutoSlide();
+            }
+        });
+        
+        // ============================================
+        // SWIPE SUPPORT FOR MOBILE
+        // ============================================
+        let startX = 0;
+        let endX = 0;
+        
+        // Internship swipe
+        if (internshipTrack) {
+            internshipTrack.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            });
+            
+            internshipTrack.addEventListener('touchend', (e) => {
+                endX = e.changedTouches[0].clientX;
+                handleInternshipSwipe();
+            });
+        }
+        
+        function handleInternshipSwipe() {
+            const threshold = 50;
+            const difference = startX - endX;
+            
+            if (Math.abs(difference) > threshold) {
+                if (difference > 0) {
+                    nextInternshipSlide(); // Swipe left
+                } else {
+                    prevInternshipSlide(); // Swipe right
+                }
+                resetInternshipAutoSlide();
+            }
+        }
+        
+        // Testimonial swipe
+        if (testimonialTrack) {
+            testimonialTrack.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            });
+            
+            testimonialTrack.addEventListener('touchend', (e) => {
+                endX = e.changedTouches[0].clientX;
+                handleTestimonialSwipe();
+            });
+        }
+        
+        function handleTestimonialSwipe() {
+            const threshold = 50;
+            const difference = startX - endX;
+            
+            if (Math.abs(difference) > threshold) {
+                if (difference > 0) {
+                    nextTestimonialSlide(); // Swipe left
+                } else {
+                    prevTestimonialSlide(); // Swipe right
+                }
+                resetTestimonialAutoSlide();
+            }
+        }
+        
+        // ============================================
+        // INITIALIZE CAROUSELS
+        // ============================================
+        if (internshipCards.length) {
+            updateInternshipCarousel();
+            startInternshipAutoSlide();
+        }
+        
+        if (testimonialCards.length) {
+            updateTestimonialCarousel();
+            startTestimonialAutoSlide();
+        }
+        
+        // ============================================
+        // HANDLE WINDOW RESIZE
+        // ============================================
+        window.addEventListener('resize', () => {
+            if (internshipCards.length) updateInternshipCarousel();
+            if (testimonialCards.length) updateTestimonialCarousel();
+        });
+    });
+</script>
+</body>
+</html>

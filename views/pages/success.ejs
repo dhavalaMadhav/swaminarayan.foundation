@@ -1,0 +1,50 @@
+<%- include('../partials/head') %>
+
+<body>
+  <%- include('../partials/header') %>
+  
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="success-container">
+          <div class="success-icon">✓</div>
+          
+          <h1>Application Submitted Successfully!</h1>
+          
+          <div class="success-info">
+            <p><strong>Application ID:</strong> <span id="applicationNumber"></span></p>
+            <p><strong>Payment Status:</strong> Completed</p>
+          </div>
+          
+          <div class="success-message">
+            <p>Thank you for applying to Swaminarayan University!</p>
+            <p>Your application has been received and payment has been confirmed. Our admissions team will review your application and contact you within 7-10 working days.</p>
+            <p>Please save your Application ID for future reference.</p>
+          </div>
+          
+          <div class="success-actions">
+            <a href="/" class="btn btn-primary">Back to Home</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <%- include('../partials/footer') %>
+  
+  <script>
+    // Fetch application details
+    const applicationId = '<%= applicationId %>';
+    
+    if (applicationId) {
+      fetch(`/application/${applicationId}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            document.getElementById('applicationNumber').textContent = data.application.applicationId;
+          }
+        });
+    }
+  </script>
+</body>
+</html>
