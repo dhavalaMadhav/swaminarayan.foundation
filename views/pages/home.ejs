@@ -115,6 +115,7 @@
             display: flex;
             gap: 15px;
             z-index: 20;
+            flex-wrap: nowrap;
         }
 
         .feature-card {
@@ -211,7 +212,7 @@
             top: 0;
             right: 0;
             width: 50vw;
-            height: 95%;
+            height: 100%;
             background: #1E3A8A;
             clip-path: polygon(100% 0, 100% 100%, 0 100%);
             z-index: 1;
@@ -221,8 +222,8 @@
         .collaborations-section::after {
             content: '';
             position: absolute;
-            bottom: calc(5%);
-            right: calc(50vw - 100px);
+            bottom: 80px;
+            right: 8%;
             width: 220px;
             height: 220px;
             background: #FBBF24;
@@ -403,7 +404,7 @@
             text-transform: uppercase;
         }
 
-        /* Placement Section - UPDATED */
+        /* Placement Section */
         .placement-section {
             background: #f5f5f5;
             padding: 100px 0;
@@ -536,217 +537,140 @@
             font-weight: 300;
         }
 
-/* Video Tour Section - WHITE BACKGROUND */
-.video-tour-section {
-    background: white;
-    padding: 100px 0;
-    position: relative;
-    overflow: hidden;
-}
+        /* Video Tour Section */
+        .video-tour-section {
+            background: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
 
-.video-tour-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 50px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-    position: relative;
-    z-index: 2;
-}
+        .video-tour-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
 
-.video-tour-content h2 {
-    font-size: 52px;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 25px;
-    letter-spacing: -1px;
-    text-transform: uppercase;
-    line-height: 1.2;
-}
+        .video-tour-content h2 {
+            font-size: 52px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
 
-.video-tour-content h2 .highlight {
-    color: #DC2626;
-    font-weight: 700;
-}
+        .video-tour-content h2 .highlight {
+            color: #DC2626;
+            font-weight: 700;
+        }
 
-.video-tour-description {
-    font-size: 16px;
-    color: #666;
-    line-height: 1.8;
-    font-weight: 300;
-    margin-bottom: 30px;
-}
+        .video-tour-description {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.8;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
 
-.video-tour-features {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 40px;
-}
+        .video-tour-features {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
 
-.tour-feature {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
+        .tour-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-.tour-feature i {
-    color: #FBBF24;
-    font-size: 18px;
-    flex-shrink: 0;
-}
+        .tour-feature i {
+            color: #FBBF24;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
 
-.tour-feature span {
-    font-size: 15px;
-    color: #1a1a1a;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-}
+        .tour-feature span {
+            font-size: 15px;
+            color: #1a1a1a;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
 
-.explore-more-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: #DC2626;
-    color: white;
-    padding: 16px 35px;
-    font-size: 14px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    text-decoration: none;
-    border: 2px solid #DC2626;
-    transition: all 0.3s ease;
-}
+        .explore-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #DC2626;
+            color: white;
+            padding: 16px 35px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            border: 2px solid #DC2626;
+            transition: all 0.3s ease;
+        }
 
-.explore-more-btn:hover {
-    background: transparent;
-    color: #DC2626;
-    transform: translateX(5px);
-}
+        .explore-more-btn:hover {
+            background: transparent;
+            color: #DC2626;
+            transform: translateX(5px);
+        }
 
-.explore-more-btn i {
-    font-size: 14px;
-    transition: transform 0.3s ease;
-}
+        .explore-more-btn i {
+            font-size: 14px;
+            transition: transform 0.3s ease;
+        }
 
-.explore-more-btn:hover i {
-    transform: translateX(5px);
-}
+        .explore-more-btn:hover i {
+            transform: translateX(5px);
+        }
 
-.video-tour-player {
-    position: relative;
-}
+        .video-tour-player {
+            position: relative;
+        }
 
-.video-wrapper {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-    background: #f5f5f5;
-    border: 3px solid #e0e0e0;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #f5f5f5;
+            border: 3px solid #e0e0e0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
 
-.video-wrapper:hover {
-    border-color: #DC2626;
-    box-shadow: 0 10px 40px rgba(220, 38, 38, 0.15);
-}
+        .video-wrapper:hover {
+            border-color: #DC2626;
+            box-shadow: 0 10px 40px rgba(220, 38, 38, 0.15);
+        }
 
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
 
-/* Responsive Design for Video Tour */
-@media (max-width: 1024px) {
-    .video-tour-container {
-        gap: 50px;
-    }
-
-    .video-tour-content h2 {
-        font-size: 42px;
-    }
-}
-
-@media (max-width: 768px) {
-    .video-tour-section {
-        padding: 80px 0;
-    }
-
-    .video-tour-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 0 20px;
-    }
-
-    .video-tour-content h2 {
-        font-size: 32px;
-    }
-
-    .video-tour-description {
-        font-size: 15px;
-    }
-
-    .tour-feature span {
-        font-size: 14px;
-    }
-
-    .explore-more-btn {
-        padding: 14px 30px;
-        font-size: 13px;
-        width: 100%;
-        justify-content: center;
-    }
-
-    .video-wrapper {
-        border-width: 2px;
-    }
-}
-
-@media (max-width: 480px) {
-    .video-tour-section {
-        padding: 60px 0;
-    }
-
-    .video-tour-content h2 {
-        font-size: 28px;
-    }
-
-    .video-tour-description {
-        font-size: 14px;
-    }
-
-    .video-tour-features {
-        gap: 12px;
-    }
-
-    .tour-feature i {
-        font-size: 16px;
-    }
-
-    .tour-feature span {
-        font-size: 13px;
-    }
-
-    .explore-more-btn {
-        padding: 12px 25px;
-    }
-}
-
-        /* Amenities Section - UPDATED WITH DYNAMIC BACKGROUND */
+        /* Amenities Section */
         .amenities-section {
             padding: 100px 0;
             position: relative;
             overflow: hidden;
         }
 
-        /* Dynamic Background Image */
         .amenities-bg {
             position: absolute;
             top: 0;
@@ -763,7 +687,6 @@
             opacity: 1;
         }
 
-        /* Black Overlay */
         .amenities-section::before {
             content: '';
             position: absolute;
@@ -1010,14 +933,13 @@
             font-weight: 300;
         }
 
-        /* Accreditation Section - UPDATED WITH UNIVERSITY IMAGE BACKGROUND */
+        /* Accreditation Section */
         .accreditation-section {
             position: relative;
             padding: 100px 0;
             overflow: hidden;
         }
 
-        /* University Background Image */
         .accreditation-bg {
             position: absolute;
             top: 0;
@@ -1028,7 +950,6 @@
             z-index: 0;
         }
 
-        /* Black Overlay */
         .accreditation-section::before {
             content: '';
             position: absolute;
@@ -1143,29 +1064,61 @@
             overflow-wrap: break-word;
         }
 
-        /* Responsive Design */
+        /* ============================================
+           RESPONSIVE DESIGN - MOBILE FIRST
+           ============================================ */
+
+        /* Large Tablets and Below (1200px) */
         @media (max-width: 1200px) {
-            .collab-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .placement-stats {
-                grid-template-columns: 1fr;
+            .hero-carousel-section {
+                height: 600px;
+                margin-bottom: 160px;
             }
 
             .features-overlay {
+                right: 30px;
+                max-width: 95%;
                 flex-wrap: wrap;
-                max-width: 100%;
-                right: 20px;
+                justify-content: flex-end;
             }
 
             .feature-card {
-                flex: 1 1 calc(50% - 10px);
-                min-width: 250px;
+                width: 230px;
+                padding: 28px 20px;
+            }
+
+            .collab-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Keep original triangle design on tablets */
+            .collaborations-section::before {
+                width: 50vw;
+                height: 100%;
+                clip-path: polygon(100% 0, 100% 100%, 0 100%);
+            }
+
+            .collaborations-section::after {
+                bottom: 80px;
+                right: 8%;
+                width: 180px;
+                height: 180px;
+                clip-path: polygon(100% 0, 100% 100%, 0 100%);
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+
+            .placement-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .video-tour-content h2,
+            .section-header h2,
+            .placement-header h2 {
+                font-size: 44px;
             }
 
             .amenities-content {
@@ -1174,71 +1127,116 @@
             }
 
             .amenities-header h2 {
-                font-size: 42px;
+                font-size: 44px;
             }
         }
 
+        /* Tablets (992px) - 2 CARDS PER ROW */
         @media (max-width: 992px) {
             .hero-carousel-section {
-                height: 500px;
-                margin-bottom: 120px;
+                height: 550px;
+                margin-bottom: 260px;
+            }
+
+            .carousel-dots {
+                bottom: 180px;
+            }
+
+            /* Feature Cards - 2 per row */
+            .features-overlay {
+                position: absolute;
+                bottom: -200px;
+                left: 50%;
+                transform: translateX(-50%);
+                right: auto;
+                width: 90%;
+                max-width: 540px;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px 16px;
+            }
+
+            .feature-card {
+                width: 100%;
+                padding: 20px 15px;
+                gap: 12px;
+                min-height: 140px;
+            }
+
+            /* Hide description on tablets and smaller */
+            .feature-description {
+                display: none;
+            }
+
+            .feature-number {
+                font-size: 42px;
+            }
+
+            .feature-title {
+                font-size: 16px;
+                margin-bottom: 0;
+            }
+
+            .feature-card-header {
+                align-items: center;
+            }
+
+            .feature-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .feature-icon i {
+                font-size: 22px;
+            }
+
+            /* Collaborations Section - Keep original triangle design */
+            .collaborations-section {
+                padding: 120px 0 50px;
+                min-height: auto;
             }
 
             .collaborations-section::before {
-                width: 60vw;
+                width: 50vw;
+                height: 100%;
+                clip-path: polygon(100% 0, 100% 100%, 0 100%);
+            }
+
+            .collaborations-section::after {
+                right: 8%;
+                bottom: 60px;
+                width: 150px;
+                height: 150px;
+                clip-path: polygon(100% 0, 100% 100%, 0 100%);
             }
 
             .section-header h2,
             .placement-header h2,
-            .accreditation-title {
-                font-size: 42px;
+            .amenities-header h2 {
+                font-size: 38px;
             }
 
-            .features-overlay {
-                bottom: -100px;
+            .placement-stats {
+                grid-template-columns: 1fr;
+                gap: 0;
             }
 
-            .feature-card {
-                flex: 1 1 100%;
+            .placement-stat-card {
+                border-right: none;
+                border-bottom: 2px solid rgba(220, 38, 38, 0.3);
+            }
+
+            .placement-stat-card:last-child {
+                border-bottom: none;
             }
 
             .amenities-content {
-                grid-template-columns: 260px 1fr;
-                gap: 30px;
+                grid-template-columns: 250px 1fr;
+                gap: 35px;
             }
 
-            .amenity-item {
-                padding: 10px 16px;
-            }
-
-            .amenity-item-icon {
-                width: 35px;
-                height: 35px;
-            }
-
-            .amenity-item-icon i {
-                font-size: 16px;
-            }
-
-            .amenity-item h3 {
-                font-size: 13px;
-            }
-
-            .amenity-arrow {
-                width: 32px;
-                height: 32px;
-            }
-
-            .amenity-arrow i {
-                font-size: 14px;
-            }
-
-            .amenity-description h3 {
-                font-size: 24px;
-            }
-
-            .amenity-description p {
-                font-size: 14px;
+            .amenity-display {
+                min-height: 550px;
             }
 
             .video-tour-container {
@@ -1246,75 +1244,133 @@
             }
 
             .video-tour-content h2 {
-                font-size: 42px;
+                font-size: 38px;
             }
         }
 
+        /* Mobile Landscape / Small Tablets (768px) - 2 CARDS PER ROW */
         @media (max-width: 768px) {
             .hero-carousel-section {
-                height: 450px;
-                margin-bottom: 100px;
+                height: 500px;
+                margin-bottom: 240px;
             }
 
+            .carousel-prev, .carousel-next {
+                padding: 10px 14px;
+                font-size: 16px;
+            }
+
+            .carousel-prev {
+                left: 15px;
+            }
+
+            .carousel-next {
+                right: 15px;
+            }
+
+            .carousel-dots {
+                bottom: 150px;
+            }
+
+            /* Feature Cards - 2 per row smaller */
             .features-overlay {
-                position: static;
-                flex-direction: column;
-                margin: 30px 20px;
+                bottom: -200px;
+                width: 92%;
+                max-width: 480px;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px 12px;
             }
 
             .feature-card {
-                width: 100%;
+                padding: 18px 12px;
+                gap: 10px;
+                min-height: 130px;
             }
 
-            .section-header h2,
-            .placement-header h2,
-            .accreditation-title {
-                font-size: 32px;
+            .feature-icon {
+                width: 45px;
+                height: 45px;
             }
 
-            .stats-container,
-            .placement-stats {
-                grid-template-columns: 1fr;
-                gap: 30px;
+            .feature-icon i {
+                font-size: 20px;
             }
 
-            .placement-stat-card {
-                border-right: none;
-                border-bottom: 2px solid rgba(220, 38, 38, 0.3);
-                padding: 30px 20px;
+            .feature-number {
+                font-size: 36px;
             }
 
-            .placement-stat-card:last-child {
-                border-bottom: none;
+            .feature-title {
+                font-size: 15px;
             }
 
+            /* Hide description */
+            .feature-description {
+                display: none;
+            }
+
+            /* Collaborations - Keep original triangle design */
             .collaborations-section {
-                min-height: auto;
-                padding: 80px 0 50px;
+                padding: 100px 0 45px;
             }
 
             .collaborations-section::before {
-                width: 100%;
-                height: 50%;
-                clip-path: none;
+                width: 50vw;
+                height: 100%;
+                clip-path: polygon(100% 0, 100% 100%, 0 100%);
             }
 
             .collaborations-section::after {
-                right: 20px;
-                bottom: 20px;
-                width: 150px;
-                height: 150px;
+                width: 120px;
+                height: 120px;
+                bottom: 50px;
+                right: 6%;
+                clip-path: polygon(100% 0, 100% 100%, 0 100%);
             }
 
             .collaborations-container,
             .placement-container,
+            .amenities-container,
             .accreditation-content {
-                padding: 0 20px;
+                padding: 0 25px;
+            }
+
+            .stats-container {
+                padding: 0 25px;
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .stat-item {
+                padding-left: 20px;
+            }
+
+            .collab-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
             }
 
             .collab-card {
                 flex-direction: column;
                 text-align: center;
+                align-items: center;
+                padding: 35px 25px;
+            }
+
+            .section-header h2,
+            .placement-header h2,
+            .amenities-header h2,
+            .accreditation-title {
+                font-size: 34px;
+                line-height: 1.2;
+            }
+
+            .placement-stats-wrapper {
+                padding: 40px 30px;
+            }
+
+            .placement-stat-number {
+                font-size: 64px;
             }
 
             .video-tour-section {
@@ -1323,12 +1379,12 @@
 
             .video-tour-container {
                 grid-template-columns: 1fr;
-                gap: 40px;
-                padding: 0 20px;
+                gap: 35px;
+                padding: 0 25px;
             }
 
             .video-tour-content h2 {
-                font-size: 32px;
+                font-size: 34px;
             }
 
             .video-tour-description {
@@ -1354,54 +1410,21 @@
                 padding: 80px 0;
             }
 
-            .amenities-container {
-                padding: 0 20px;
-            }
-
-            .amenities-header {
-                margin-bottom: 50px;
-            }
-
-            .amenities-header h2 {
-                font-size: 32px;
-            }
-
-            .amenities-header p {
-                font-size: 15px;
-            }
-
             .amenities-content {
                 grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .amenities-list {
-                order: 2;
-                gap: 8px;
+                gap: 25px;
             }
 
             .amenity-display {
                 order: 1;
                 position: relative;
                 top: 0;
-                min-height: 500px;
+                min-height: 480px;
             }
 
-            .amenity-item {
-                padding: 12px 16px;
-            }
-
-            .amenity-item-icon {
-                width: 35px;
-                height: 35px;
-            }
-
-            .amenity-item-icon i {
-                font-size: 16px;
-            }
-
-            .amenity-item h3 {
-                font-size: 13px;
+            .amenities-list {
+                order: 2;
+                gap: 10px;
             }
 
             .amenity-arrow {
@@ -1409,27 +1432,254 @@
             }
 
             .amenity-image {
-                height: 300px;
+                height: 280px;
             }
 
             .amenity-description {
-                padding: 30px 25px;
+                padding: 25px 20px;
             }
 
             .amenity-description h3 {
                 font-size: 22px;
-                margin-bottom: 15px;
-            }
-
-            .amenity-description p {
-                font-size: 14px;
             }
         }
 
+        /* Mobile Portrait (576px) - 2 CARDS PER ROW */
+        @media (max-width: 576px) {
+            .hero-carousel-section {
+                height: 450px;
+                margin-bottom: 220px;
+            }
+
+            .carousel-dots {
+                bottom: 130px;
+                gap: 8px;
+            }
+
+            .dot {
+                width: 6px;
+                height: 6px;
+            }
+
+            .dot.active {
+                width: 24px;
+            }
+
+            /* Feature Cards - 2 per row compact */
+            .features-overlay {
+                bottom: -180px;
+                width: 94%;
+                max-width: 420px;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 8px 10px;
+            }
+
+            .feature-card {
+                padding: 16px 10px;
+                gap: 8px;
+                min-height: 120px;
+            }
+
+            .feature-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .feature-icon i {
+                font-size: 18px;
+            }
+
+            .feature-number {
+                font-size: 32px;
+            }
+
+            .feature-title {
+                font-size: 14px;
+                margin-bottom: 0;
+            }
+
+            /* Hide description */
+            .feature-description {
+                display: none;
+            }
+
+            /* Collaborations - Keep original triangle design */
+            .collaborations-section {
+                padding: 80px 0 40px;
+            }
+
+            .collaborations-section::before {
+                width: 50vw;
+                height: 100%;
+                clip-path: polygon(100% 0, 100% 100%, 0 100%);
+            }
+
+            .collaborations-section::after {
+                width: 100px;
+                height: 100px;
+                bottom: 40px;
+                right: 5%;
+                clip-path: polygon(100% 0, 100% 100%, 0 100%);
+            }
+
+            .collaborations-container,
+            .placement-container,
+            .amenities-container,
+            .accreditation-content,
+            .stats-container,
+            .video-tour-container {
+                padding: 0 20px;
+            }
+
+            .section-header h2,
+            .placement-header h2,
+            .amenities-header h2,
+            .accreditation-title {
+                font-size: 28px;
+                margin-bottom: 12px;
+            }
+
+            .section-header p,
+            .amenities-header p {
+                font-size: 14px;
+            }
+
+            .collab-card {
+                padding: 30px 20px;
+            }
+
+            .collab-logo {
+                width: 80px;
+                height: 80px;
+            }
+
+            .collab-content h3 {
+                font-size: 18px;
+            }
+
+            .collab-content p {
+                font-size: 13px;
+            }
+
+            .stat-number {
+                font-size: 52px;
+            }
+
+            .stat-label {
+                font-size: 13px;
+            }
+
+            .placement-stats-wrapper {
+                padding: 30px 20px;
+            }
+
+            .placement-stat-number {
+                font-size: 54px;
+            }
+
+            .placement-stat-label {
+                font-size: 15px;
+            }
+
+            .placement-stat-sublabel {
+                font-size: 12px;
+            }
+
+            .video-tour-content h2 {
+                font-size: 28px;
+            }
+
+            .video-tour-description {
+                font-size: 14px;
+                margin-bottom: 25px;
+            }
+
+            .video-tour-features {
+                gap: 10px;
+            }
+
+            .tour-feature i {
+                font-size: 15px;
+            }
+
+            .tour-feature span {
+                font-size: 13px;
+            }
+
+            .explore-more-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 14px 28px;
+                font-size: 12px;
+            }
+
+            .amenities-header {
+                margin-bottom: 40px;
+            }
+
+            .amenity-item {
+                padding: 12px 14px;
+                gap: 12px;
+            }
+
+            .amenity-item-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .amenity-item-icon i {
+                font-size: 15px;
+            }
+
+            .amenity-item h3 {
+                font-size: 12px;
+            }
+
+            .amenity-display {
+                min-height: 440px;
+            }
+
+            .amenity-image {
+                height: 240px;
+            }
+
+            .amenity-description {
+                padding: 20px 16px;
+            }
+
+            .amenity-description h3 {
+                font-size: 19px;
+            }
+
+            .amenity-description p {
+                font-size: 13px;
+                line-height: 1.7;
+            }
+
+            .accreditation-logo-circle {
+                width: 110px;
+                height: 110px;
+            }
+
+            .accreditation-item {
+                width: 130px;
+            }
+
+            .accreditation-name {
+                font-size: 10px;
+                height: 36px;
+            }
+        }
+
+        /* Extra Small Mobile (480px and below) */
         @media (max-width: 480px) {
-            .carousel-prev,
-            .carousel-next {
-                padding: 8px 12px;
+            .hero-carousel-section {
+                height: 400px;
+                margin-bottom: 200px;
+            }
+
+            .carousel-prev, .carousel-next {
+                padding: 8px 11px;
                 font-size: 14px;
             }
 
@@ -1441,48 +1691,74 @@
                 right: 10px;
             }
 
+            .features-overlay {
+                bottom: -170px;
+                max-width: 380px;
+            }
+
+            .feature-card {
+                padding: 14px 8px;
+                min-height: 110px;
+            }
+
+            .feature-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .feature-icon i {
+                font-size: 16px;
+            }
+
             .feature-number {
-                font-size: 42px;
+                font-size: 28px;
             }
 
             .feature-title {
-                font-size: 16px;
+                font-size: 13px;
+            }
+
+            /* Collaborations - Keep original triangle design */
+            .collaborations-section {
+                padding: 70px 0 35px;
+            }
+
+            .collaborations-section::before {
+                width: 50vw;
+                height: 100%;
+                clip-path: polygon(100% 0, 100% 100%, 0 100%);
+            }
+
+            .collaborations-section::after {
+                width: 80px;
+                height: 80px;
+                bottom: 30px;
+                right: 4%;
+                clip-path: polygon(100% 0, 100% 100%, 0 100%);
             }
 
             .section-header h2,
             .placement-header h2,
+            .amenities-header h2,
             .accreditation-title {
-                font-size: 28px;
+                font-size: 24px;
+            }
+
+            .stat-icon-wrapper {
+                width: 42px;
+                height: 42px;
+            }
+
+            .stat-icon-bg i {
+                font-size: 20px;
             }
 
             .stat-number {
-                font-size: 48px;
+                font-size: 46px;
             }
 
             .placement-stat-number {
-                font-size: 56px;
-            }
-
-            .accreditation-logo-circle {
-                width: 120px;
-                height: 120px;
-            }
-
-            .accreditation-item {
-                width: 140px;
-            }
-
-            .placement-stats-wrapper {
-                padding: 30px 20px;
-            }
-
-            .hero-carousel-section {
-                height: 400px;
-                margin-bottom: 80px;
-            }
-
-            .carousel-dots {
-                bottom: 150px;
+                font-size: 48px;
             }
 
             .video-tour-section {
@@ -1490,27 +1766,28 @@
             }
 
             .video-tour-content h2 {
-                font-size: 28px;
+                font-size: 24px;
             }
 
             .video-tour-description {
-                font-size: 14px;
+                font-size: 13px;
             }
 
             .video-tour-features {
-                gap: 12px;
+                gap: 8px;
             }
 
             .tour-feature i {
-                font-size: 16px;
+                font-size: 14px;
             }
 
             .tour-feature span {
-                font-size: 13px;
+                font-size: 12px;
             }
 
             .explore-more-btn {
                 padding: 12px 25px;
+                font-size: 11px;
             }
 
             .amenities-section {
@@ -1518,26 +1795,26 @@
             }
 
             .amenities-header h2 {
-                font-size: 28px;
+                font-size: 24px;
                 line-height: 1.3;
             }
 
             .amenities-header p {
-                font-size: 14px;
+                font-size: 13px;
             }
 
             .amenity-display {
-                min-height: 450px;
+                min-height: 400px;
             }
 
             .amenity-item {
-                padding: 10px 14px;
-                gap: 12px;
+                padding: 10px 12px;
+                gap: 10px;
             }
 
             .amenity-item-icon {
-                width: 32px;
-                height: 32px;
+                width: 30px;
+                height: 30px;
             }
 
             .amenity-item-icon i {
@@ -1545,27 +1822,36 @@
             }
 
             .amenity-item h3 {
-                font-size: 12px;
+                font-size: 11px;
             }
 
             .amenity-image {
-                height: 250px;
+                height: 220px;
             }
 
             .amenity-description {
-                padding: 25px 20px;
+                padding: 18px 15px;
             }
 
             .amenity-description h3 {
-                font-size: 20px;
+                font-size: 17px;
             }
 
             .amenity-description p {
-                font-size: 13px;
+                font-size: 12px;
+            }
+
+            .accreditation-logo-circle {
+                width: 100px;
+                height: 100px;
+                padding: 12px;
+            }
+
+            .accreditation-item {
+                width: 120px;
             }
         }
 </style>
-
 </head>
 <body>
   <%- include('../partials/header') %>
