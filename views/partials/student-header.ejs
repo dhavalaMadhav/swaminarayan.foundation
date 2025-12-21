@@ -3,299 +3,400 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
+    <title><%= title || 'Student Dashboard - Swaminarayan University' %></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #f8f8f8;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        /* Side Indicator */
+        .side-indicator {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 80px;
+            background: #DC2626;
+            z-index: 999;
+        }
+
+        /* Student Header */
+        .student-header {
+            background-color: white;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .student-header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            z-index: 1001;
+            flex-shrink: 0;
+        }
+
+        .university-logo-full {
+            height: 90px;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        /* Student Info Section */
+        .student-info-section {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-shrink: 0;
+        }
+
+        .student-welcome-text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-align: right;
+        }
+
+        .welcome-label {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .student-name-header {
+            font-size: 16px;
+            font-weight: 700;
+            color: #DC2626;
+            letter-spacing: 0.3px;
+        }
+
+        /* Action Buttons */
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .dashboard-btn {
+            background: transparent;
+            border: 2px solid #e0e0e0;
+            padding: 10px 22px;
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Roboto', sans-serif;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dashboard-btn:hover {
+            border-color: #DC2626;
+            color: #DC2626;
+            transform: translateY(-2px);
+        }
+
+        .logout-btn {
+            background: #DC2626;
+            border: 2px solid #DC2626;
+            padding: 10px 22px;
+            color: white;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Roboto', sans-serif;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logout-btn:hover {
+            background: transparent;
+            color: #DC2626;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-info-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 24px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .mobile-info-toggle span {
+            width: 100%;
+            height: 3px;
+            background: #1a1a1a;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-info-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+            background: #DC2626;
+        }
+
+        .mobile-info-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-info-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+            background: #DC2626;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .university-logo-full {
+                height: 70px;
+            }
+
+            .student-header-content {
+                padding: 15px 30px;
+            }
+
+            .student-welcome-text {
+                display: none;
+            }
+
+            .header-actions {
+                gap: 10px;
+            }
+
+            .dashboard-btn, .logout-btn {
+                padding: 8px 18px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .student-header-content {
+                padding: 15px 20px;
+            }
+
+            .university-logo-full {
+                height: 60px;
+            }
+
+            /* Hide desktop student info */
+            .student-info-section {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: white;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 80px;
+                gap: 0;
+                z-index: 1000;
+            }
+
+            .student-info-section.active {
+                right: 0;
+            }
+
+            .student-welcome-text {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                padding: 20px;
+                border-bottom: 1px solid #f0f0f0;
+                text-align: left;
+                background: #f8f8f8;
+                gap: 5px;
+            }
+
+            .welcome-label {
+                font-size: 12px;
+            }
+
+            .student-name-header {
+                font-size: 16px;
+            }
+
+            .header-actions {
+                width: 100%;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .dashboard-btn, .logout-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 16px 20px;
+                font-size: 14px;
+                border-radius: 0;
+            }
+
+            .dashboard-btn {
+                border: none;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .dashboard-btn:hover, .logout-btn:hover {
+                transform: none;
+            }
+
+            /* Show mobile toggle */
+            .mobile-info-toggle {
+                display: flex;
+            }
+
+            .side-indicator {
+                display: none;
+            }
+
+            /* Mobile Overlay */
+            body.menu-open::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .university-logo-full {
+                height: 50px;
+            }
+
+            .student-info-section {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Admin Top Header Bar -->
-    <header class="admin-header-top">
-        <div class="dashboard-content">
-            <div style="display: flex; align-items: center; gap: 15px;">
-                <i class="fas fa-university" style="font-size: 16px;"></i>
-                <span>Swaminarayan University - Admin Panel</span>
+    <div class="side-indicator"></div>
+
+    <!-- Student Header -->
+    <header class="student-header">
+        <div class="student-header-content">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <a href="/student/dashboard" style="text-decoration: none;">
+                    <img src="/swaminarayan-logo.png" alt="Swaminarayan University" class="university-logo-full">
+                </a>
             </div>
-            <div style="display: flex; align-items: center; gap: 20px;">
-                <span id="admin-time"></span>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <div class="admin-avatar-sm" style="
-                        width: 32px; height: 32px;
-                        background: linear-gradient(135deg, #FBBF24, #DC2626);
-                        border-radius: 50%;
-                        display: flex; align-items: center; justify-content: center;
-                        font-size: 14px; font-weight: 700; color: #1E3A8A;
-                        border: 2px solid white;
-                    ">
-                        <%= admin.name.charAt(0).toUpperCase() %>
-                    </div>
-                    <span><%= admin.name %> <small style="opacity: 0.8;">(<%= admin.role %>)</small></span>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-info-toggle" id="mobileInfoToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Student Info & Actions -->
+            <div class="student-info-section" id="studentInfoSection">
+                <div class="student-welcome-text">
+                    <span class="welcome-label">Welcome Back,</span>
+                    <span class="student-name-header"><%= student.name %></span>
+                </div>
+                
+                <div class="header-actions">
+                    <a href="/student/dashboard" class="dashboard-btn">
+                        <i class="fas fa-th-large"></i> Dashboard
+                    </a>
+                    <a href="/student/logout" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
                 </div>
             </div>
         </div>
     </header>
+    
+    <!-- Content starts after header -->
+    <div style="padding-top: 0;">
 
-    <!-- Admin Main Navigation -->
-    <nav class="admin-nav-main">
-        <div class="dashboard-content">
-            <!-- Logo & University Brand -->
-            <div>
-                <a href="/admin/dashboard" style="
-                    display: flex;
-                    align-items: center;
-                    gap: 15px;
-                    text-decoration: none;
-                    padding: 15px 25px;
-                    background: linear-gradient(135deg, #1E3A8A, #DC2626);
-                    color: white;
-                    border-radius: 12px;
-                    font-size: 20px;
-                    font-weight: 800;
-                    letter-spacing: -0.5px;
-                    text-transform: uppercase;
-                    font-family: 'Montserrat', sans-serif;
-                    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.3);
-                    transition: all 0.3s ease;
-                ">
-                    <i class="fas fa-shield-alt" style="font-size: 28px;"></i>
-                    <span>Admin</span>
-                </a>
-            </div>
+<script>
+    // Mobile Menu Toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileInfoToggle = document.getElementById('mobileInfoToggle');
+        const studentInfoSection = document.getElementById('studentInfoSection');
 
-            <!-- Navigation Links -->
-            <div class="admin-nav-links">
-                <a href="/admin/dashboard" class="nav-link active" data-page="dashboard">
-                    <i class="fas fa-tachometer-alt"></i> Dashboard
-                </a>
-                <a href="/admin/applicants" class="nav-link" data-page="applicants">
-                    <i class="fas fa-users"></i> Applicants
-                </a>
-                <a href="/admin/export" class="nav-link" data-page="export">
-                    <i class="fas fa-download"></i> Export
-                </a>
-                <a href="/admin/settings" class="nav-link" data-page="settings">
-                    <i class="fas fa-cog"></i> Settings
-                </a>
-            </div>
-
-            <!-- Right Actions -->
-            <div>
-                <button class="notifications-btn" title="Notifications">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge">3</span>
-                </button>
-                <a href="/admin/logout" class="logout-link">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <style>
-        /* Header Base Styles */
-        .admin-header-top {
-            background: linear-gradient(135deg, #1E3A8A 0%, #DC2626 100%);
-            color: white;
-            padding: 12px 0;
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            position: sticky;
-            top: 0;
-            z-index: 10000;
-            box-shadow: 0 2px 10px rgba(30, 58, 138, 0.3);
-        }
-
-        .admin-header-top .dashboard-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .admin-nav-main {
-            background: white;
-            border-bottom: 3px solid #DC2626;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            position: sticky;
-            top: 52px;
-            z-index: 9999;
-            backdrop-filter: blur(10px);
-        }
-
-        .admin-nav-main .dashboard-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 0;
-            height: 80px;
-        }
-
-        /* Navigation Links */
-        .admin-nav-links {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .nav-link {
-            padding: 15px 25px;
-            color: #666;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Montserrat', sans-serif;
-            position: relative;
-            transition: all 0.3s ease;
-            border-radius: 8px 8px 0 0;
-        }
-
-        .nav-link.active {
-            color: #DC2626 !important;
-            background: rgba(220, 38, 38, 0.08);
-            box-shadow: 0 -3px 10px rgba(220, 38, 38, 0.15);
-        }
-
-        .nav-link:hover {
-            color: #DC2626 !important;
-            background: rgba(220, 38, 38, 0.05);
-            transform: translateY(-2px);
-        }
-
-        /* Right Actions */
-        .notifications-btn {
-            background: none;
-            border: none;
-            color: #666;
-            font-size: 20px;
-            cursor: pointer;
-            padding: 10px;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .notifications-btn:hover {
-            background: rgba(220, 38, 38, 0.1);
-            color: #DC2626;
-            transform: scale(1.1);
-        }
-
-        .notification-badge {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: #DC2626;
-            color: white;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 10px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            display: none;
-        }
-
-        .logout-link {
-            padding: 15px 25px;
-            background: linear-gradient(135deg, #DC2626, #B91C1C);
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Montserrat', sans-serif;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            border: 2px solid #DC2626;
-        }
-
-        .logout-link:hover {
-            background: transparent;
-            color: #DC2626;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .admin-nav-links { gap: 2px; }
-            .nav-link { padding: 15px 20px; font-size: 14px; }
-        }
-
-        @media (max-width: 992px) {
-            .admin-nav-main .dashboard-content {
-                flex-wrap: wrap;
-                gap: 15px;
-            }
-            .admin-nav-links {
-                order: 3;
-                width: 100%;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-            .nav-link { padding: 12px 18px; font-size: 13px; }
-        }
-
-        @media (max-width: 768px) {
-            .admin-header-top .dashboard-content {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-                padding: 10px 20px;
-            }
-            
-            .admin-nav-main .dashboard-content {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .admin-nav-links {
-                order: 2;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .nav-link {
-                padding: 12px 16px;
-                font-size: 13px;
-                margin: 2px;
-            }
-        }
-    </style>
-
-    <script>
-        // Live clock
-        function updateTime() {
-            const now = new Date();
-            document.getElementById('admin-time').textContent = now.toLocaleDateString('en-US', { 
-                weekday: 'short', 
-                year: 'numeric', 
-                month: 'short', 
-                day: 'numeric', 
-                hour: '2-digit', 
-                minute: '2-digit'
+        // Toggle mobile menu
+        if (mobileInfoToggle) {
+            mobileInfoToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                studentInfoSection.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
             });
         }
-        updateTime();
-        setInterval(updateTime, 60000);
 
-        // Show notification badge after 2 seconds
-        setTimeout(() => {
-            document.querySelector('.notification-badge').style.display = 'flex';
-        }, 2000);
-
-        // Active nav link based on current page
-        document.addEventListener('DOMContentLoaded', () => {
-            const currentPage = window.location.pathname.split('/').pop() || 'dashboard';
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.toggle('active', link.dataset.page === currentPage);
-            });
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                if (!e.target.closest('.student-header-content')) {
+                    if (mobileInfoToggle) {
+                        mobileInfoToggle.classList.remove('active');
+                    }
+                    studentInfoSection.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                }
+            }
         });
-    </script>
+
+        // Close menu on window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                if (mobileInfoToggle) {
+                    mobileInfoToggle.classList.remove('active');
+                }
+                studentInfoSection.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        });
+    });
+</script>
+</body>
+</html>
