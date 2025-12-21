@@ -1,10 +1,30 @@
-import express from 'express';
-import { loginAdmin, logoutAdmin, createFirstAdmin } from '../controllers/authController.js';
-
+const express = require('express');
 const router = express.Router();
+const authController = require('../controllers/authController');
+const { redirectIfAuthenticated } = require('../middleware/auth');
 
-router.post('/admin/login', loginAdmin);
-router.post('/admin/logout', logoutAdmin);
-router.post('/admin/setup', createFirstAdmin); // For first-time setup only
+// Login page (only for admin)
+router.get('/login', redirectIfAuthenticated, (req, res) => {
+    res.render('login', { 
+        error: null, 
+        username: '',
+        title: 'Admin Login'
+    });
+});
 
-export default router;
+// Login handle (admin-only)
+router.post('/login', authController.login);
+
+// Logout
+router.get('/logout', authController.logout);
+
+// Protected test route
+router.get('/test', authController.verifyAdminToken, (req, res) => {
+    res.json({ 
+        success: true, 
+        message: 'Admin access confirmed',
+        admin: req.admin 
+    });
+});
+
+module.exports = router;

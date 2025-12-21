@@ -1,47 +1,66 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const adminSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true
+  },
   email: {
     type: String,
-    required: [true, 'Email is required'],
+    required: true,
     unique: true,
     lowercase: true,
-    trim: true,
-    match: [/^\S+@\S+\.\S+$/, 'Please provide a valid email']
+    trim: true
   },
   password: {
     type: String,
-    required: [true, 'Password is required'],
-    minlength: [8, 'Password must be at least 8 characters']
+    required: true
   },
   name: {
     type: String,
-    default: 'Administrator'
+    required: true,
+    trim: true
   },
   role: {
     type: String,
+    enum: ['super_admin', 'admin', 'viewer'],
     default: 'admin'
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
+  isActive: {
+    type: Boolean,
+    default: true
+  },
+  lastLogin: {
+    type: Date
   }
+}, {
+  timestamps: true
 });
 
 // Hash password before saving
-adminSchema.pre('save', async function(next) {
-  if (!this.isModified('password')) {
-    return next();
+adminSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) return next();
+
+  try {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (error) {
+    next(error);
   }
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
-  next();
 });
 
-// Compare password method
-adminSchema.methods.comparePassword = async function(enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
+// Method to compare password
+adminSchema.methods.comparePassword = async function (candidatePassword) {
+  return await bcrypt.compare(candidatePassword, this.password);
 };
 
-export default mongoose.model('Admin', adminSchema);
+// Indexes
+adminSchema.index({ username: 1 });
+adminSchema.index({ email: 1 });
+adminSchema.index({ role: 1 });
+
+module.exports = mongoose.model('Admin', adminSchema);

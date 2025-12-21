@@ -1,0 +1,1700 @@
+<%- include('../partials/student-header', { 
+  title: 'Apply for Admission - Swaminarayan University', 
+  student: student
+}) %>
+<style>
+    .apply-page {
+        min-height: calc(100vh - 80px);
+        background: linear-gradient(135deg, rgba(30, 58, 138, 0.03), rgba(220, 38, 38, 0.02));
+    }
+
+    /* Hero Section */
+    .application-hero {
+        background: linear-gradient(135deg, #1E3A8A, #1E40AF);
+        padding: 50px 0 40px;
+        margin-bottom: 40px;
+    }
+
+    .application-hero-content {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .application-hero h1 {
+        font-size: clamp(28px, 5vw, 48px);
+        font-weight: 800;
+        color: white;
+        margin-bottom: 15px;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+    }
+
+    .application-hero h1 .highlight {
+        color: #FBBF24;
+    }
+
+    .application-hero p {
+        font-size: clamp(14px, 2vw, 16px);
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.6;
+    }
+
+    /* Progress Indicator - LINE AT EXACT CENTER OF NUMBER BOXES */
+    .progress-indicator {
+        background: #ffffff;
+        padding: 30px 0;
+        margin-bottom: 40px;
+        border-bottom: 2px solid #e5e5e5;
+    }
+
+    .progress-container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .progress-box {
+        border: 2px solid #e5e5e5;
+        padding: 30px 15px 50px; /* Extra bottom padding for labels */
+        background: #ffffff;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .progress-steps {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        align-items: flex-start;
+        min-height: 50px; /* Minimum height for step circles */
+    }
+
+    /* Background line (full width, gray) - POSITIONED AT EXACT CENTER OF NUMBER BOXES */
+    .progress-line-background {
+        position: absolute;
+        top: 25px; /* Half of 50px circle height */
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #e5e5e5;
+        z-index: 1;
+        margin: 0 45px; /* Half of first and last circle width (25px + 20px padding adjustment) */
+    }
+
+    /* Progress line (animated, green) - POSITIONED AT EXACT CENTER OF NUMBER BOXES */
+    .progress-line-progress {
+        position: absolute;
+        top: 25px; /* Half of 50px circle height */
+        left: 45px; /* Start from center of first circle (25px + 20px padding adjustment) */
+        height: 2px;
+        background: linear-gradient(90deg, #10B981 0%, #34D399 100%);
+        z-index: 2;
+        transition: width 0.5s ease;
+        width: 0%;
+    }
+
+    /* Calculate progress line width based on current step */
+    /* Line needs to span from center of first circle to center of current step's circle */
+    .progress-line-progress[data-step="1"] { width: 0%; }
+    .progress-line-progress[data-step="2"] { width: calc(25% - 45px); } /* Adjust for starting offset */
+    .progress-line-progress[data-step="3"] { width: calc(50% - 45px); }
+    .progress-line-progress[data-step="4"] { width: calc(75% - 45px); }
+    .progress-line-progress[data-step="5"] { width: calc(100% - 90px); } /* Full width minus both end adjustments */
+    .progress-line-progress[data-step="6"] { width: calc(100% - 90px); }
+
+    .step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 3;
+        position: relative;
+        flex: 1;
+        max-width: 80px;
+        height: 50px; /* Same height as circle */
+    }
+
+    .step-circle {
+        width: 50px;
+        height: 50px;
+        border: 2px solid #e5e5e5;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 700;
+        color: #666;
+        transition: all 0.3s ease;
+        position: relative;
+        flex-shrink: 0;
+        margin: 0 auto; /* Center the circle within the step container */
+    }
+
+    .step.active .step-circle {
+        border-color: #DC2626;
+        background: #DC2626;
+        color: #ffffff;
+        box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.1);
+    }
+
+    .step.completed .step-circle {
+        border-color: #10B981;
+        background: #10B981;
+        color: transparent;
+        box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+    }
+
+    .step.completed .step-circle::before {
+        content: '\f00c';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        font-size: 18px;
+        color: #ffffff;
+        position: absolute;
+    }
+
+    .step-label {
+        font-size: 11px;
+        font-weight: 600;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-top: 60px; /* Below the circle */
+        text-align: center;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
+        position: absolute;
+        bottom: -35px; /* Position labels below the progress box */
+        left: 0;
+        right: 0;
+    }
+
+    .step.active .step-label {
+        color: #DC2626;
+        font-weight: 700;
+    }
+
+    .step.completed .step-label {
+        color: #10B981;
+    }
+
+    /* Form Sections */
+    .application-form {
+        padding: 40px 0 80px;
+    }
+
+    .form-container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .form-section {
+        background: #ffffff;
+        border: 2px solid #e5e5e5;
+        padding: 40px;
+        display: none;
+        animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-section.active {
+        display: block;
+    }
+
+    .section-title {
+        font-size: clamp(22px, 3vw, 32px);
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 25px;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+        position: relative;
+        padding-bottom: 12px;
+        border-bottom: 3px solid #DC2626;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-bottom: 25px;
+    }
+
+    .form-grid .full-width {
+        grid-column: 1 / -1;
+    }
+
+    .form-group {
+        margin-bottom: 0;
+    }
+
+    label {
+        display: block;
+        font-size: 12px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .required::after {
+        content: '*';
+        color: #DC2626;
+        margin-left: 4px;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border: 2px solid #e5e5e5;
+        background: #ffffff;
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        color: #1a1a1a;
+        transition: all 0.3s ease;
+        outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+        border-color: #DC2626;
+    }
+
+    input[readonly] {
+        background: #f8f8f8;
+        cursor: not-allowed;
+    }
+
+    textarea {
+        min-height: 80px;
+        resize: vertical;
+    }
+
+    .form-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 2px solid #e5e5e5;
+        gap: 15px;
+    }
+
+    .btn {
+        padding: 12px 28px;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid;
+        font-family: 'Montserrat', sans-serif;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        background: none;
+    }
+
+    .btn-primary {
+        background: #DC2626;
+        border-color: #DC2626;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background: transparent;
+        color: #DC2626;
+    }
+
+    .btn-secondary {
+        background: transparent;
+        border-color: #666;
+        color: #666;
+    }
+
+    .btn-secondary:hover {
+        background: #666;
+        color: white;
+    }
+
+    .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    /* Upload Section */
+    .upload-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-bottom: 25px;
+    }
+
+    .upload-box {
+        border: 2px dashed #e5e5e5;
+        padding: 25px 15px;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        background: #ffffff;
+    }
+
+    .upload-box.uploaded {
+        border: 2px solid #10B981;
+        background: #F0FDF4;
+    }
+
+    .upload-box:hover {
+        border-style: solid;
+        border-color: #DC2626;
+    }
+
+    .upload-icon {
+        width: 55px;
+        height: 55px;
+        background: #f8f8f8;
+        border: 2px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        transition: all 0.3s ease;
+    }
+
+    .upload-box.uploaded .upload-icon {
+        background: #10B981;
+        border-color: #10B981;
+    }
+
+    .upload-icon i {
+        font-size: 22px;
+        color: #666;
+        transition: all 0.3s ease;
+    }
+
+    .upload-box.uploaded .upload-icon i {
+        color: #ffffff;
+    }
+
+    .upload-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .upload-box.uploaded .upload-title {
+        color: #10B981;
+    }
+
+    .upload-info {
+        font-size: 11px;
+        color: #666;
+    }
+
+    .file-input {
+        display: none;
+    }
+
+    .file-preview {
+        margin-top: 12px;
+        padding: 10px;
+        background: #ffffff;
+        border: 2px solid #10B981;
+        display: none;
+        text-align: left;
+    }
+
+    .file-preview.show {
+        display: block;
+    }
+
+    .file-name {
+        font-size: 12px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 4px;
+        word-break: break-all;
+    }
+
+    .file-size {
+        font-size: 10px;
+        color: #059669;
+        font-weight: 600;
+    }
+
+    /* Success Section */
+    .success-section {
+        text-align: center;
+        padding: 50px 25px;
+    }
+
+    .success-circle {
+        width: 90px;
+        height: 90px;
+        background: #10B981;
+        border: 4px solid #ffffff;
+        margin: 0 auto 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 0 2px #e5e5e5;
+    }
+
+    .success-circle i {
+        font-size: 36px;
+        color: white;
+    }
+
+    .success-title {
+        font-size: clamp(22px, 4vw, 36px);
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+    }
+
+    .success-text {
+        font-size: 15px;
+        color: #666;
+        margin-bottom: 25px;
+    }
+
+    .info-box {
+        background: #ffffff;
+        border: 2px solid #e5e5e5;
+        padding: 25px;
+        max-width: 500px;
+        margin: 0 auto 25px;
+        text-align: left;
+    }
+
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #e5e5e5;
+        gap: 10px;
+    }
+
+    .info-row:last-child {
+        border-bottom: none;
+    }
+
+    .info-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .info-value {
+        font-size: 14px;
+        font-weight: 800;
+        color: #1a1a1a;
+        text-align: right;
+    }
+
+    .status-yellow {
+        color: #FBBF24;
+    }
+
+    .payment-note {
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    /* Payment Methods */
+    .payment-methods {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .payment-method-card {
+        background: #ffffff;
+        border: 2px solid #e5e5e5;
+        padding: 25px 18px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .payment-method-card:hover {
+        border-color: #DC2626;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(220, 38, 38, 0.1);
+    }
+
+    .payment-method-icon {
+        width: 60px;
+        height: 60px;
+        background: #f8f8f8;
+        border: 2px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        transition: all 0.3s ease;
+    }
+
+    .payment-method-card:hover .payment-method-icon {
+        border-color: #DC2626;
+        background: #DC2626;
+    }
+
+    .payment-method-icon i {
+        font-size: 28px;
+        color: #666;
+        transition: all 0.3s ease;
+    }
+
+    .payment-method-card:hover .payment-method-icon i {
+        color: #ffffff;
+    }
+
+    .payment-method-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+    }
+
+    .payment-method-description {
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 12px;
+    }
+
+    .payment-method-badge {
+        display: inline-block;
+        padding: 5px 10px;
+        background: #f8f8f8;
+        border: 1px solid #e5e5e5;
+        font-size: 10px;
+        font-weight: 700;
+        color: #666;
+        text-transform: uppercase;
+    }
+
+    .error-message {
+        color: #DC2626;
+        font-size: 11px;
+        margin-top: 4px;
+        display: none;
+    }
+
+    .error-message.show {
+        display: block;
+    }
+
+    /* Bank Details */
+    .bank-details-box {
+        background: #ffffff;
+        border: 2px solid #e5e5e5;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .bank-details-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e5e5e5;
+    }
+
+    .bank-detail-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid #f0f0f0;
+        gap: 10px;
+    }
+
+    .bank-detail-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #666;
+        text-transform: uppercase;
+    }
+
+    .bank-detail-value {
+        font-size: 13px;
+        font-weight: 700;
+        color: #1a1a1a;
+        text-align: right;
+        word-break: break-word;
+    }
+
+    .amount-highlight {
+        color: #DC2626;
+        font-size: 16px;
+    }
+
+    .utr-info-box {
+        background: #FEF3C7;
+        border: 2px solid #FCD34D;
+        padding: 15px;
+        margin-bottom: 20px;
+        display: flex;
+        gap: 10px;
+    }
+
+    .utr-info-box i {
+        font-size: 20px;
+        color: #F59E0B;
+        flex-shrink: 0;
+    }
+
+    .utr-info-box p {
+        font-size: 12px;
+        color: #92400E;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 992px) {
+        .application-hero {
+            padding: 35px 0 25px;
+        }
+
+        .progress-indicator {
+            padding: 25px 0;
+        }
+
+        .progress-box {
+            padding: 18px 12px 45px; /* Adjusted bottom padding */
+        }
+
+        .progress-line-background,
+        .progress-line-progress {
+            top: 22.5px; /* Half of 45px circle */
+        }
+
+        .progress-line-background {
+            margin: 0 40px;
+        }
+
+        .progress-line-progress {
+            left: 40px;
+        }
+
+        .progress-line-progress[data-step="2"] { width: calc(25% - 40px); }
+        .progress-line-progress[data-step="3"] { width: calc(50% - 40px); }
+        .progress-line-progress[data-step="4"] { width: calc(75% - 40px); }
+        .progress-line-progress[data-step="5"] { width: calc(100% - 80px); }
+        .progress-line-progress[data-step="6"] { width: calc(100% - 80px); }
+
+        .step {
+            max-width: 70px;
+            height: 45px;
+        }
+
+        .step-circle {
+            width: 45px;
+            height: 45px;
+            font-size: 13px;
+        }
+
+        .step.completed .step-circle::before {
+            font-size: 16px;
+        }
+
+        .step-label {
+            font-size: 10px;
+            bottom: -30px; /* Adjusted for smaller box */
+        }
+
+        .form-section {
+            padding: 35px 25px;
+        }
+
+        .upload-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .application-hero {
+            padding: 30px 0 20px;
+        }
+
+        .form-section {
+            padding: 25px 18px;
+        }
+
+        .form-grid,
+        .upload-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .progress-box {
+            padding: 15px 10px 40px;
+        }
+
+        .progress-line-background,
+        .progress-line-progress {
+            top: 21px; /* Half of 42px circle */
+        }
+
+        .progress-line-background {
+            margin: 0 36px;
+        }
+
+        .progress-line-progress {
+            left: 36px;
+        }
+
+        .progress-line-progress[data-step="2"] { width: calc(25% - 36px); }
+        .progress-line-progress[data-step="3"] { width: calc(50% - 36px); }
+        .progress-line-progress[data-step="4"] { width: calc(75% - 36px); }
+        .progress-line-progress[data-step="5"] { width: calc(100% - 72px); }
+        .progress-line-progress[data-step="6"] { width: calc(100% - 72px); }
+
+        .step {
+            max-width: 60px;
+            height: 42px;
+        }
+
+        .step-circle {
+            width: 42px;
+            height: 42px;
+            font-size: 12px;
+        }
+
+        .step.completed .step-circle::before {
+            font-size: 15px;
+        }
+
+        .step-label {
+            font-size: 9px;
+            bottom: -28px;
+            letter-spacing: 0.3px;
+        }
+
+        .form-buttons {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            width: 100%;
+            justify-content: center;
+            padding: 11px 24px;
+        }
+
+        .bank-detail-row {
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .bank-detail-value {
+            text-align: left;
+        }
+
+        .info-box {
+            padding: 18px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .progress-box {
+            padding: 12px 8px 35px;
+        }
+
+        .progress-line-background,
+        .progress-line-progress {
+            top: 19px; /* Half of 38px circle */
+        }
+
+        .progress-line-background {
+            margin: 0 32px;
+        }
+
+        .progress-line-progress {
+            left: 32px;
+        }
+
+        .progress-line-progress[data-step="2"] { width: calc(25% - 32px); }
+        .progress-line-progress[data-step="3"] { width: calc(50% - 32px); }
+        .progress-line-progress[data-step="4"] { width: calc(75% - 32px); }
+        .progress-line-progress[data-step="5"] { width: calc(100% - 64px); }
+        .progress-line-progress[data-step="6"] { width: calc(100% - 64px); }
+
+        .step {
+            max-width: 50px;
+            height: 38px;
+            gap: 3px;
+        }
+
+        .step-circle {
+            width: 38px;
+            height: 38px;
+            font-size: 11px;
+            border-width: 2px;
+        }
+
+        .step.completed .step-circle::before {
+            font-size: 14px;
+        }
+
+        .step-label {
+            font-size: 8px;
+            bottom: -25px;
+            letter-spacing: 0.2px;
+            line-height: 1.2;
+        }
+
+        .form-section {
+            padding: 20px 12px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .success-circle {
+            width: 75px;
+            height: 75px;
+        }
+
+        .success-circle i {
+            font-size: 30px;
+        }
+
+        .btn {
+            font-size: 11px;
+            padding: 10px 20px;
+        }
+    }
+
+    @media (max-width: 380px) {
+        .step {
+            max-width: 45px;
+            height: 35px;
+        }
+
+        .step-circle {
+            width: 35px;
+            height: 35px;
+            font-size: 10px;
+        }
+
+        .step.completed .step-circle::before {
+            font-size: 12px;
+        }
+
+        .step-label {
+            font-size: 7px;
+            bottom: -22px;
+        }
+
+        .progress-line-background,
+        .progress-line-progress {
+            top: 17.5px; /* Half of 35px circle */
+        }
+
+        .progress-line-background {
+            margin: 0 30px;
+        }
+
+        .progress-line-progress {
+            left: 30px;
+        }
+
+        .progress-line-progress[data-step="2"] { width: calc(25% - 30px); }
+        .progress-line-progress[data-step="3"] { width: calc(50% - 30px); }
+        .progress-line-progress[data-step="4"] { width: calc(75% - 30px); }
+        .progress-line-progress[data-step="5"] { width: calc(100% - 60px); }
+        .progress-line-progress[data-step="6"] { width: calc(100% - 60px); }
+    }
+</style>
+
+<div class="apply-page">
+    <section class="application-hero">
+        <div class="application-hero-content">
+            <h1>COMPLETE YOUR <span class="highlight">APPLICATION</span></h1>
+            <p>Fill in your details to apply for admission at Swaminarayan University</p>
+        </div>
+    </section>
+
+    <section class="progress-indicator">
+        <div class="progress-container">
+            <div class="progress-box">
+                <div class="progress-line-background"></div>
+                <div class="progress-line-progress" data-step="1"></div>
+                <div class="progress-steps">
+                    <div class="step active" data-step="1">
+                        <div class="step-circle">01</div>
+                        <div class="step-label">Personal</div>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-circle">02</div>
+                        <div class="step-label">Academic</div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-circle">03</div>
+                        <div class="step-label">Program</div>
+                    </div>
+                    <div class="step" data-step="4">
+                        <div class="step-circle">04</div>
+                        <div class="step-label">Documents</div>
+                    </div>
+                    <div class="step" data-step="5">
+                        <div class="step-circle">05</div>
+                        <div class="step-label">Payment</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="application-form">
+        <div class="form-container">
+            <!-- Step 1: Personal Details -->
+            <div class="form-section active" id="step1">
+                <h2 class="section-title">Personal Details</h2>
+                <form id="personalForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fullName" class="required">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" value="<%= student.name %>" required>
+                            <div class="error-message" id="fullNameError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="required">Email Address</label>
+                            <input type="email" id="email" name="email" value="<%= student.email %>" readonly required>
+                            <div class="error-message" id="emailError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="required">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="10-digit number" required>
+                            <div class="error-message" id="phoneError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob" class="required">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" required>
+                            <div class="error-message" id="dobError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender" class="required">Gender</label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="error-message" id="genderError"></div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="address" class="required">Address</label>
+                            <textarea id="address" name="address" placeholder="Enter your complete address" required></textarea>
+                            <div class="error-message" id="addressError"></div>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <div></div>
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">
+                            Continue <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Step 2: Academic Details -->
+            <div class="form-section" id="step2">
+                <h2 class="section-title">Academic Details</h2>
+                <form id="academicForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="qualification" class="required">Highest Qualification</label>
+                            <select id="qualification" name="qualification" required>
+                                <option value="">Select Qualification</option>
+                                <option value="10th">10th</option>
+                                <option value="12th">12th</option>
+                                <option value="diploma">Diploma</option>
+                                <option value="undergraduate">Undergraduate</option>
+                                <option value="postgraduate">Postgraduate</option>
+                            </select>
+                            <div class="error-message" id="qualificationError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="boardUniversity" class="required">Board / University</label>
+                            <input type="text" id="boardUniversity" name="boardUniversity" placeholder="e.g., CBSE, State Board" required>
+                            <div class="error-message" id="boardUniversityError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="passingYear" class="required">Year of Passing</label>
+                            <input type="number" id="passingYear" name="passingYear" min="1990" max="2026" required>
+                            <div class="error-message" id="passingYearError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="percentage" class="required">Percentage / CGPA</label>
+                            <input type="number" id="percentage" name="percentage" min="0" max="100" step="0.01" placeholder="e.g., 85.50" required>
+                            <div class="error-message" id="percentageError"></div>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep()">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">
+                            Continue <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Step 3: Program Selection -->
+            <div class="form-section" id="step3">
+                <h2 class="section-title">Program Selection</h2>
+                <form id="programForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="programType" class="required">Program Type</label>
+                            <select id="programType" name="programType" required onchange="updateCourses()">
+                                <option value="">Select Program Type</option>
+                                <option value="diploma">Diploma</option>
+                                <option value="undergraduate">Undergraduate</option>
+                                <option value="postgraduate">Postgraduate</option>
+                                <option value="phd">PhD</option>
+                            </select>
+                            <div class="error-message" id="programTypeError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="courseName" class="required">Course Name</label>
+                            <select id="courseName" name="courseName" required>
+                                <option value="">Select Program Type First</option>
+                            </select>
+                            <div class="error-message" id="courseNameError"></div>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep()">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">
+                            Continue <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Step 4: Document Upload -->
+            <div class="form-section" id="step4">
+                <h2 class="section-title">Document Upload</h2>
+                <div class="upload-grid">
+                    <div class="upload-box" onclick="triggerUpload('photo')">
+                        <div class="upload-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="upload-title">Passport Photo</div>
+                        <div class="upload-info">JPG, PNG (Max 2MB)</div>
+                        <input type="file" id="photo" class="file-input" accept=".jpg,.jpeg,.png" onchange="handleFileUpload(this, 'photoPreview')">
+                        <div class="file-preview" id="photoPreview"></div>
+                    </div>
+                    
+                    <div class="upload-box" onclick="triggerUpload('idProof')">
+                        <div class="upload-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <div class="upload-title">ID Proof</div>
+                        <div class="upload-info">JPG, PNG, PDF (Max 2MB)</div>
+                        <input type="file" id="idProof" class="file-input" accept=".jpg,.jpeg,.png,.pdf" onchange="handleFileUpload(this, 'idProofPreview')">
+                        <div class="file-preview" id="idProofPreview"></div>
+                    </div>
+                    
+                    <div class="upload-box" onclick="triggerUpload('certificate')">
+                        <div class="upload-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="upload-title">Academic Certificate</div>
+                        <div class="upload-info">PDF, JPG, PNG (Max 2MB)</div>
+                        <input type="file" id="certificate" class="file-input" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFileUpload(this, 'certificatePreview')">
+                        <div class="file-preview" id="certificatePreview"></div>
+                    </div>
+                </div>
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-secondary" onclick="prevStep()">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                    <button type="button" class="btn btn-primary" id="submitBtn" onclick="submitApplication()">
+                        Submit Application <i class="fas fa-check"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 5: Payment Selection -->
+            <div class="form-section" id="step5">
+                <div class="success-section">
+                    <div class="success-circle">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h2 class="success-title">APPLICATION SUBMITTED</h2>
+                    <p class="success-text">Your application has been successfully submitted</p>
+                    
+                    <div class="info-box">
+                        <div class="info-row">
+                            <span class="info-label">Application Number</span>
+                            <span class="info-value" id="appId">-</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Application Fee</span>
+                            <span class="info-value">₹<%= typeof applicationFee !== 'undefined' ? applicationFee : '500' %></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Status</span>
+                            <span class="info-value status-yellow">Payment Pending</span>
+                        </div>
+                    </div>
+                    
+                    <p class="payment-note">Complete payment via Bank Transfer (UTR)</p>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-method-card" onclick="selectPaymentMethod('utr')">
+                            <div class="payment-method-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <h3 class="payment-method-title">Bank Transfer</h3>
+                            <p class="payment-method-description">Pay via NEFT/RTGS/IMPS and submit UTR reference</p>
+                            <div class="payment-method-badge">Manual Verification</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: UTR Reference Submission -->
+            <div class="form-section" id="step6">
+                <h2 class="section-title">Submit Payment Reference</h2>
+                
+                <div class="bank-details-box">
+                    <h3 class="bank-details-title">Bank Account Details</h3>
+                    <div class="bank-detail-row">
+                        <span class="bank-detail-label">Account Name:</span>
+                        <span class="bank-detail-value">Swaminarayan University</span>
+                    </div>
+                    <div class="bank-detail-row">
+                        <span class="bank-detail-label">Account Number:</span>
+                        <span class="bank-detail-value">1234567890</span>
+                    </div>
+                    <div class="bank-detail-row">
+                        <span class="bank-detail-label">IFSC Code:</span>
+                        <span class="bank-detail-value">SBIN0001234</span>
+                    </div>
+                    <div class="bank-detail-row">
+                        <span class="bank-detail-label">Bank Name:</span>
+                        <span class="bank-detail-value">State Bank of India</span>
+                    </div>
+                    <div class="bank-detail-row">
+                        <span class="bank-detail-label">Branch:</span>
+                        <span class="bank-detail-value">Main Branch</span>
+                    </div>
+                    <div class="bank-detail-row">
+                        <span class="bank-detail-label">Amount:</span>
+                        <span class="bank-detail-value amount-highlight">₹<%= typeof applicationFee !== 'undefined' ? applicationFee : '500' %></span>
+                    </div>
+                </div>
+
+                <div class="utr-info-box">
+                    <i class="fas fa-info-circle"></i>
+                    <p><strong>Important:</strong> After making the bank transfer, please enter your UTR/Transaction Reference Number below. Our team will verify your payment within 24-48 hours.</p>
+                </div>
+
+                <form id="utrForm">
+                    <div class="form-group">
+                        <label for="utrNumber" class="required">UTR / Transaction Reference Number</label>
+                        <input type="text" id="utrNumber" name="utrNumber" placeholder="Enter 12-16 digit UTR number" required>
+                        <div class="error-message" id="utrError"></div>
+                    </div>
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label for="transactionProof">Upload Payment Screenshot (Optional)</label>
+                        <input type="file" id="transactionProof" accept="image/*,.pdf" style="display: block; padding: 10px; border: 2px dashed #e5e5e5; width: 100%;">
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="goToStep(5)">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="submitUTR()">
+                            Submit Payment Proof <i class="fas fa-check"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+let currentStep = 1;
+let formData = {};
+let uploadedFiles = {};
+let submittedApplicationId = null;
+let autoSaveTimer = null;
+const AUTOSAVE_INTERVAL = 10000;
+
+const coursesByType = {
+    diploma: ['Diploma in Computer Science', 'Diploma in Mechanical Engineering', 'Diploma in Civil Engineering'],
+    undergraduate: ['B.Tech Computer Science', 'B.Tech Mechanical Engineering', 'B.Sc Physics', 'BBA', 'BCA'],
+    postgraduate: ['M.Tech Computer Science', 'MBA', 'M.Sc Physics', 'MCA'],
+    phd: ['Ph.D. Computer Science', 'Ph.D. Physics', 'Ph.D. Management']
+};
+
+window.addEventListener('DOMContentLoaded', async function() {
+    console.log('🚀 Page loaded');
+    const statusResult = await checkAndLoadApplicationStatus();
+    if (statusResult.skipDraftLoad) {
+        startAutoSave();
+        return;
+    }
+    const localStorageLoaded = await loadDraftFromLocalStorage();
+    if (!localStorageLoaded) {
+        await loadDraftFromDatabase();
+    }
+    startAutoSave();
+});
+
+async function checkAndLoadApplicationStatus() {
+    try {
+        const response = await fetch('/application/check-status');
+        const data = await response.json();
+
+        if (data.success) {
+            if (data.redirectTo === 'payment' && data.hasDocuments) {
+                currentStep = 5;
+                submittedApplicationId = data.applicationId;
+                uploadedFiles = { photo: true, idProof: true, certificate: true };
+                document.querySelectorAll('.form-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById('step5').classList.add('active');
+                document.getElementById('appId').textContent = data.applicationId;
+                updateProgress();
+                return { skipDraftLoad: true };
+            }
+
+            if (data.redirectTo === 'verification') {
+                currentStep = 6;
+                submittedApplicationId = data.applicationId;
+                document.querySelectorAll('.form-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById('step6').classList.add('active');
+                updateProgress();
+                return { skipDraftLoad: true };
+            }
+
+            if (data.redirectTo === 'complete') {
+                window.location.href = '/student/dashboard';
+                return { skipDraftLoad: true };
+            }
+        }
+    } catch (error) {
+        console.error('❌ Error checking status:', error);
+    }
+    return { skipDraftLoad: false };
+}
+
+async function loadDraftFromLocalStorage() {
+    try {
+        const localDraft = localStorage.getItem('applicationDraft');
+        if (!localDraft) return false;
+
+        const draft = JSON.parse(localDraft);
+        restoreFormData(draft);
+        currentStep = draft.currentStep || 1;
+        submittedApplicationId = draft.applicationId || null;
+
+        document.querySelectorAll('.form-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        document.getElementById('step' + currentStep).classList.add('active');
+        updateProgress();
+        return true;
+    } catch (error) {
+        console.error('❌ Error loading from localStorage:', error);
+        return false;
+    }
+}
+
+async function loadDraftFromDatabase() {
+    try {
+        const response = await fetch('/application/load-draft');
+        if (response.status === 404) return false;
+
+        const data = await response.json();
+        if (data.success && data.draft) {
+            restoreFormData(data.draft);
+            currentStep = data.draft.currentStep || 1;
+            submittedApplicationId = data.draft.applicationId || null;
+
+            const draftData = {
+                ...data.draft,
+                currentStep: currentStep,
+                lastSaved: new Date().toISOString()
+            };
+            localStorage.setItem('applicationDraft', JSON.stringify(draftData));
+
+            document.querySelectorAll('.form-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById('step' + currentStep).classList.add('active');
+            updateProgress();
+            return true;
+        }
+    } catch (error) {
+        console.error('❌ Error loading from database:', error);
+    }
+    return false;
+}
+
+function restoreFormData(draft) {
+    formData = draft;
+    if (draft.fullName) document.getElementById('fullName').value = draft.fullName;
+    if (draft.phone) document.getElementById('phone').value = draft.phone;
+    if (draft.dob) document.getElementById('dob').value = draft.dob;
+    if (draft.gender) document.getElementById('gender').value = draft.gender;
+    if (draft.address) document.getElementById('address').value = draft.address;
+    if (draft.qualification) document.getElementById('qualification').value = draft.qualification;
+    if (draft.boardUniversity) document.getElementById('boardUniversity').value = draft.boardUniversity;
+    if (draft.passingYear) document.getElementById('passingYear').value = draft.passingYear;
+    if (draft.percentage) document.getElementById('percentage').value = draft.percentage;
+    if (draft.programType) {
+        document.getElementById('programType').value = draft.programType;
+        updateCourses();
+    }
+    if (draft.courseName) document.getElementById('courseName').value = draft.courseName;
+}
+
+function startAutoSave() {
+    autoSaveTimer = setInterval(() => {
+        if (currentStep < 5) {
+            saveDraft();
+        }
+    }, AUTOSAVE_INTERVAL);
+}
+
+async function saveDraft() {
+    collectCurrentStepData();
+    const draftData = {
+        ...formData,
+        currentStep: currentStep,
+        lastSaved: new Date().toISOString()
+    };
+    localStorage.setItem('applicationDraft', JSON.stringify(draftData));
+
+    try {
+        await fetch('/application/save-draft', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(draftData)
+        });
+    } catch (error) {
+        console.error('⚠️ Could not save to database:', error);
+    }
+}
+
+function collectCurrentStepData() {
+    if (currentStep === 1) {
+        formData.fullName = document.getElementById('fullName').value;
+        formData.email = document.getElementById('email').value;
+        formData.phone = document.getElementById('phone').value;
+        formData.dob = document.getElementById('dob').value;
+        formData.gender = document.getElementById('gender').value;
+        formData.address = document.getElementById('address').value;
+    } else if (currentStep === 2) {
+        formData.qualification = document.getElementById('qualification').value;
+        formData.boardUniversity = document.getElementById('boardUniversity').value;
+        formData.passingYear = document.getElementById('passingYear').value;
+        formData.percentage = document.getElementById('percentage').value;
+    } else if (currentStep === 3) {
+        formData.programType = document.getElementById('programType').value;
+        formData.courseName = document.getElementById('courseName').value;
+    }
+}
+
+function clearDraft() {
+    localStorage.removeItem('applicationDraft');
+    clearInterval(autoSaveTimer);
+    fetch('/application/clear-draft', { method: 'POST' }).catch(err => console.error(err));
+}
+
+function updateCourses() {
+    const programType = document.getElementById('programType').value;
+    const courseSelect = document.getElementById('courseName');
+    courseSelect.innerHTML = '<option value="">Select Course</option>';
+
+    if (programType && coursesByType[programType]) {
+        coursesByType[programType].forEach(course => {
+            const option = document.createElement('option');
+            option.value = course;
+            option.textContent = course;
+            courseSelect.appendChild(option);
+        });
+    }
+}
+
+function updateProgress() {
+    document.querySelectorAll('.step').forEach((step, index) => {
+        const stepNum = index + 1;
+        step.classList.remove('active', 'completed');
+        if (stepNum < currentStep) {
+            step.classList.add('completed');
+        } else if (stepNum === currentStep) {
+            step.classList.add('active');
+        }
+    });
+    
+    // Update progress line width
+    const progressLine = document.querySelector('.progress-line-progress');
+    if (progressLine) {
+        progressLine.setAttribute('data-step', currentStep);
+    }
+}
+
+function validateStep(stepNum) {
+    if (stepNum === 1) {
+        const fullName = document.getElementById('fullName').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const dob = document.getElementById('dob').value;
+        const gender = document.getElementById('gender').value;
+        const address = document.getElementById('address').value.trim();
+
+        if (!fullName || !phone || !dob || !gender || !address) {
+            alert('❌ Please fill all required fields in Step 1');
+            return false;
+        }
+        if (!/^[0-9]{10}$/.test(phone)) {
+            alert('❌ Please enter a valid 10-digit phone number');
+            return false;
+        }
+
+        formData.fullName = fullName;
+        formData.email = document.getElementById('email').value;
+        formData.phone = phone;
+        formData.dob = dob;
+        formData.gender = gender;
+        formData.address = address;
+    }
+
+    if (stepNum === 2) {
+        const qualification = document.getElementById('qualification').value;
+        const boardUniversity = document.getElementById('boardUniversity').value.trim();
+        const passingYear = document.getElementById('passingYear').value;
+        const percentage = document.getElementById('percentage').value;
+
+        if (!qualification || !boardUniversity || !passingYear || !percentage) {
+            alert('❌ Please fill all required fields in Step 2');
+            return false;
+        }
+
+        formData.qualification = qualification;
+        formData.boardUniversity = boardUniversity;
+        formData.passingYear = passingYear;
+        formData.percentage = percentage;
+    }
+
+    if (stepNum === 3) {
+        const programType = document.getElementById('programType').value;
+        const courseName = document.getElementById('courseName').value;
+
+        if (!programType || !courseName) {
+            alert('❌ Please select both program type and course');
+            return false;
+        }
+
+        formData.programType = programType;
+        formData.courseName = courseName;
+    }
+
+    if (stepNum === 4) {
+        if (!uploadedFiles.photo || !uploadedFiles.idProof || !uploadedFiles.certificate) {
+            alert('❌ Please upload all required documents before proceeding');
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function nextStep() {
+    if (!validateStep(currentStep)) return;
+    saveDraft();
+
+    document.getElementById('step' + currentStep).classList.remove('active');
+    currentStep++;
+    document.getElementById('step' + currentStep).classList.add('active');
+    updateProgress();
+    window.scrollTo(0, 0);
+}
+
+function prevStep() {
+    saveDraft();
+    document.getElementById('step' + currentStep).classList.remove('active');
+    currentStep--;
+    document.getElementById('step' + currentStep).classList.add('active');
+    updateProgress();
+    window.scrollTo(0, 0);
+}
+
+function goToStep(stepNum) {
+    document.getElementById('step' + currentStep).classList.remove('active');
+    currentStep = stepNum;
+    document.getElementById('step' + currentStep).classList.add('active');
+    updateProgress();
+    window.scrollTo(0, 0);
+}
+
+function triggerUpload(fileId) {
+    document.getElementById(fileId).click();
+}
+
+function handleFileUpload(input, previewId) {
+    const file = input.files[0];
+    if (!file) return;
+
+    if (file.size > 2 * 1024 * 1024) {
+        alert('❌ File size should not exceed 2MB');
+        input.value = '';
+        return;
+    }
+
+    uploadedFiles[input.id] = file;
+
+    const preview = document.getElementById(previewId);
+    preview.innerHTML = `
+        <div class="file-name">✅ ${file.name}</div>
+        <div class="file-size">${(file.size / 1024).toFixed(2)} KB</div>
+    `;
+    preview.classList.add('show');
+    input.closest('.upload-box').classList.add('uploaded');
+}
+
+async function submitApplication() {
+    if (!uploadedFiles.photo || !uploadedFiles.idProof || !uploadedFiles.certificate) {
+        alert('❌ Please upload all required documents');
+        return;
+    }
+
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+    try {
+        const formDataObj = new FormData();
+        Object.keys(formData).forEach(key => {
+            formDataObj.append(key, formData[key]);
+        });
+        Object.keys(uploadedFiles).forEach(key => {
+            formDataObj.append(key, uploadedFiles[key]);
+        });
+
+        const response = await fetch('/application/submit-application', {
+            method: 'POST',
+            body: formDataObj
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.success) {
+            submittedApplicationId = data.applicationId;
+            document.getElementById('appId').textContent = data.applicationId;
+            clearDraft();
+
+            document.getElementById('step4').classList.remove('active');
+            currentStep = 5;
+            document.getElementById('step5').classList.add('active');
+            updateProgress();
+            window.scrollTo(0, 0);
+        } else {
+            alert('❌ ' + (data.message || 'Failed to submit application'));
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Submit Application <i class="fas fa-check"></i>';
+        }
+    } catch (error) {
+        console.error('❌ Error:', error);
+        alert('❌ An error occurred: ' + error.message);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Submit Application <i class="fas fa-check"></i>';
+    }
+}
+
+function selectPaymentMethod(method) {
+    if (method === 'utr') {
+        goToStep(6);
+    }
+}
+
+async function submitUTR() {
+    const utrNumber = document.getElementById('utrNumber').value.trim();
+    
+    if (!utrNumber || utrNumber.length < 12) {
+        document.getElementById('utrError').textContent = 'Please enter a valid UTR number (minimum 12 digits)';
+        document.getElementById('utrError').classList.add('show');
+        return;
+    }
+
+    try {
+        const formDataObj = new FormData();
+        formDataObj.append('applicationId', submittedApplicationId);
+        formDataObj.append('utrNumber', utrNumber);
+        
+        const proofFile = document.getElementById('transactionProof').files[0];
+        if (proofFile) {
+            formDataObj.append('transactionProof', proofFile);
+        }
+
+        const response = await fetch('/application/submit-utr', {
+            method: 'POST',
+            body: formDataObj
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            alert('✅ Payment proof submitted successfully!');
+            window.location.href = '/student/dashboard';
+        } else {
+            document.getElementById('utrError').textContent = data.message || 'Failed to submit UTR';
+            document.getElementById('utrError').classList.add('show');
+        }
+    } catch (error) {
+        console.error('❌ UTR Error:', error);
+        document.getElementById('utrError').textContent = 'Network error. Please try again.';
+        document.getElementById('utrError').classList.add('show');
+    }
+}
+
+updateProgress();
+</script>
+
+<%- include('../partials/footer') %>

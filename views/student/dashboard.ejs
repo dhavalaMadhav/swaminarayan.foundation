@@ -1,0 +1,675 @@
+<%- include('../partials/student-header', { 
+  title: 'Student Dashboard - Swaminarayan University', 
+  student: student
+}) %>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: #ffffff;
+    color: #1a1a1a;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+
+  .dashboard-wrapper {
+    min-height: calc(100vh - 80px);
+    background: #f8f8f8;
+    padding: 100px 0 60px;
+    border-bottom: 2px solid #e5e5e5;
+  }
+
+  .dashboard-content {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Section Title Styling */
+  .section-title {
+    font-size: 42px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 60px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    text-align: left;
+    position: relative;
+    padding-bottom: 20px;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: #DC2626;
+  }
+
+  .section-title .highlight {
+    color: #DC2626;
+    font-weight: 800;
+  }
+
+  .card {
+    background: white;
+    border: 2px solid #e5e5e5;
+    padding: 50px 40px;
+    margin-bottom: 60px;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
+    border-color: #DC2626;
+    box-shadow: 0 15px 40px rgba(220, 38, 38, 0.15);
+  }
+
+  .card h2 {
+    font-size: 28px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+    color: #1a1a1a;
+    position: relative;
+    padding-bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .card h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: #DC2626;
+  }
+
+  .card h2 i {
+    color: #DC2626;
+    margin-right: 12px;
+    font-size: 26px;
+  }
+
+  /* Empty State */
+  .empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    background: #f8f8f8;
+    border: 2px dashed #e5e5e5;
+  }
+
+  .empty-state i {
+    font-size: 72px;
+    color: #e5e5e5;
+    margin-bottom: 30px;
+  }
+
+  .empty-state h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .empty-state p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.8;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* Button Styling - Swiss Design */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 40px;
+    border: 2px solid #DC2626;
+    background: #DC2626;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 30px;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background: transparent;
+    color: #DC2626;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.25);
+  }
+
+  .btn i {
+    font-size: 16px;
+  }
+
+  /* Application Info Grid - Dark Box Design */
+  .app-info-container {
+    border: 2px solid #1E3A8A;
+    background: #1E3A8A;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+
+  .app-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  /* Vertical partition lines */
+  .app-info-grid::before,
+  .app-info-grid::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    width: 1px;
+  }
+
+  .app-info-grid::before {
+    left: 33.333%;
+  }
+
+  .app-info-grid::after {
+    left: 66.666%;
+  }
+
+  .app-info-item {
+    padding: 40px 30px;
+    position: relative;
+    transition: all 0.3s ease;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .app-info-item:hover {
+    background: rgba(220, 38, 38, 0.15);
+  }
+
+  .app-info-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #FBBF24;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .app-info-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    word-break: break-word;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* Status Pills */
+  .status-pill {
+    padding: 10px 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Montserrat', sans-serif;
+    border: 2px solid;
+  }
+
+  .status-pending {
+    background: #FEF3C7;
+    color: #92400E;
+    border-color: #FCD34D;
+  }
+
+  .status-under-verification {
+    background: #E0F2FE;
+    color: #0369A1;
+    border-color: #0EA5E9;
+    animation: pulse 2s infinite;
+  }
+
+  .status-paid {
+    background: #D1FAE5;
+    color: #065F46;
+    border-color: #10B981;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  /* UTR Details Box */
+  .utr-details {
+    background: white;
+    border: 2px solid #e5e5e5;
+    padding: 30px;
+    margin: 30px 0;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .utr-details:hover {
+    border-color: #0EA5E9;
+  }
+
+  .utr-details h4 {
+    color: #1E3A8A;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .utr-details h4 i {
+    color: #0EA5E9;
+  }
+
+  .utr-number {
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1E3A8A;
+    background: #EFF6FF;
+    padding: 12px 16px;
+    border: 2px solid #BFDBFE;
+    word-break: break-all;
+    display: inline-block;
+  }
+
+  /* Verification Info Box */
+  .verification-box {
+    text-align: center;
+    padding: 50px 30px;
+    background: white;
+    border: 2px solid #e5e5e5;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .verification-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.1), transparent);
+    animation: shine 3s infinite;
+  }
+
+  @keyframes shine {
+    to { left: 100%; }
+  }
+
+  .verification-box i {
+    font-size: 56px;
+    color: #0EA5E9;
+    margin-bottom: 25px;
+  }
+
+  .verification-box h3 {
+    color: #1E40AF;
+    margin-bottom: 15px;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .verification-box p {
+    color: #475569;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+  }
+
+  /* Table Styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    border: 2px solid #e5e5e5;
+  }
+
+  th {
+    background: #f8f8f8;
+    padding: 18px 20px;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    border-bottom: 2px solid #e5e5e5;
+    letter-spacing: 1.5px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  td {
+    padding: 20px;
+    border-bottom: 1px solid #f0f2f5;
+    font-size: 14px;
+    color: #1a1a1a;
+  }
+
+  tr:hover {
+    background: #f8f8f8;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .app-info-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .app-info-grid::before {
+      left: 50%;
+    }
+
+    .app-info-grid::after {
+      display: none;
+    }
+
+    .section-title {
+      font-size: 32px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .dashboard-wrapper {
+      padding: 60px 0 40px;
+    }
+
+    .card {
+      padding: 30px 25px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 40px;
+    }
+
+    .app-info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .app-info-grid::before,
+    .app-info-grid::after {
+      display: none;
+    }
+
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    tr {
+      border: 2px solid #e5e5e5;
+      margin-bottom: 20px;
+      padding: 20px;
+    }
+
+    td {
+      border: none;
+      position: relative;
+      padding-left: 50%;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+
+    td:before {
+      content: attr(data-label) ": ";
+      position: absolute;
+      left: 20px;
+      width: 45%;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 10px;
+      color: #64748b;
+      letter-spacing: 1px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .section-title {
+      font-size: 24px;
+    }
+
+    .card h2 {
+      font-size: 22px;
+    }
+
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+
+<div class="dashboard-wrapper">
+  <div class="dashboard-content">
+    
+    <!-- Application Status Card -->
+    <div class="card">
+      <h2><i class="fas fa-file-alt"></i> Application <span class="highlight">Status</span></h2>
+      
+      <% if (!applicant) { %>
+        <div class="empty-state">
+          <i class="fas fa-clipboard-list"></i>
+          <h3>Ready to Apply?</h3>
+          <p>Start your admission journey with Swaminarayan University. Complete your application in just 5 minutes.</p>
+        </div>
+        <a href="/student/apply" class="btn">
+          <i class="fas fa-plus-circle"></i> Start Application
+        </a>
+      <% } else { %>
+        <div class="app-info-container">
+          <div class="app-info-grid">
+            <div class="app-info-item">
+              <div class="app-info-label">Application ID</div>
+              <div class="app-info-value">SU<%= applicant.applicationId %></div>
+            </div>
+            <div class="app-info-item">
+              <div class="app-info-label">Full Name</div>
+              <div class="app-info-value"><%= applicant.fullName %></div>
+            </div>
+            <div class="app-info-item">
+              <div class="app-info-label">Course Applied</div>
+              <div class="app-info-value"><%= applicant.courseName %></div>
+            </div>
+            <div class="app-info-item">
+              <div class="app-info-label">Application Date</div>
+              <div class="app-info-value"><%= new Date(applicant.createdAt).toLocaleDateString('en-IN') %></div>
+            </div>
+            <div class="app-info-item">
+              <div class="app-info-label">Status</div>
+              <div class="app-info-value"><%= applicant.status.replace(/_/g, ' ').toUpperCase() %></div>
+            </div>
+            <div class="app-info-item">
+              <div class="app-info-label">Payment Status</div>
+              <div class="app-info-value">
+                <span class="status-pill status-<%= 
+                  applicant.paymentStatus === 'paid' || applicant.paymentStatus === 'verified' ? 'paid' : 
+                  applicant.paymentStatus === 'under_verification' ? 'under-verification' : 'pending' 
+                %>">
+                  <%- applicant.paymentStatus === 'under_verification' ? 
+                    '<i class="fas fa-clock"></i> Verifying...' : 
+                    applicant.paymentStatus.charAt(0).toUpperCase() + applicant.paymentStatus.slice(1).replace(/_/g, ' ') 
+                  %>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- UTR Details for under_verification -->
+        <% if (applicant.utrNumber && applicant.paymentStatus === 'under_verification') { %>
+          <div class="utr-details">
+            <h4><i class="fas fa-info-circle"></i> Payment Reference Submitted</h4>
+            <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+              <div>
+                <strong style="font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #64748b;">UTR Number:</strong><br>
+                <span class="utr-number"><%= applicant.utrNumber %></span>
+              </div>
+              <% if (applicant.paymentScreenshotUrl) { %>
+                <div>
+                  <a href="<%= applicant.paymentScreenshotUrl %>" target="_blank" class="btn" style="padding: 12px 24px; font-size: 12px; margin-top: 0;">
+                    <i class="fas fa-image"></i> View Screenshot
+                  </a>
+                </div>
+              <% } %>
+            </div>
+            <p style="margin-top: 20px; color: #0369A1; font-size: 14px; font-weight: 300; letter-spacing: 0.3px;">
+              Our team will verify your payment within <strong>24-48 hours</strong>. You'll receive email confirmation.
+            </p>
+          </div>
+        <% } %>
+
+        <% if (applicant.paymentStatus === 'pending') { %>
+          <a href="/student/apply?resume=1" class="btn">
+            <i class="fas fa-credit-card"></i> Complete Payment
+          </a>
+        <% } else if (applicant.paymentStatus === 'under_verification') { %>
+          <div class="verification-box">
+            <i class="fas fa-clock"></i>
+            <h3>Payment Under Verification</h3>
+            <p>Please wait 24-48 hours for admin verification. Check back later!</p>
+          </div>
+        <% } %>
+      <% } %>
+    </div>
+
+    <!-- Payment History Card -->
+    <div class="card">
+      <h2><i class="fas fa-history"></i> Payment <span class="highlight">History</span></h2>
+      
+      <% if (!payments || payments.length === 0) { %>
+        <div class="empty-state">
+          <i class="fas fa-receipt"></i>
+          <h3>No Payment History</h3>
+          <p>Your payment transactions will appear here once completed.</p>
+        </div>
+      <% } else { %>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Date & Time</th>
+                <th>Payment Method</th>
+                <th>Amount</th>
+                <th>Reference</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% payments.forEach(p => { %>
+                <tr data-payment-id="<%= p._id %>">
+                  <td data-label="Date"><%= new Date(p.createdAt).toLocaleString('en-IN') %></td>
+                  <td data-label="Method">
+                    <% if (p.utrNumber) { %>
+                      <i class="fas fa-university" title="Bank Transfer" style="color: #DC2626; margin-right: 6px;"></i> UTR
+                    <% } else if (p.razorpayOrderId) { %>
+                      <i class="fas fa-credit-card" title="Razorpay" style="color: #DC2626; margin-right: 6px;"></i> Card/UPI
+                    <% } else { %>
+                      Manual
+                    <% } %>
+                  </td>
+                  <td data-label="Amount" style="font-weight: 700; color: #DC2626; font-family: 'Montserrat', sans-serif;">
+                    ₹<%= (p.amount / 100).toLocaleString('en-IN') %>
+                  </td>
+                  <td data-label="Reference">
+                    <% if (p.utrNumber) { %>
+                      <span class="utr-number" style="font-size: 13px; padding: 6px 10px;"><%= p.utrNumber %></span>
+                    <% } else if (p.razorpayPaymentId) { %>
+                      <span style="font-family: 'Courier New', monospace; font-size: 13px;"><%= p.razorpayPaymentId %></span>
+                    <% } else { %>
+                      <span style="font-family: 'Courier New', monospace; font-size: 13px;"><%= p._id.slice(-8).toUpperCase() %></span>
+                    <% } %>
+                  </td>
+                  <td data-label="Status">
+                    <span class="status-pill status-<%= p.status === 'paid' || p.status === 'verified' ? 'paid' : p.status === 'under_verification' ? 'under-verification' : 'pending' %>">
+                      <%= p.status.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) %>
+                    </span>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      <% } %>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Auto-refresh status every 30 seconds for under_verification
+  <% if (applicant && applicant.paymentStatus === 'under_verification') { %>
+    setInterval(async () => {
+      try {
+        const response = await fetch('/application/status');
+        const data = await response.json();
+        if (data.success && data.hasApplication) {
+          if (data.application.paymentStatus === 'verified' || data.application.paymentStatus === 'paid') {
+            location.reload();
+          }
+        }
+      } catch (e) {
+        console.log('Status check failed:', e);
+      }
+    }, 30000);
+  <% } %>
+</script>
+
+</body>
+</html>

@@ -1091,7 +1091,6 @@
                 grid-template-columns: 1fr;
             }
 
-            /* Keep original triangle design on tablets */
             .collaborations-section::before {
                 width: 50vw;
                 height: 100%;
@@ -1099,11 +1098,11 @@
             }
 
             .collaborations-section::after {
-                bottom: 80px;
-                right: 8%;
                 width: 180px;
                 height: 180px;
                 clip-path: polygon(100% 0, 100% 100%, 0 100%);
+                bottom: 60px;
+                right: 6%;
             }
 
             .stats-container {
@@ -1190,7 +1189,7 @@
                 font-size: 22px;
             }
 
-            /* Collaborations Section - Keep original triangle design */
+            /* Collaborations Section */
             .collaborations-section {
                 padding: 120px 0 50px;
                 min-height: auto;
@@ -1203,11 +1202,11 @@
             }
 
             .collaborations-section::after {
-                right: 8%;
-                bottom: 60px;
                 width: 150px;
                 height: 150px;
                 clip-path: polygon(100% 0, 100% 100%, 0 100%);
+                bottom: 40px;
+                right: 5%;
             }
 
             .section-header h2,
@@ -1248,7 +1247,7 @@
             }
         }
 
-        /* Mobile Landscape / Small Tablets (768px) - 2 CARDS PER ROW */
+        /* Mobile Landscape / Small Tablets (768px) */
         @media (max-width: 768px) {
             .hero-carousel-section {
                 height: 500px;
@@ -1309,7 +1308,7 @@
                 display: none;
             }
 
-            /* Collaborations - Keep original triangle design */
+            /* Collaborations */
             .collaborations-section {
                 padding: 100px 0 45px;
             }
@@ -1323,9 +1322,9 @@
             .collaborations-section::after {
                 width: 120px;
                 height: 120px;
-                bottom: 50px;
-                right: 6%;
                 clip-path: polygon(100% 0, 100% 100%, 0 100%);
+                bottom: 30px;
+                right: 4%;
             }
 
             .collaborations-container,
@@ -1335,9 +1334,10 @@
                 padding: 0 25px;
             }
 
+            /* Statistics - 2 cards per row on mobile */
             .stats-container {
                 padding: 0 25px;
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
                 gap: 35px;
             }
 
@@ -1444,7 +1444,7 @@
             }
         }
 
-        /* Mobile Portrait (576px) - 2 CARDS PER ROW */
+        /* Mobile Portrait (576px) */
         @media (max-width: 576px) {
             .hero-carousel-section {
                 height: 450px;
@@ -1503,7 +1503,7 @@
                 display: none;
             }
 
-            /* Collaborations - Keep original triangle design */
+            /* Collaborations */
             .collaborations-section {
                 padding: 80px 0 40px;
             }
@@ -1517,9 +1517,9 @@
             .collaborations-section::after {
                 width: 100px;
                 height: 100px;
-                bottom: 40px;
-                right: 5%;
                 clip-path: polygon(100% 0, 100% 100%, 0 100%);
+                bottom: 20px;
+                right: 3%;
             }
 
             .collaborations-container,
@@ -1529,6 +1529,16 @@
             .stats-container,
             .video-tour-container {
                 padding: 0 20px;
+            }
+
+            /* Statistics - 2 cards per row */
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .stat-item {
+                padding-left: 15px;
             }
 
             .section-header h2,
@@ -1674,7 +1684,7 @@
         /* Extra Small Mobile (480px and below) */
         @media (max-width: 480px) {
             .hero-carousel-section {
-                height: 400px;
+                height: 420px;
                 margin-bottom: 200px;
             }
 
@@ -1718,7 +1728,7 @@
                 font-size: 13px;
             }
 
-            /* Collaborations - Keep original triangle design */
+            /* Collaborations */
             .collaborations-section {
                 padding: 70px 0 35px;
             }
@@ -1732,9 +1742,9 @@
             .collaborations-section::after {
                 width: 80px;
                 height: 80px;
-                bottom: 30px;
-                right: 4%;
                 clip-path: polygon(100% 0, 100% 100%, 0 100%);
+                bottom: 15px;
+                right: 2%;
             }
 
             .section-header h2,
@@ -1742,6 +1752,17 @@
             .amenities-header h2,
             .accreditation-title {
                 font-size: 24px;
+            }
+
+            /* Statistics - 2 cards per row */
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+                padding: 0 15px;
+            }
+
+            .stat-item {
+                padding-left: 12px;
             }
 
             .stat-icon-wrapper {
@@ -1755,6 +1776,10 @@
 
             .stat-number {
                 font-size: 46px;
+            }
+
+            .stat-label {
+                font-size: 12px;
             }
 
             .placement-stat-number {

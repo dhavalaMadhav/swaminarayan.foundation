@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recognition & Approvals - Swaminarayan University</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    /* SAME EXACT STYLES AS PROGRAMS PAGE - COPIED */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: #ffffff;
+        color: #1a1a1a;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+    }
+
+    .section-container {
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Hero Section */
+    .recognition-hero {
+        position: relative;
+        background: #f8f8f8;
+        padding: 140px 0 100px;
+        overflow: hidden;
+        border-bottom: 2px solid #e5e5e5;
+    }
+
+    .recognition-hero-content {
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+    }
+
+    .recognition-hero h1 {
+        font-size: 72px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 25px;
+        letter-spacing: -2px;
+        text-transform: uppercase;
+        line-height: 1.1;
+    }
+
+    .recognition-hero h1 .highlight {
+        color: #DC2626;
+        position: relative;
+        display: inline-block;
+    }
+
+    .recognition-hero h1 .highlight::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: #DC2626;
+    }
+
+    .recognition-hero p {
+        font-size: 20px;
+        color: #666;
+        max-width: 800px;
+        line-height: 1.8;
+        font-weight: 300;
+        letter-spacing: 0.3px;
+    }
+
+    /* Stats Section */
+    .recognition-stats {
+        background: #ffffff;
+        padding: 100px 0;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .section-title {
+        font-size: 42px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 60px;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+        text-align: left;
+        position: relative;
+        padding-bottom: 20px;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: #DC2626;
+    }
+
+    .section-title .highlight {
+        color: #DC2626;
+        font-weight: 800;
+    }
+
+    /* Approvals Grid */
+    .approvals-section {
+        background: #ffffff;
+        padding: 100px 0;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .approvals-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border: 2px solid #e5e5e5;
+        position: relative;
+    }
+
+    .approvals-grid::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 33.333%;
+        width: 1px;
+        height: 100%;
+        background: #e5e5e5;
+    }
+
+    .approvals-grid::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 66.666%;
+        width: 1px;
+        height: 100%;
+        background: #e5e5e5;
+    }
+
+    .approval-card {
+        background: #ffffff;
+        padding: 50px 35px 40px;
+        position: relative;
+        transition: all 0.3s ease;
+        overflow: visible;
+        border-right: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .approval-card:nth-child(3n) {
+        border-right: none;
+    }
+
+    .approval-card .card-number {
+        position: absolute;
+        top: -25px;
+        right: -25px;
+        width: 80px;
+        height: 80px;
+        background: #FBBF24;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+        font-weight: 900;
+        color: #1E3A8A;
+        z-index: 10;
+        font-family: 'Montserrat', sans-serif;
+        border: 4px solid white;
+        box-shadow: 0 0 0 2px #e5e5e5;
+        transition: all 0.3s ease;
+    }
+
+    .approval-card:hover .card-number {
+        background: #DC2626;
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .approval-icon {
+        width: 50px;
+        height: 50px;
+        background: white;
+        border: 2px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .approval-card:hover .approval-icon {
+        border-color: #DC2626;
+        background: #DC2626;
+    }
+
+    .approval-icon i {
+        font-size: 24px;
+        color: #1a1a1a;
+        transition: all 0.3s ease;
+    }
+
+    .approval-card:hover .approval-icon i {
+        color: white;
+    }
+
+    .approval-card h3 {
+        font-size: 16px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .approval-name {
+        font-size: 20px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 12px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .approval-card p {
+        font-size: 13px;
+        color: #666;
+        line-height: 1.8;
+        font-weight: 300;
+        letter-spacing: 0.2px;
+    }
+
+    .approval-card:hover {
+        background: #f8f8f8;
+    }
+
+    /* Rankings Section */
+    .rankings-section {
+        background: #f8f8f8;
+        padding: 100px 0;
+        border-bottom: 2px solid #e5e5e5;
+    }
+
+    .rankings-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        margin-top: 60px;
+    }
+
+    .ranking-card {
+        background: white;
+        border: 2px solid #e5e5e5;
+        padding: 40px 30px;
+        transition: all 0.3s ease;
+        position: relative;
+        text-align: center;
+    }
+
+    .ranking-card:hover {
+        border-color: #DC2626;
+        box-shadow: 0 15px 40px rgba(220, 38, 38, 0.15);
+        transform: translateY(-5px);
+    }
+
+    .ranking-icon {
+        width: 60px;
+        height: 60px;
+        background: #1E3A8A;
+        border: 3px solid #FBBF24;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        transition: all 0.3s ease;
+    }
+
+    .ranking-card:hover .ranking-icon {
+        background: #DC2626;
+        border-color: #DC2626;
+        transform: scale(1.1);
+    }
+
+    .ranking-icon i {
+        font-size: 26px;
+        color: white;
+    }
+
+    .ranking-title {
+        font-size: 18px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 15px;
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+    }
+
+    .ranking-desc {
+        font-size: 13px;
+        color: #666;
+        line-height: 1.6;
+    }
+
+    /* Certifications */
+    .certifications-section {
+        background: #ffffff;
+        padding: 100px 0;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .certification-container {
+        max-width: 1000px;
+        margin: 60px auto 0;
+        background: white;
+        border: 2px solid #e5e5e5;
+        padding: 50px 45px;
+        transition: all 0.3s ease;
+    }
+
+    .certification-container:hover {
+        border-color: #DC2626;
+        box-shadow: 0 15px 40px rgba(220, 38, 38, 0.15);
+    }
+
+    .certification-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-family: 'Montserrat', sans-serif;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .certification-title::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 12px;
+        height: 12px;
+        background: #DC2626;
+    }
+
+    .certification-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+
+    .certification-card {
+        background: #f8f8f8;
+        padding: 30px 25px;
+        border-left: 3px solid #FBBF24;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    .certification-card:hover {
+        background: #fff;
+        border-left-color: #DC2626;
+        transform: translateY(-5px);
+    }
+
+    .certification-label {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #888;
+        margin-bottom: 12px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .certification-name {
+        font-size: 16px;
+        font-weight: 700;
+        color: #DC2626;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* CTA */
+    .recognition-cta {
+        background: #1E3A8A;
+        padding: 100px 0;
+        text-align: center;
+    }
+
+    .cta-content h2 {
+        font-size: 42px;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        line-height: 1.2;
+    }
+
+    .cta-content h2 .highlight {
+        color: #FBBF24;
+        position: relative;
+        display: inline-block;
+    }
+
+    .cta-content h2 .highlight::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: #FBBF24;
+    }
+
+    .cta-content p {
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 40px;
+        line-height: 1.8;
+        font-weight: 300;
+        letter-spacing: 0.3px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .cta-btn {
+        padding: 16px 40px;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        font-family: 'Montserrat', sans-serif;
+        border: 2px solid;
+    }
+
+    .cta-btn-primary {
+        background: #DC2626;
+        border-color: #DC2626;
+        color: white;
+    }
+
+    .cta-btn-primary:hover {
+        background: transparent;
+        color: #DC2626;
+    }
+
+    .cta-btn-secondary {
+        background: transparent;
+        border-color: #FBBF24;
+        color: #FBBF24;
+    }
+
+    .cta-btn-secondary:hover {
+        background: #FBBF24;
+        color: #1E3A8A;
+    }
+
+    /* Responsive - SAME AS PROGRAMS */
+    @media (max-width: 1200px) {
+        .approvals-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .approvals-grid::before { left: 50%; }
+        .approvals-grid::after { display: none; }
+        .approval-card:nth-child(2n) { border-right: none; }
+        .rankings-grid { grid-template-columns: repeat(2, 1fr); }
+        .recognition-hero h1 { font-size: 56px; }
+    }
+
+    @media (max-width: 768px) {
+        .recognition-hero { padding: 100px 0 60px; }
+        .recognition-hero h1 { font-size: 36px; }
+        .recognition-hero p { font-size: 16px; }
+        .section-title { font-size: 28px; margin-bottom: 40px; }
+        .approvals-grid,
+        .rankings-grid,
+        .certification-grid { grid-template-columns: 1fr; }
+        .approvals-grid::before, .approvals-grid::after { display: none; }
+        .approval-card { border-right: none !important; border-bottom: 1px solid #e5e5e5; }
+        .approval-card:last-child { border-bottom: none; }
+        .cta-buttons { flex-direction: column; align-items: center; }
+        .cta-btn { width: 100%; max-width: 300px; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+        .section-container, .recognition-hero-content { padding: 0 15px; }
+        .recognition-hero h1 { font-size: 28px; }
+        .approval-card { padding: 30px 25px; }
+        .section-title { font-size: 24px; }
+    }
+</style>
+</head>
+<body>
+    <%- include('../partials/header') %>
+
+    <!-- Hero Section -->
+    <section class="recognition-hero">
+        <div class="recognition-hero-content">
+            <h1>Recognition & <span class="highlight">Approvals</span></h1>
+            <p>Swaminarayan University is recognized by premier regulatory bodies and holds prestigious accreditations ensuring global standards of education and quality assurance.</p>
+        </div>
+    </section>
+
+    <!-- UGC & Statutory Approvals -->
+    <section class="approvals-section">
+        <div class="section-container">
+            <h2 class="section-title">Statutory <span class="highlight">Approvals</span></h2>
+            
+            <div class="approvals-grid">
+                <div class="approval-card">
+                    <div class="card-number">1</div>
+                    <div class="approval-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>UGC Approved</h3>
+                    <div class="approval-name">University Grants Commission</div>
+                    <p>Recognized under Section 2(f) of UGC Act 1956. All degrees awarded are valid across India and internationally recognized.</p>
+                </div>
+
+                <div class="approval-card">
+                    <div class="card-number">2</div>
+                    <div class="approval-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>AICTE Approved</h3>
+                    <div class="approval-name">All India Council for Technical Education</div>
+                    <p>Technical programs including Engineering, Management, Pharmacy, and Architecture approved by apex technical body.</p>
+                </div>
+
+                <div class="approval-card">
+                    <div class="card-number">3</div>
+                    <div class="approval-icon">
+                        <i class="fas fa-stamp"></i>
+                    </div>
+                    <h3>Government of Gujarat</h3>
+                    <div class="approval-name">State Higher Education Department</div>
+                    <p>Private University established under Gujarat Private Universities Act, 2009 with state government oversight.</p>
+                </div>
+
+                <div class="approval-card">
+                    <div class="card-number">4</div>
+                    <div class="approval-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>PCI Approved</h3>
+                    <div class="approval-name">Pharmacy Council of India</div>
+                    <p>B.Pharm, M.Pharm, D.Pharm programs approved with NBA accreditation for quality pharmaceutical education.</p>
+                </div>
+
+                <div class="approval-card">
+                    <div class="card-number">5</div>
+                    <div class="approval-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>INC Approved</h3>
+                    <div class="approval-name">Indian Nursing Council</div>
+                    <p>B.Sc Nursing, M.Sc Nursing programs recognized for clinical excellence and healthcare training standards.</p>
+                </div>
+
+                <div class="approval-card">
+                    <div class="card-number">6</div>
+                    <div class="approval-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>CCIM Approved</h3>
+                    <div class="approval-name">Central Council of Indian Medicine</div>
+                    <p>BAMS, MD Ayurveda programs approved under AYUSH for authentic Ayurvedic medical education.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rankings & Accreditations -->
+    <section class="rankings-section">
+        <div class="section-container">
+            <h2 class="section-title">Rankings & <span class="highlight">Accreditations</span></h2>
+            
+            <div class="rankings-grid">
+                <div class="ranking-card">
+                    <div class="ranking-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="ranking-title">NAAC A Grade</div>
+                    <div class="ranking-desc">Pursuing Cycle 2 accreditation with focus on academic excellence and research output.</div>
+                </div>
+
+                <div class="ranking-card">
+                    <div class="ranking-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="ranking-title">NIRF Ranked</div>
+                    <div class="ranking-desc">Applied for National Institutional Ranking Framework participation 2025.</div>
+                </div>
+
+                <div class="ranking-card">
+                    <div class="ranking-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="ranking-title">NBA Accredited</div>
+                    <div class="ranking-desc">Engineering & Management programs eligible for Tier-1 NBA accreditation.</div>
+                </div>
+
+                <div class="ranking-card">
+                    <div class="ranking-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="ranking-title">ISO 9001:2015</div>
+                    <div class="ranking-desc">Quality Management System certified for educational processes and administration.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Certifications -->
+    <section class="certifications-section">
+        <div class="section-container">
+            <h2 class="section-title">Professional <span class="highlight">Certifications</span></h2>
+            
+            <div class="certification-container">
+                <h3 class="certification-title">Institutional Quality Certifications</h3>
+                
+                <div class="certification-grid">
+                    <div class="certification-card">
+                        <div class="certification-label">AIU Membership</div>
+                        <div class="certification-name">Association of Indian Universities</div>
+                    </div>
+
+                    <div class="certification-card">
+                        <div class="certification-label">AISHE</div>
+                        <div class="certification-name">All India Survey on Higher Education</div>
+                    </div>
+
+                    <div class="certification-card">
+                        <div class="certification-label">NAD</div>
+                        <div class="certification-name">National Academic Depository</div>
+                    </div>
+
+                    <div class="certification-card">
+                        <div class="certification-label">SWAYAM</div>
+                        <div class="certification-name">MOOCs Integration</div>
+                    </div>
+
+                    <div class="certification-card">
+                        <div class="certification-label">SAMARTH</div>
+                        <div class="certification-name">ERP Implementation</div>
+                    </div>
+
+                    <div class="certification-card">
+                        <div class="certification-label">DIGILOCKER</div>
+                        <div class="certification-name">Digital Degree Certificates</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; padding: 20px; background: #fff9e6; border-left: 3px solid #FBBF24;">
+                    <p style="font-size: 13px; color: #666; line-height: 1.8; margin: 0;">
+                        <strong style="color: #1a1a1a;">Note:</strong> All approvals and recognitions are current as per latest regulatory notifications. University maintains compliance with all statutory requirements.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="recognition-cta">
+        <div class="section-container">
+            <div class="cta-content">
+                <h2>Trusted by <span class="highlight">Millions</span></h2>
+                <p>Join a UGC-approved university with statutory recognition across all major regulatory bodies. Your degree is valid nationwide and globally recognized.</p>
+                <div class="cta-buttons">
+                    <a href="/apply" class="cta-btn cta-btn-primary">Apply Now</a>
+                    <a href="/programs" class="cta-btn cta-btn-secondary">View Programs</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>

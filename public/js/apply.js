@@ -34,12 +34,12 @@ const courses = {
     ]
 };
 
-// Initialize on page load
-window.addEventListener('DOMContentLoaded', () => {
+// Initialize on page load - ONLY load after DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
     loadDraft();
     checkURLParams();
     setupAutoSave();
-});
+}, { once: true });
 
 // Load draft from localStorage
 function loadDraft() {
@@ -62,7 +62,10 @@ function loadDraft() {
                 updateCourses();
                 setTimeout(() => {
                     if (data.courseName) {
-                        document.getElementById('courseName').value = data.courseName;
+                        const courseSelect = document.getElementById('courseName');
+                        if (courseSelect) {
+                            courseSelect.value = data.courseName;
+                        }
                     }
                 }, 100);
             }
@@ -75,7 +78,6 @@ function loadDraft() {
                 }
             }
             
-            showDraftIndicator();
         } catch (error) {
             console.error('Error loading draft:', error);
         }
@@ -84,19 +86,22 @@ function loadDraft() {
 
 // Save draft to localStorage
 function saveDraft() {
-    const formData = {};
     const form = document.getElementById('applicationForm');
+    if (!form) return;
+    
+    const formData = {};
     const inputs = form.querySelectorAll('input:not([type="file"]), select, textarea');
     
     inputs.forEach(input => {
-        formData[input.id] = input.value;
+        if (input.id) {
+            formData[input.id] = input.value;
+        }
     });
     
     formData.currentStep = currentStep;
     formData.lastSaved = new Date().toISOString();
     
     localStorage.setItem('applicationDraft', JSON.stringify(formData));
-    showDraftIndicator();
 }
 
 // Auto-save every 30 seconds
@@ -108,16 +113,6 @@ function setupAutoSave() {
     }, 30000);
 }
 
-// Show draft saved indicator
-function showDraftIndicator() {
-    const indicator = document.getElementById('draftIndicator');
-    indicator.classList.add('show');
-    
-    setTimeout(() => {
-        indicator.classList.remove('show');
-    }, 3000);
-}
-
 // Check URL parameters
 function checkURLParams() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -126,11 +121,17 @@ function checkURLParams() {
     if (program) {
         for (let [type, courseList] of Object.entries(courses)) {
             if (courseList.includes(program)) {
-                document.getElementById('programType').value = type;
-                updateCourses();
-                setTimeout(() => {
-                    document.getElementById('courseName').value = program;
-                }, 100);
+                const programTypeSelect = document.getElementById('programType');
+                if (programTypeSelect) {
+                    programTypeSelect.value = type;
+                    updateCourses();
+                    setTimeout(() => {
+                        const courseSelect = document.getElementById('courseName');
+                        if (courseSelect) {
+                            courseSelect.value = program;
+                        }
+                    }, 100);
+                }
                 break;
             }
         }
@@ -139,8 +140,15 @@ function checkURLParams() {
 
 // Update course dropdown
 function updateCourses() {
-    const programType = document.getElementById('programType').value;
+    const programTypeSelect = document.getElementById('programType');
     const courseSelect = document.getElementById('courseName');
+    
+    if (!programTypeSelect || !courseSelect) {
+        console.warn('Program type or course select element not found');
+        return;
+    }
+    
+    const programType = programTypeSelect.value;
     
     courseSelect.innerHTML = '<option value="">Select course</option>';
     
@@ -159,6 +167,11 @@ function handleFileSelect(input, previewId) {
     const file = input.files[0];
     const preview = document.getElementById(previewId);
     
+    if (!preview) {
+        console.warn(`Preview element with id "${previewId}" not found`);
+        return;
+    }
+    
     if (file) {
         // Check file size (2MB)
         if (file.size > 2 * 1024 * 1024) {
@@ -168,7 +181,8 @@ function handleFileSelect(input, previewId) {
             return;
         }
         
-        preview.innerHTML = `<i class="fas fa-check-circle"></i> ${file.name} (${(file.size / 1024).toFixed(2)} KB)`;
+        const sizeKB = (file.size / 1024).toFixed(2);
+        preview.innerHTML = `<i class="fas fa-check-circle"></i> ${file.name} (${sizeKB} KB)`;
         preview.classList.add('show');
     } else {
         preview.classList.remove('show');
@@ -178,6 +192,12 @@ function handleFileSelect(input, previewId) {
 // Validate current step
 function validateStep(step) {
     const stepElement = document.querySelector(`.form-step[data-step="${step}"]`);
+    
+    if (!stepElement) {
+        console.warn(`Form step ${step} not found`);
+        return false;
+    }
+    
     const inputs = stepElement.querySelectorAll('input[required], select[required], textarea[required]');
     let valid = true;
     
@@ -185,9 +205,15 @@ function validateStep(step) {
         if (input.type === 'file') {
             if (!input.files || input.files.length === 0) {
                 valid = false;
-                input.closest('.upload-label').style.borderColor = '#ef4444';
+                const uploadLabel = input.closest('.upload-label');
+                if (uploadLabel) {
+                    uploadLabel.style.borderColor = '#ef4444';
+                }
             } else {
-                input.closest('.upload-label').style.borderColor = '#e0e0e0';
+                const uploadLabel = input.closest('.upload-label');
+                if (uploadLabel) {
+                    uploadLabel.style.borderColor = '#e0e0e0';
+                }
             }
         } else {
             if (!input.value.trim()) {
@@ -222,24 +248,46 @@ function prevStep(step) {
 
 // Go to specific step
 function goToStep(step) {
-    // Update step visibility
-    document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.remove('active');
-    document.querySelector(`.step-item[data-step="${currentStep}"]`).classList.remove('active');
+    const currentStepElement = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+    const currentStepItem = document.querySelector(`.step-item[data-step="${currentStep}"]`);
+    const nextStepElement = document.querySelector(`.form-step[data-step="${step}"]`);
+    const nextStepItem = document.querySelector(`.step-item[data-step="${step}"]`);
+    
+    if (!currentStepElement || !nextStepElement) {
+        console.warn(`Step elements not found. Current: ${currentStep}, Target: ${step}`);
+        return;
+    }
+    
+    // Hide current step
+    currentStepElement.classList.remove('active');
+    if (currentStepItem) {
+        currentStepItem.classList.remove('active');
+    }
     
     // Mark previous steps as completed
     for (let i = 1; i < step; i++) {
-        document.querySelector(`.step-item[data-step="${i}"]`).classList.add('completed');
+        const stepItem = document.querySelector(`.step-item[data-step="${i}"]`);
+        if (stepItem) {
+            stepItem.classList.add('completed');
+        }
     }
     
+    // Show next step
     currentStep = step;
-    
-    document.querySelector(`.form-step[data-step="${step}"]`).classList.add('active');
-    document.querySelector(`.step-item[data-step="${step}"]`).classList.add('active');
+    nextStepElement.classList.add('active');
+    if (nextStepItem) {
+        nextStepItem.classList.add('active');
+        nextStepItem.classList.remove('completed');
+    }
     
     // Update progress line
     const progress = ((step - 1) / 4) * 100;
-    document.querySelector('.progress-line::before').style.width = `${progress}%`;
+    const progressLine = document.querySelector('.progress-line-fill');
+    if (progressLine) {
+        progressLine.style.width = `${progress}%`;
+    }
     
+    // Scroll to top smoothly
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -248,6 +296,11 @@ async function submitApplication() {
     if (!validateStep(4)) return;
     
     const form = document.getElementById('applicationForm');
+    if (!form) {
+        alert('Form not found');
+        return;
+    }
+    
     const formData = new FormData(form);
     
     try {
@@ -265,7 +318,10 @@ async function submitApplication() {
                 phone: formData.get('phone')
             };
             
-            document.getElementById('displayApplicationId').textContent = data.applicationNumber;
+            const displayId = document.getElementById('displayApplicationId');
+            if (displayId) {
+                displayId.textContent = data.applicationNumber;
+            }
             
             // Clear draft after successful submission
             localStorage.removeItem('applicationDraft');
@@ -316,7 +372,7 @@ async function initiatePayment() {
             description: 'Application Fee',
             image: '/images/logo.png',
             prefill: {
-                name: document.getElementById('fullName').value,
+                name: document.getElementById('fullName').value || '',
                 email: applicationData.email,
                 contact: applicationData.phone
             },

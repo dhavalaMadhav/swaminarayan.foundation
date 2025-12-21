@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awards & Achievements - Swaminarayan University</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    /* EXACT PROGRAMS PAGE STYLES */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: #ffffff;
+        color: #1a1a1a;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+    }
+
+    .section-container {
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Hero Section */
+    .awards-hero {
+        position: relative;
+        background: #f8f8f8;
+        padding: 140px 0 100px;
+        overflow: hidden;
+        border-bottom: 2px solid #e5e5e5;
+    }
+
+    .awards-hero-content {
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+    }
+
+    .awards-hero h1 {
+        font-size: 72px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 25px;
+        letter-spacing: -2px;
+        text-transform: uppercase;
+        line-height: 1.1;
+    }
+
+    .awards-hero h1 .highlight {
+        color: #DC2626;
+        position: relative;
+        display: inline-block;
+    }
+
+    .awards-hero h1 .highlight::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: #DC2626;
+    }
+
+    .awards-hero p {
+        font-size: 20px;
+        color: #666;
+        max-width: 800px;
+        line-height: 1.8;
+        font-weight: 300;
+        letter-spacing: 0.3px;
+    }
+
+    /* Stats Section */
+    .awards-stats {
+        background: #ffffff;
+        padding: 100px 0;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .section-title {
+        font-size: 42px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 60px;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+        text-align: left;
+        position: relative;
+        padding-bottom: 20px;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: #DC2626;
+    }
+
+    .section-title .highlight {
+        color: #DC2626;
+        font-weight: 800;
+    }
+
+    .stats-container-box {
+        border: 2px solid #1E3A8A;
+        background: #1E3A8A;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        position: relative;
+    }
+
+    .stats-grid::before, .stats-grid::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        width: 1px;
+    }
+
+    .stats-grid::before { left: 25%; }
+    .stats-grid::after { left: 50%; }
+    .stats-container-box::before {
+        content: '';
+        position: absolute;
+        left: 75%;
+        top: 0;
+        height: 100%;
+        width: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        z-index: 1;
+    }
+
+    .stat-box {
+        padding: 60px 40px;
+        position: relative;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    .stat-box:hover { background: rgba(220, 38, 38, 0.15); }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(251, 191, 36, 0.2);
+        border: 2px solid #FBBF24;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        transition: all 0.3s ease;
+    }
+
+    .stat-box:hover .stat-icon {
+        border-color: #DC2626;
+        background: #DC2626;
+    }
+
+    .stat-icon i {
+        font-size: 28px;
+        color: #FBBF24;
+        transition: all 0.3s ease;
+    }
+
+    .stat-box:hover .stat-icon i { color: white; }
+
+    .stat-number {
+        font-size: 48px;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 8px;
+        line-height: 1;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .stat-label {
+        font-size: 13px;
+        color: #FBBF24;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 10px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .stat-subtitle {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 300;
+        line-height: 1.6;
+        letter-spacing: 0.3px;
+    }
+
+    /* Awards Grid */
+    .awards-section {
+        background: #ffffff;
+        padding: 100px 0;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .awards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border: 2px solid #e5e5e5;
+        position: relative;
+    }
+
+    .awards-grid::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 33.333%;
+        width: 1px;
+        height: 100%;
+        background: #e5e5e5;
+    }
+
+    .awards-grid::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 66.666%;
+        width: 1px;
+        height: 100%;
+        background: #e5e5e5;
+    }
+
+    .award-card {
+        background: #ffffff;
+        padding: 50px 35px 40px;
+        position: relative;
+        transition: all 0.3s ease;
+        overflow: visible;
+        border-right: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .award-card:nth-child(3n) { border-right: none; }
+
+    .award-card .card-number {
+        position: absolute;
+        top: -25px;
+        right: -25px;
+        width: 80px;
+        height: 80px;
+        background: #FBBF24;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+        font-weight: 900;
+        color: #1E3A8A;
+        z-index: 10;
+        font-family: 'Montserrat', sans-serif;
+        border: 4px solid white;
+        box-shadow: 0 0 0 2px #e5e5e5;
+        transition: all 0.3s ease;
+    }
+
+    .award-card:hover .card-number {
+        background: #DC2626;
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .award-icon {
+        width: 50px;
+        height: 50px;
+        background: white;
+        border: 2px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .award-card:hover .award-icon {
+        border-color: #DC2626;
+        background: #DC2626;
+    }
+
+    .award-icon i {
+        font-size: 24px;
+        color: #1a1a1a;
+        transition: all 0.3s ease;
+    }
+
+    .award-card:hover .award-icon i { color: white; }
+
+    .award-card h3 {
+        font-size: 16px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .award-name {
+        font-size: 20px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 12px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .award-card p {
+        font-size: 13px;
+        color: #666;
+        line-height: 1.8;
+        font-weight: 300;
+        letter-spacing: 0.2px;
+    }
+
+    .award-card:hover { background: #f8f8f8; }
+
+    /* Achievements Timeline */
+    .achievements-section {
+        background: #f8f8f8;
+        padding: 100px 0;
+        border-bottom: 2px solid #e5e5e5;
+    }
+
+    .achievements-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        margin-top: 60px;
+    }
+
+    .achievement-card {
+        background: white;
+        border: 2px solid #e5e5e5;
+        padding: 40px 30px;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .achievement-card:hover {
+        border-color: #DC2626;
+        box-shadow: 0 15px 40px rgba(220, 38, 38, 0.15);
+        transform: translateY(-5px);
+    }
+
+    .achievement-icon {
+        width: 60px;
+        height: 60px;
+        background: #1E3A8A;
+        border: 3px solid #FBBF24;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        transition: all 0.3s ease;
+    }
+
+    .achievement-card:hover .achievement-icon {
+        background: #DC2626;
+        border-color: #DC2626;
+        transform: scale(1.1);
+    }
+
+    .achievement-icon i {
+        font-size: 26px;
+        color: white;
+    }
+
+    .achievement-title {
+        font-size: 24px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 15px;
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .achievement-modules {
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+        text-align: left;
+    }
+
+    .achievement-modules li {
+        font-size: 12px;
+        color: #666;
+        padding: 8px 0;
+        line-height: 1.6;
+        padding-left: 20px;
+        position: relative;
+    }
+
+    .achievement-modules li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 12px;
+        width: 8px;
+        height: 8px;
+        background: #DC2626;
+    }
+
+    .achievement-modules li strong {
+        color: #1a1a1a;
+        font-weight: 700;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    /* Fee Structure Style Container */
+    .highlights-section {
+        background: #ffffff;
+        padding: 100px 0;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .highlights-container {
+        max-width: 1000px;
+        margin: 60px auto 0;
+        background: white;
+        border: 2px solid #e5e5e5;
+        padding: 50px 45px;
+        transition: all 0.3s ease;
+    }
+
+    .highlights-container:hover {
+        border-color: #DC2626;
+        box-shadow: 0 15px 40px rgba(220, 38, 38, 0.15);
+    }
+
+    .highlights-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-family: 'Montserrat', sans-serif;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .highlights-title::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 12px;
+        height: 12px;
+        background: #DC2626;
+    }
+
+    .highlights-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+
+    .highlight-card {
+        background: #f8f8f8;
+        padding: 30px 25px;
+        border-left: 3px solid #FBBF24;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    .highlight-card:hover {
+        background: #fff;
+        border-left-color: #DC2626;
+        transform: translateY(-5px);
+    }
+
+    .highlight-label {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #888;
+        margin-bottom: 12px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .highlight-name {
+        font-size: 28px;
+        font-weight: 700;
+        color: #DC2626;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* CTA */
+    .awards-cta {
+        background: #1E3A8A;
+        padding: 100px 0;
+        text-align: center;
+    }
+
+    .cta-content h2 {
+        font-size: 42px;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        line-height: 1.2;
+    }
+
+    .cta-content h2 .highlight {
+        color: #FBBF24;
+        position: relative;
+        display: inline-block;
+    }
+
+    .cta-content h2 .highlight::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: #FBBF24;
+    }
+
+    .cta-content p {
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 40px;
+        line-height: 1.8;
+        font-weight: 300;
+        letter-spacing: 0.3px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .cta-btn {
+        padding: 16px 40px;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        font-family: 'Montserrat', sans-serif;
+        border: 2px solid;
+    }
+
+    .cta-btn-primary {
+        background: #DC2626;
+        border-color: #DC2626;
+        color: white;
+    }
+
+    .cta-btn-primary:hover {
+        background: transparent;
+        color: #DC2626;
+    }
+
+    .cta-btn-secondary {
+        background: transparent;
+        border-color: #FBBF24;
+        color: #FBBF24;
+    }
+
+    .cta-btn-secondary:hover {
+        background: #FBBF24;
+        color: #1E3A8A;
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+        .stats-grid, .awards-grid { grid-template-columns: repeat(2, 1fr); }
+        .awards-grid::before { left: 50%; }
+        .awards-grid::after { display: none; }
+        .award-card:nth-child(2n) { border-right: none; }
+        .achievements-grid { grid-template-columns: repeat(2, 1fr); }
+        .awards-hero h1 { font-size: 56px; }
+    }
+
+    @media (max-width: 768px) {
+        .awards-hero { padding: 100px 0 60px; }
+        .awards-hero h1 { font-size: 36px; }
+        .awards-hero p { font-size: 16px; }
+        .section-title { font-size: 28px; margin-bottom: 40px; }
+        .stats-grid, .awards-grid, .achievements-grid, .highlights-grid { grid-template-columns: 1fr; }
+        .awards-grid::before, .awards-grid::after { display: none; }
+        .award-card { border-right: none !important; border-bottom: 1px solid #e5e5e5; }
+        .award-card:last-child { border-bottom: none; }
+        .cta-buttons { flex-direction: column; align-items: center; }
+        .cta-btn { width: 100%; max-width: 300px; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+        .section-container, .awards-hero-content { padding: 0 15px; }
+        .awards-hero h1 { font-size: 28px; }
+        .award-card { padding: 30px 25px; }
+        .section-title { font-size: 24px; }
+    }
+</style>
+</head>
+<body>
+    <%- include('../partials/header') %>
+
+    <!-- Hero Section -->
+    <section class="awards-hero">
+        <div class="awards-hero-content">
+            <h1>Awards & <span class="highlight">Achievements</span></h1>
+            <p>Celebrating excellence in education, research, innovation, and community service through prestigious national and international recognitions.</p>
+        </div>
+    </section>
+
+    <!-- Shining Achievements Stats -->
+    <section class="awards-stats">
+        <div class="section-container">
+            <div class="stats-container-box">
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-number">150+</div>
+                        <div class="stat-label">Awards Won</div>
+                        <div class="stat-subtitle">National & International Recognitions</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Student Achievements</div>
+                        <div class="stat-subtitle">Hackathons, Competitions, Publications</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-patent"></i>
+                        </div>
+                        <div class="stat-number">75+</div>
+                        <div class="stat-label">Patents Filed</div>
+                        <div class="stat-subtitle">Research Innovations & IPR</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="stat-number">200+</div>
+                        <div class="stat-label">Industry Awards</div>
+                        <div class="stat-subtitle">CSR, Placement, Innovation Partnerships</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Major Awards -->
+    <section class="awards-section">
+        <div class="section-container">
+            <h2 class="section-title">Prestigious <span class="highlight">Awards</span></h2>
+            
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="card-number">1</div>
+                    <div class="award-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Best Private University</h3>
+                    <div class="award-name">Gujarat Education Awards 2024</div>
+                    <p>Recognized for academic excellence, infrastructure, and placement achievements by State Education Board.</p>
+                </div>
+
+                <div class="award-card">
+                    <div class="card-number">2</div>
+                    <div class="award-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Innovation in Ayurveda</h3>
+                    <div class="award-name">AYUSH Excellence Award 2023</div>
+                    <p>Awarded for pioneering research in Ayurvedic formulations and clinical integration.</p>
+                </div>
+
+                <div class="award-card">
+                    <div class="card-number">3</div>
+                    <div class="award-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Top Placement University</h3>
+                    <div class="award-name">Times Higher Education 2024</div>
+                    <p>Ranked #1 in Gujarat for highest placement packages and industry partnerships.</p>
+                </div>
+
+                <div class="award-card">
+                    <div class="card-number">4</div>
+                    <div class="award-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Best Infrastructure</h3>
+                    <div class="award-name">Education World India 2023</div>
+                    <p>Recognized for world-class learning facilities, labs, and student amenities.</p>
+                </div>
+
+                <div class="award-card">
+                    <div class="card-number">5</div>
+                    <div class="award-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Green Campus Award</h3>
+                    <div class="award-name">Gujarat Green Initiative 2024</div>
+                    <p>Awarded for sustainable practices, water conservation, and eco-friendly campus.</p>
+                </div>
+
+                <div class="award-card">
+                    <div class="card-number">6</div>
+                    <div class="award-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>CSR Excellence</h3>
+                    <div class="award-name">ET CSR Leadership 2023</div>
+                    <p>Recognized for outstanding community service and rural healthcare initiatives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student & Faculty Achievements -->
+    <section class="achievements-section">
+        <div class="section-container">
+            <h2 class="section-title">Student & <span class="highlight">Faculty Excellence</span></h2>
+            
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="achievement-title">Hackathons</h3>
+                    <ul class="achievement-modules">
+                        <li><strong>Smart India Hackathon</strong> - National Winner 2024</li>
+                        <li>Google Hash Code - Top 10 India</li>
+                        <li>HackWestern - International Finalist</li>
+                    </ul>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="achievement-title">Research</h3>
+                    <ul class="achievement-modules">
+                        <li><strong>75+ Patents Filed</strong> in last 3 years</li>
+                        <li>200+ Scopus Publications</li>
+                        <li>ICMR Research Grants Awarded</li>
+                    </ul>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="achievement-title">Startups</h3>
+                    <ul class="achievement-modules">
+                        <li><strong>15 Startups Incubated</strong> in University T-Hub</li>
+                        <li>3 Cr Funding Raised by Alumni</li>
+                        <li>Gujarat Startup Award Winner</li>
+                    </ul>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="achievement-title">Competitions</h3>
+                    <ul class="achievement-modules">
+                        <li><strong>National Technical Fest Winner</strong></li>
+                        <li>Robocon Championship Finalist</li>
+                        <li>Quiz Olympiad Champions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Container -->
+    <section class="highlights-section">
+        <div class="section-container">
+            <h2 class="section-title">Key <span class="highlight">Milestones</span></h2>
+            
+            <div class="highlights-container">
+                <h3 class="highlights-title">Institutional Achievements Timeline</h3>
+                
+                <div class="highlights-grid">
+                    <div class="highlight-card">
+                        <div class="highlight-label">University Established</div>
+                        <div class="highlight-name">2018</div>
+                    </div>
+
+                    <div class="highlight-card">
+                        <div class="highlight-label">First Convocation</div>
+                        <div class="highlight-name">2022</div>
+                    </div>
+
+                    <div class="highlight-card">
+                        <div class="highlight-label">100% Placement Record</div>
+                        <div class="highlight-name">2024</div>
+                    </div>
+
+                    <div class="highlight-card">
+                        <div class="highlight-label">NAAC A Grade Target</div>
+                        <div class="highlight-name">2025</div>
+                    </div>
+
+                    <div class="highlight-card">
+                        <div class="highlight-label">Research Publications</div>
+                        <div class="highlight-name">500+</div>
+                    </div>
+
+                    <div class="highlight-card">
+                        <div class="highlight-label">Alumni in Fortune 500</div>
+                        <div class="highlight-name">50+</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; padding: 20px; background: #fff9e6; border-left: 3px solid #FBBF24;">
+                    <p style="font-size: 13px; color: #666; line-height: 1.8; margin: 0;">
+                        <strong style="color: #1a1a1a;">Note:</strong> Achievements updated as of 2025. University continuously strives for excellence in all domains of higher education.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="awards-cta">
+        <div class="section-container">
+            <div class="cta-content">
+                <h2>Be Part of Our <span class="highlight">Success Story</span></h2>
+                <p>Join the winning institution with proven track record of excellence. Shape your future with award-winning faculty and world-class opportunities.</p>
+                <div class="cta-buttons">
+                    <a href="/apply" class="cta-btn cta-btn-primary">Apply Now</a>
+                    <a href="/programs" class="cta-btn cta-btn-secondary">Explore Programs</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>
